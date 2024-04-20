@@ -1,0 +1,71 @@
+Numpy
+Hi
+import numpy as np
+
+#Диагональные массивы
+
+#V = np.diag([1, 4, 5])
+#print(V)
+
+# a = [[1,2,3],[4,5,6],[7,8,9]]
+# for el in a:
+#   print(el)
+
+# print()
+# s = np.diag(a)
+# print(s)
+
+# '''
+# [[0 0 0 0 0]
+#  [0 1 0 0 0]
+#  [0 0 2 0 0]
+#  [0 0 0 3 0]
+#  [0 0 0 0 4]]'''
+# V = np.diag([0, 1, 2, 3, 4])
+# print (V)
+# V1 = np.diag(range(5))
+# print (V1)
+
+# Образование двухмерного массива
+#x = np.arange(8).reshape(4,2)
+#print(x)
+
+
+'''На вход даются числа n и m. Выведите массив размера n на m, в котором в первой строчке (строка с нулевым индексом) идут числа от 0 до m-1, а остальные числа равны 0. Тип элементов массива должен быть np.int8.
+3 4
+[[0 1 2 3]
+ [0 0 0 0]
+ [0 0 0 0]] 
+
+ [0 1 2 3 4] [0 0 0 0 0 0 0 0]
+
+ Запрещенные операторы: if; for; while; do
+ '''
+# n = 3
+# m = 4
+# x = np.arange(m)
+# print (x)
+# y = np.zeros(n*m-m, dtype=int)
+# print(y, type(y))
+
+'''
+[[1 1 1 1 1]
+ [0 0 0 0 0]
+ [1 1 1 1 1]
+ [0 0 0 0 0]
+ [1 1 1 1 1]]
+ '''
+
+#print(np.array([]))
+
+#x = np.zeros(5)
+#y = np.ones(5)
+#z = np.array([y, x, y, x, y])
+
+# Удалить все положительнрые
+
+V = np.array([1 ,2 ,3, -9, 11, 12, 4, -2]) #[1, -9, 11, -2]
+print(V[V < 0])
+print (V[V % 2 ==0])
+print (V[:3])
+print (V[np.array((True, False, False, True, True, False, False, True))])
