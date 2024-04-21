@@ -10,3 +10,6 @@ for el in res:
 
 V = np.array(res)
 print(V)
+for el in V:
+ print(el)
+ 
