@@ -1,0 +1,147 @@
+ Introduction to NumPy in Python with Simple Example
+In this post, we will go through the introduction to NumPy library and see what is numpy library, why we use it, difference between numpy and list, how to install a NumPy library, and more with detailed explanations and examples.
+
+So lets start with learning with a very basic question: What is Numpy?
+
+Table of Contents  hide 
+1 What is NumPy?
+2 Difference between List and NumPy
+3 Install NumPy Library
+4 Import NumPy Library
+5 Create NumPy Array
+6 Dimensions in Arrays
+6.1 Check Dimentions of an array
+6.2 1D Array
+6.3 2D Array
+6.4 3D Array
+6.5 Create Higher Dimensional Array
+What is NumPy?
+Numpy is a Python external library that helps us perform various scientific Computations and allows us to work with multidimensional arrays more efficiently.
+
+After learning that Numpy is used to working with multidimensional arrays you might wonder why we use this external library if we have a Python list. We can also use List to work with multidimensional arrays. So, this is a very valid question. I will tell you why we use numpy if we have a Python list. lets explore the difference.
+
+Difference between List and NumPy
+List    Numpy
+List is slow as compared to Numpy.    Numpy is faster as compared to the Python list.
+Basic data structure    Specialized data structure for numerical data
+Consumes more memory    Consumes less memory
+Type checking when iterating through object    No type checking when iterating through object
+store data at non-contiguous memory location    store data at contiguous memory. location.
+Slower for numerical operations    Designed for fast numerical operations
+Can store elements of any data type    Typically stores elements of the same data type
+Install NumPy Library
+To Install the numpy library run the below command in your command prompt.
+
+Copy
+pip install numpy
+Import NumPy Library
+One of the most popular ways to import the NumPy library is by using the import keyword and creating an alias, typically np.
+
+Copy
+import numpy as np
+Now lets create a simple numpy array and see the output how numpy array look like.
+
+Create NumPy Array
+To create a numpy array we use the array() function from the numpy library. This function takes a list (or multi-dimension list) as an input and converts it into a numpy array.
+
+Copy
+import numpy as np
+
+my_array = np.array([1,3,5,7,9,11])
+print(my_array)
+Output
+
+Copy
+[ 1  3  5  7  9 11]
+NOTE: In Python, list elements are separated by commas, whereas NumPy arrays store data elements without comma separators. This represents another fundamental difference between lists and NumPy arrays.
+
+Now, lets explore how to create arrays with various dimensions.
+
+Dimensions in Arrays
+1D array → [ 1 3 5 7 9 11]
+2D array → [[1 2 3 4 5 6 7]]
+3D array → [[[1 2 3 4 5 6 7]]]
+Higher Dimensional arrays
+Check Dimentions of an array
+To check the dimensions of an array we use a ndim attribute. it returns the dimensions of a numpy array.
+
+Copy
+import numpy as np
+
+# 1D array
+a1 = np.array([1,2,3,4,5])
+print(a1.ndim) # Output: 1
+
+# 2D array
+a2 = np.array([[1,2,3,4,5,6,7]])
+print(a2.ndim) # Output: 2
+
+
+# 3D array
+a3 = np.array([[[1,2,3,4,5,6,7]]])
+print(a3.ndim) # Output: 3
+Or theres a simple trick to identify the dimensions of an array: just count the number of brackets on one side. For example, if there are three brackets, its a 3D array.
+
+Now lets create different dimensions of arrays for our better understanding and practice.
+
+1D Array
+We ve already seen in the previous examples how to create a 1-Dimensional array. Simply pass a 1D list inside the array() function, and it will create a 1D array for you.
+
+Copy
+import numpy as np
+
+ar1 = np.array([1,2,3,5,7,11,13,17])
+print(f"1D Array: {ar1}")
+print(f"Dimension: {ar1.ndim}")
+Output
+
+Copy
+1D Array: [ 1  2  3  5  7 11 13 17]
+Dimension: 1
+2D Array
+To create a 2D array, pass a 2D list inside the array() function, and it will create a 2D array. However, ensure that the inner lists contain the same number of data elements; otherwise, it will result in an error.
+
+
+Copy
+import numpy as np
+
+ar2 = np.array([[1,2,3,4],[5,6,7,8]])
+print(ar2)
+print(f"Dimension: {ar2.ndim}")
+Output
+
+Copy
+[[1 2 3 4]
+ [5 6 7 8]]
+Dimension: 2
+3D Array
+Just like with 2D arrays, the inner lists in a 3D array must contain the same number of data elements; otherwise, it will result in an error.
+
+Copy
+import numpy as np
+
+ar3 = np.array([[[1,2,3],[4,5,6],[7,8,9]]])
+print(ar3)
+print(f"Dimension: {ar3.ndim}")
+Output
+
+Copy
+[[[1 2 3]
+  [4 5 6]
+  [7 8 9]]]
+Dimension: 3
+Create Higher Dimensional Array
+To create higher-dimensional arrays, such as 4D or 5D arrays, you need to specify the ndmin value inside the array() function.
+
+Copy
+import numpy as np
+
+ar_n = np.array([1,2,3,4,5], ndmin=5) # Create 5D array
+print(ar_n)
+print(f"Dimension: {ar_n.ndim}")
+Output
+
+Copy
+[[[[[1 2 3 4 5]]]]]
+Dimension: 5
+This is all about the NumPy introduction. Hope this post adds some good value to your life – thank you. 
