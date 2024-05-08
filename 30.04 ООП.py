@@ -167,34 +167,34 @@
  экземплярами классе RealString. К слову, Анне понадобилось только 3 метода внутри класса(включая __ init__()) для
  воплощения задуманного'''
 
-# class RealString:
-#
-#     def __init__(self, str1, str2):
-#         self.str1 = str1
-#         self.str2 = str2
-#
-#     def length_str(self):
-#         a = f'длина строки 1: {len(self.str1)}'
-#         b =  f'длина строки 2: {len(self.str2)}'
-#         return a, b
-#
-#     def compare_str(self):
-#         res = ''
-#         if len(self.str1) > len(self.str2):
-#             res = f'{self.str1} больше чем {self.str2}'
-#         elif len(self.str2) > len(self.str1):
-#             res = f'{self.str2} больше чем {self.str1}'
-#         else:
-#             res = 'Они равные'
-#         return res
-#
-#
-#
-# s =input('Введите 2 слова через проблем >>').split(' ')
-# real = RealString(s[0], s[1])
-#
-# print(real.length_str())
-# print(real.compare_str())
+class RealString:
+
+    def __init__(self, str1, str2):
+        self.str1 = str1
+        self.str2 = str2
+
+    def length_str(self):
+        a = f'длина строки 1: {len(self.str1)}'
+        b =  f'длина строки 2: {len(self.str2)}'
+        return a, b
+
+    def compare_str(self):
+        res = ''
+        if len(self.str1) > len(self.str2):
+            res = f'{self.str1} больше чем {self.str2}'
+        elif len(self.str2) > len(self.str1):
+            res = f'{self.str2} больше чем {self.str1}'
+        else:
+            res = 'Они равные'
+        return res
+
+
+
+s =input('Введите 2 слова через проблем >>').split(' ')
+real = RealString(s[0], s[1])
+
+print(real.length_str())
+print(real.compare_str())
 
 
 
@@ -327,8 +327,76 @@ else:
 
 
 
-#An other one
+#An other good one
+#
+# class Shop_crt:
+#     magasin = {'Яблоко': 10,
+#                'Манго': 24,
+#                'Апельсин': 12,
+#                'Клубника': 18,
+#                'Груша': 15
+#                }
+#     cart = {}
+#
+#     def __init__(self, x):
+#         self.x = x
+#
+#     def menu(self):
+#         print()
+#         print('Вывести каталог товаров >> Нажмите 0')
+#         print('Если хотите совершить покупку >> Нажмите 1')
+#         print('Убрать продукт из корзины >> Нажмите 2')
+#         print('Показать корзину Нажимите 3')
+#         print('Посчитать общуу стоимость корзины >> Нажимите 3')
+#         print('Очистить корзину >> Нажмите 4')
+#         print('Закончить покупки и пойди на кассу >> Нажмите 5')
+#         print('Уйти из магазина >> Нажмите 6')
+#         n = input('>> ')
+#         if n == '0':
+#             self.katalog()
+#         elif n == '1':
+#             self.add()
+#         elif n == '3':
+#             self.show_cart()
+#         # elif n == 3:
+#         # elif n == 3:
+#         # elif n == 3:
+#
+#     def katalog(self):
+#         for el, price in self.magasin.items():
+#             print(el, ':', price, 'Рублей')
+#         print()
+#         n = input('Нажмите Enter кнопку чтобы продолжить: ')
+#         Shop_crt.menu(self)
+#
+#     def add(self):
+#         x = input('Что желаете преобрести? \n>> ')
+#         if x in self.magasin:
+#             y = int(input('Сколько желаете преобрести? \n>> '))
+#             if x not in self.cart:
+#                 self.cart[x] = y
+#             else:
+#                 self.cart[x] += y
+#         else:
+#             print('К сожалению в магазине отсутсвует данный товар')
+#         n = input('Желаете приобрести что-то еще? (y/n)\n>> ')
+#         if n == 'y':
+#             self.add()
+#         else:
+#             Shop_crt.menu(self)
+#
+#     def show_cart(self):
+#         for el, count in self.cart.items():
+#             print(el, ':', count)
+#         n = input('Нажмите Enter кнопку чтобы продолжить: ')
+#         Shop_crt.menu(self)
+#
+#
+# shop = Shop_crt(1)
+# shop.menu()
 
+
+# an other one
 # class Shop_crt:
 #
 #     unit = 0
