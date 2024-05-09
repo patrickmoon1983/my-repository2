@@ -166,35 +166,7 @@
  и реализовала озвученный инструментарий. Сравнивать между собой можно как объекты класса, так и обычные строки с
  экземплярами классе RealString. К слову, Анне понадобилось только 3 метода внутри класса(включая __ init__()) для
  воплощения задуманного'''
-
-class RealString:
-
-    def __init__(self, str1, str2):
-        self.str1 = str1
-        self.str2 = str2
-
-    def length_str(self):
-        a = f'длина строки 1: {len(self.str1)}'
-        b =  f'длина строки 2: {len(self.str2)}'
-        return a, b
-
-    def compare_str(self):
-        res = ''
-        if len(self.str1) > len(self.str2):
-            res = f'{self.str1} больше чем {self.str2}'
-        elif len(self.str2) > len(self.str1):
-            res = f'{self.str2} больше чем {self.str1}'
-        else:
-            res = 'Они равные'
-        return res
-
-
-
-s =input('Введите 2 слова через проблем >>').split(' ')
-real = RealString(s[0], s[1])
-
-print(real.length_str())
-print(real.compare_str())
+#
 
 
 
@@ -268,62 +240,62 @@ removing items, and calculating the total price'''
 
 #Good one
 
-
-class Shop_crt:
-    magasin = {'Яблоко': 10,
-               'Манго': 24,
-               'Апельсин': 12,
-               'Клубника': 18,
-               'Груша': 15
-               }
-    total = 0
-
-    def __init__(self, x):
-        self.x = x
-    def add(self):
-        self.total += self.x
-        return self.total
-    def rmv(self):
-        self.total -= self.x
-        return self.total
-
-addition = Shop_crt(4)
-Magasin = addition.magasin
-for el, price in Magasin.items():
-    print(el,':', price, 'Рублей', ' ', end=' ')
-lst = []
-summa = 0
-product = 0
-print('')
-Shopping = input('Совершать покупку, нажмите клавиша (1) или нажмите любую клавишу для выхода из магазина >>__ ')
-if Shopping == '1':
-    while Shopping == '1':
-        item = input('Напишите наименование товара из корзины --> нажмите Enter / нажмите любую клавишу для выхода из магазина >>__')
-        if item in Magasin:
-            a = Magasin[item]
-            addition = Shop_crt(a)
-            str = input('добавить (1) или убрать (2) >>')
-            if str == '1':
-                lst.append(item)
-                summa += addition.add()
-                product = len(lst)
-                print(lst)
-            elif str == '2' and item not in lst:
-                print('Нет данного товара в корзине')
-            elif str == '2' and item in lst:
-                summa += addition.rmv()
-                lst.remove(item)
-                product = len(lst)
-            else:
-                print('Выбирайте правильную операцию')
-            print(f'Текущая сумма {summa}', f'В корзине: {product} шт.')
-        else:
-            print('У нас нет данного товара')
-            print(f'Сумма к оплате {summa}', f'В корзине: {product} шт.')
-            break
-
-else:
-    print(f'Общая сумма в корзине: {summa}', f'Количество товара : {product}')
+#
+# class Shop_crt:
+#     magasin = {'Яблоко': 10,
+#                'Манго': 24,
+#                'Апельсин': 12,
+#                'Клубника': 18,
+#                'Груша': 15
+#                }
+#     total = 0
+#
+#     def __init__(self, x):
+#         self.x = x
+#     def add(self):
+#         self.total += self.x
+#         return self.total
+#     def rmv(self):
+#         self.total -= self.x
+#         return self.total
+#
+# addition = Shop_crt(4)
+# Magasin = addition.magasin
+# for el, price in Magasin.items():
+#     print(el,':', price, 'Рублей', ' ', end=' ')
+# lst = []
+# summa = 0
+# product = 0
+# print('')
+# Shopping = input('Совершать покупку, нажмите клавиша (1) или нажмите любую клавишу для выхода из магазина >>__ ')
+# if Shopping == '1':
+#     while Shopping == '1':
+#         item = input('Напишите наименование товара из корзины --> нажмите Enter / нажмите любую клавишу для выхода из магазина >>__')
+#         if item in Magasin:
+#             a = Magasin[item]
+#             addition = Shop_crt(a)
+#             str = input('добавить (1) или убрать (2) >>')
+#             if str == '1':
+#                 lst.append(item)
+#                 summa += addition.add()
+#                 product = len(lst)
+#                 print(lst)
+#             elif str == '2' and item not in lst:
+#                 print('Нет данного товара в корзине')
+#             elif str == '2' and item in lst:
+#                 summa += addition.rmv()
+#                 lst.remove(item)
+#                 product = len(lst)
+#             else:
+#                 print('Выбирайте правильную операцию')
+#             print(f'Текущая сумма {summa}', f'В корзине: {product} шт.')
+#         else:
+#             print('У нас нет данного товара')
+#             print(f'Сумма к оплате {summa}', f'В корзине: {product} шт.')
+#             break
+#
+# else:
+#     print(f'Общая сумма в корзине: {summa}', f'Количество товара : {product}')
 
 
 
@@ -450,7 +422,267 @@ else:
 #     print(f'Общая сумма в корзине: {summa}', f'Количество товара : {product}')
 
 
+# '''Строки в Питоне сравниваются на основании значений символовю т.е если мы захотим выяснить, что больше Apple или
+# Яблоко, - то Яблоко  окажется больше. А все потому, что английская А имеет значение 65(берется из таблицы кодировки)
+# , а русская буква Я -1071 (c помощью функции ord()-это можно выяснить). Такое положение дел не устроило Анну. Она
+# считает, что строки нужно сравнивать по количеству входящих в них символов. Для этого девушка создала класс RealString
+#  и реализовала озвученный инструментарий. Сравнивать между собой можно как объекты класса, так и обычные строки с
+#  экземплярами классе RealString. К слову, Анне понадобилось только 3 метода внутри класса(включая __ init__()) для
+#  воплощения задуманного'''
 
+# class RealString:
+
+#     def __init__(self, str1, str2):
+#         self.str1 = str1
+#         self.str2 = str2
+
+#     def length_str(self):
+#         print(f'длина строки 1: {len(self.str1)}')
+#         print(f'длина строки 2: {len(self.str2)}')
+
+#     def compare_str(self):
+#         if len(self.str1) > len(self.str2):
+#             print(f'{self.str1} больше чем {self.str2}')
+#         elif len(self.str2) > len(self.str1):
+#             print(f'{self.str2} больше чем {self.str1}')
+#         else:
+#             print('Они равные')
+
+
+# s =input('Введите 2 слова через проблем >>').split(' ')
+# real = RealString(s[0], s[1])
+
+# real.length_str()
+# real.compare_str()
+
+'''Николаю требуется проверить, возможно ли из представленных отрезков условной длины сформировать треугольник. 
+для этого он решил создать класс TriangleChecker, принимающий только положительные числа. С помощью метода is_triangle
+() возвращаются следующие значения(в зависимости от ситуации):
+- ура, можно построить треугольник
+-С отрицательными числами ничего не выйдет!
+-Нужно вводить только числа!
+- Жаль, но из этого треугольник не сделать.'''
+
+# class TriangleChecker:
+
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#     def is_triangle(self):
+#         if self.x != 0 and self.y != 0 and self.z != 0:
+#           if self.x + self.y >= self.z:
+#               res = 'ура, можно построить треугольник'
+#               if self.x < 0 or self.y < 0 or self.z < 0:
+#                   res = 'С отрицательными числами ничего не выйдет!'
+#           else: res = 'Жаль, но из этого треугольник не сделать.'
+#         else: res = 'Жаль, но из этого треугольник не сделать.'
+#         return res
+
+# def start():
+#     try:
+#         str = [int(input(f'Введите отрезок {x + 1} >>')) for x in range(3)]
+#         str.sort()
+#         triangle = TriangleChecker(str[0], str[1], str[2])
+#         print(triangle.is_triangle())
+#     except ValueError:
+#         print('Нужно вводить только числа!')
+
+# start()
+# str = [input(f'Введите сторону треугольника {x + 1} >>') for x in range(3)]
+# c = True
+# for i in range(len(str)):
+#   if (str[i].isdigit()) == False:
+#     print('Нужно вводить только числа!')
+#     c = False
+#     break
+# if c:
+#   triangle = TriangleChecker(int(str[0]), int(str[1]), int(str[2]))
+#   print(triangle.is_triangle())
+
+'''Write a Python program to create a class representing a shopping cart. Include methods for adding and 
+removing items, and calculating the total price'''
+
+
+# class Shop_crt:
+#   magasin = {'Яблоко': 10,
+#              'Манго': 24,
+#              'Апельсин': 12,
+#              'Клубника': 18,
+#              'Груша': 15
+#              }
+#   total = 0
+
+#   def __init__(self, x):
+#       self.x = x
+#   def add(self):
+#       self.total += self.x
+#       return self.total
+#   def rmv(self):
+#       self.total -= self.x
+#       return self.total
+
+# addition = Shop_crt(4)
+# Magasin = addition.magasin
+# for el, price in Magasin.items():
+#   print(el,':', price, 'Рублей', ' ', end=' ')
+# lst = []
+# summa = 0
+# product = 0
+# print('')
+# Shopping = input('Совершать покупку, нажмите клавиша (1) или нажмите любую клавишу для выхода из магазина >>__ ')
+# if Shopping == '1':
+#   while Shopping == '1':
+#       item = input('Напишите наименование товара из корзины --> нажмите Enter / нажмите любую клавишу для выхода из магазина >>__')
+#       if item in Magasin:
+#           a = Magasin[item]
+#           addition = Shop_crt(a)
+#           str = input('добавить (1) или убрать (2) >>')
+#           if str == '1':
+#               lst.append(item)
+#               summa += addition.add()
+#               product = len(lst)
+#               print(lst)
+#           elif str == '2' and item not in lst:
+#               print('Нет данного товара в корзине')
+#           elif str == '2' and item in lst:
+#               summa += addition.rmv()
+#               lst.remove(item)
+#               product = len(lst)
+#           else:
+#               print('Выбирайте правильную операцию')
+#           print(f'Текущая сумма {summa}', f'В корзине: {product} шт.')
+#       else:
+#           print('У нас нет данного товара')
+#           print(f'Сумма к оплате {summa}', f'В корзине: {product} шт.')
+#           break
+
+# else:
+#   print(f'Общая сумма в корзине: {summa}', f'Количество товара : {product}')
+
+
+class Shop_crt:
+    magasin = {'Яблоко': 10,
+               'Манго': 24,
+               'Апельсин': 12,
+               'Клубника': 18,
+               'Груша': 15
+               }
+    cart = {}
+
+    def __init__(self, x):
+        self.x = x
+
+    def menu(self):
+        print()
+        print('Вывести каталог товаров >> Нажмите 0')
+        print('Если хотите совершить покупку >> Нажмите 1')
+        print('Убрать продукт из корзины >> Нажмите 2')
+        print('Показать корзину Нажимите 3')
+        print('Посчитать общуу стоимость корзины >> Нажимите 4')
+        print('Очистить корзину >> Нажмите 5')
+        print('Закончить покупки и пойди на кассу >> Нажмите 6')
+        print('Уйти из магазина >> Нажмите 7')
+        n = input('>> ')
+        if n == '0':
+            self.katalog()
+        elif n == '1':
+            self.add()
+        elif n == '2':
+            self.rmv()
+        elif n == '3':
+            self.show_cart()
+        elif n == '4':
+            self.addition()
+        elif n == '5':
+            self.cleaning()
+        elif n == '6':
+            self.end_shop()
+        elif n == '7':
+            if input('Желаете Выйти из Магазина? (y/n) >> ') != 'y':
+                Shop_crt.menu(self)
+            else:
+                print('Выходим из интернета магазина')
+
+    def katalog(self):
+        for el, price in self.magasin.items():
+            print(el, ':', price, 'Рублей')
+        print()
+        n = input('Нажмите Enter кнопку чтобы продолжить: ')
+        Shop_crt.menu(self)
+
+    def add(self):
+        x = input('Что желаете преобрести? \n>> ')
+        if x in self.magasin:
+            y = int(input('Сколько желаете преобрести? \n>> '))
+            if x not in self.cart:
+                self.cart[x] = y
+            else:
+                self.cart[x] += y
+        else:
+            print('К сожалению в магазине отсутсвует данный товар')
+        n = input('Желаете приобрести что-то еще? (y/n)\n>> ')
+        if n == 'y':
+            self.add()
+        else:
+            Shop_crt.menu(self)
+    def rmv(self):
+        x = input('Какой товар желаете убрать?: >> ')
+        if x not in self.cart.keys():
+            print('Товар отсутствует в корзине')
+            Shop_crt.menu(self)
+        else:
+            y = int(input('Сколько хотите убрать? \n>> '))
+            if self.cart[x] >= y:
+                self.cart[x] -= y
+            else:
+                print(f'В корзине {self.cart[x]} товар(ов) ')
+                self.rmv()
+        Shop_crt.menu(self)
+    def show_cart(self):
+        for el, count in self.cart.items():
+            print(el, ':', count)
+        Shop_crt.menu(self)
+
+    def addition(self):
+        summa = 0
+        for el in self.cart.keys():
+            price = self.magasin[el] * self.cart[el]
+            summa += price
+        print(f'текущая сумма: {summa}')
+        Shop_crt.menu(self)
+
+    def cleaning(self):
+        print('ВЫ действительно хотите очистить корзину?')
+        if input('y/n : >> ') == 'y':
+            self.cart.clear()
+            print('Корзина пустая')
+            Shop_crt.menu(self)
+        else:
+            self.show_cart()
+
+    def end_shop(self):
+        if input('Хотите завершать покупку и создать чек ? y/n >> ') != 'y':
+            Shop_crt.menu(self)
+        else:
+            print(f' В корзине :')
+            summa = 0
+            for el in self.cart.keys():
+                price = self.magasin[el] * self.cart[el]
+                summa += price
+            print(f'Итого: {summa}')
+            Shop_crt.menu(self)
+
+
+shop = Shop_crt(1)
+shop.menu()
+
+# def add(self):
+#     self.total += self.x
+#     return self.total
+# def rmv(self):
+#     self.total -= self.x
+#     return self.total
 
 
 
