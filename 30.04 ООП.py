@@ -1112,18 +1112,262 @@ removing items, and calculating the total price'''
 # print(bread.get_nutrition())
 
 
+#
+# class Bank:
+#
+#     services = ['Your balance ->Press "1"',
+#                 'Deposit -> Press "2" ',
+#                 'Withdraw money -> Press "3" ',
+#                 'New credit account -> Press "4" ',
+#                 'To view your credit balance -> Press "5"',
+#                 'Your withdraw in credit account -> Press "6"',
+#                 'To Deposit in credit account -> Press "7" ',
+#                 'To close your credit balance -> Press "8" ',
+#                 ' For services -> Press "9" '
+#                 ]
+#     def __init__(self, name, age, pswrd):
+#         self.validate_age(age)
+#         self.validate_pswrd(pswrd)
+#         self.__name = name
+#         self.__age = age
+#         self.__pswrd = pswrd
+#     def creating_acount(self):
+#         print('______________________________________________')
+#         print(f'Hello Mr(Ms) {self.__name}, Welcome to our Bank!')
+#         print(f'Your balance :->> {self.balance}$')
+#         self.main_serv()
+#         self.serVices()
+#     def serVices(self):
+#         for service in self.services:
+#             print(service)
+#         print('______________________________________________')
+#         n = input('Choose your service here : -> ')
+#         if n == '1':
+#             print(f'Your balance: {self.balance}$')
+#             print(input('Press ->"ENTER" to continue" >>'))
+#             self.serVices()
+#             print('______________________________________________')
+#         elif n == '2':
+#             if int(input('Enter your password : ->')) == self.__pswrd:
+#                 summa = int(input('tape the sum here ->'))
+#                 print(f'Your balance : {self.deposite(summa)}$')
+#                 self.main_serv()
+#                 self.serVices()
+#             else:
+#                 print('!!!Incorrect password !!!')
+#                 self.main_serv()
+#                 self.serVices()
+#
+#         elif n == '3':
+#             if int(input('Enter your password : ->')) == self.__pswrd:
+#                 summa = int(input('tape the sum to withdraw ->'))
+#                 print(f'Your balance : {self.withdraw(summa)}$')
+#                 self.main_serv()
+#                 self.serVices()
+#             else:
+#                 print('!!!Incorrect password !!!')
+#                 self.main_serv()
+#                 self.serVices()
+#         elif n == '4':
+#             if bank_ac_1.counter < 1:
+#                 bank_ac_1.credit_creation()
+#
+#             else:
+#                 print('You have already created a account')
+#             self.main_serv()
+#             self.serVices()
+#         elif n == '5':
+#             bank_ac_1.view_cr_bal()
+#             self.main_serv()
+#             self.serVices()
+#
+#         elif n == '6':
+#             if bank_ac_1.counter == 0:
+#                 print('You are about to create an credit account, and it will creating automatically')
+#                 if int(input('Enter your password : ->')) == self.__pswrd:
+#                     summa = int(input('tape the sum to withdraw ->'))
+#                     bank_ac_1.credit_wd(summa)
+#                     bank_ac_1.counter = 1
+#                     self.main_serv()
+#                     self.serVices()
+#
+#                 else:
+#                     print('!!!Incorrect password !!!')
+#                     self.main_serv()
+#                     self.serVices()
+#
+#             else:
+#                 if int(input('Enter your password : ->')) == self.__pswrd:
+#                     summa = int(input('tape the sum to withdraw ->'))
+#                     bank_ac_1.credit_wd(summa)
+#                     self.main_serv()
+#                     self.serVices()
+#                 else:
+#                     print('!!!Incorrect password !!!')
+#                     self.main_serv()
+#                     self.serVices()
+#
+#
+#         elif n == '7':
+#             if bank_ac_1.counter == 0:
+#                 print('You are about an credit account, or it will creating automatically')
+#                 if int(input('Enter your password : ->')) == self.__pswrd:
+#                     summa = int(input('tape the sum to deposit ->'))
+#                     bank_ac_1.deposit_credit(summa)
+#                     bank_ac_1.counter = 1
+#                     self.main_serv()
+#                     self.serVices()
+#                 else:
+#                     print('!!!Incorrect password !!!')
+#                     self.main_serv()
+#                     self.serVices()
+#             else:
+#                 if int(input('Enter your password : ->')) == self.__pswrd:
+#                     summa = int(input('tape the sum to deposit ->'))
+#                     bank_ac_1.deposit_credit(summa)
+#                     bank_ac_1.counter = 1
+#                     self.main_serv()
+#                     self.serVices()
+#                 else:
+#                     print('!!!Incorrect password !!!')
+#                     self.main_serv()
+#                     self.serVices()
+#         elif n == '8':
+#             bank_ac_1.close_cred_bal()
+#             self.main_serv()
+#             self.serVices()
+#         else:
+#             if input('Press the key-> "ENTER" to leave') == '':
+#                 print('!!!Goodbye!!! See you soon.!')
+#             else:
+#                 self.main_serv()
+#                 self.serVices()
+#
+#     def deposite(self, summa):
+#         self.balance += summa
+#         return self.balance
+#
+#     def withdraw(self, summa):
+#         if self.balance - summa < 0:
+#             print('Less money in balance')
+#             return self.balance
+#         else:
+#             return self.balance - summa
+#
+#     @classmethod
+#     def validate_pswrd(cls, pswrd):
+#        if type(pswrd) != int:
+#            raise TypeError('The password must be a number')
+#
+#        pwd = str(pswrd)
+#        if len(pwd) != 4:
+#            raise TypeError('The password must be a number with 4 chars')
+#
+#     @classmethod
+#     def validate_age(cls, age):
+#         if age < 18 or age >120 :
+#             raise TypeError('Your must be older then 18 years, and less the 120 years old')
+#     @staticmethod
+#     def main_serv():
+#         print('______________________________________________')
+#         print(input('Press ->"ENTER" to continue" >>'))
+#
+#     @staticmethod
+#     def avoid():
+#         print('Enter correct data: For help, contact our service')
+#         print('Your password must be a number with 4 characters')
+#         print('You must be older then 18-years old or less then 120-years old')
+#
+#
+# class creditation:
+#     percent = 0.17
+#     counter = 0
+#     def credit_creation(self):
+#         print(f"You've just created a credit balance! Thank for believing in us")
+#         print(f'Your credit balance : {self.credit_balance}$')
+#         self.counter += 1
+#     def credit_wd(self, summa):
+#             money_1 = self.credit_balance - (summa + (summa * self.percent))
+#             self.credit_balance = money_1
+#             print(f'Your credit balance : {self.credit_balance}$, percent :{self.percent} ')
+#
+#     def deposit_credit(self, cash):
+#         money_2 = self.credit_balance + cash
+#         self.credit_balance = money_2
+#
+#         print(f' Your credit balance {self.credit_balance}$')
+#     def view_cr_bal(self):
+#         print(f'Your credit balance : {self.credit_balance }$')
+#
+#     def close_cred_bal(self):
+#         if self.credit_balance < 0:
+#             print(f'For closing your credit balance, you must deposit{self.credit_balance}$')
+#             print('Press the key -> "7" to deposit')
+#         else:
+#             print(f'Your credit balance is positif,  your balance : {self.credit_balance}$')
+#
+#
+#
+# class Bank_acount_1(Bank, creditation):
+#     credit_balance = 0
+#     balance = 0
+#     neg_bal = 0
+#
+#
+# class Bank_acount_2(Bank, creditation):
+#     credit_balance = 0
+#     balance = 0
+#     neg_bal = 0
+#
+#
+# counter = 0
+# while counter < 3:
+#     try:
+#         print('___________________________________________')
+#         print('For creating acount, fill the case below:')
+#         print('___________________________________________')
+#         Bank.avoid()
+#         print('___________________________________________')
+#         name = input(f'Enter your name ->>')
+#         age = int(input(f'Enter your age ->>'))
+#         pswrd = int(input(f'Create your password. Your password must be a number with 4 characters  ->>'))
+#         bank_ac_1 = Bank_acount_1(name, age, pswrd)
+#         # bank_ac_2 = Bank_acount_2()
+#         bank_ac_1.creating_acount()
+#         counter = 3
+#     except ValueError:
+#         print('Incorrect format data')
+#         Bank.avoid()
+#         counter += 1
+#
+#
+# # # bank_ac_2.creating_acount()
+# # print(bank_ac_1.name)
+# # print(bank_ac_1.ID)
+# # print(bank_ac_1.status(-10))
+# # print(bank_ac_1.neg_bal)
+# # print(bank_ac_1.credit(1000))
+# # bank_ac_1.clear_perc(1000)
+# # # print('________________________________')
+# # # print(bank_ac_2.name)
+# # # print(bank_ac_2.ID)
+# # # print(bank_ac_2.neg_bal)
+# # # print(bank_ac_2.credit(1000))
+# # # bank_ac_2.clear_perc(1000)
+
 
 class Bank:
 
-    services = ['Your balance ->Press "1"',
-                'Deposit -> Press "2" ',
-                'Withdraw money -> Press "3" ',
-                'New credit account -> Press "4" ',
-                'To view your credit balance -> Press "5"',
-                'Your withdraw in credit account -> Press "6"',
-                'To Deposit in credit account -> Press "7" ',
+    services = ['To show your balance -> Press "1"',
+                'Deposition -> Press "2" ',
+                'Withdraw -> Press "3" ',
+                'Creating credit account -> Press "4" ',
+                'To show your credit balance -> Press "5"',
+                'Withdraw in credit account -> Press "6"',
+                'Deposition in credit account -> Press "7" ',
                 'To close your credit balance -> Press "8" ',
-                ' For services -> Press "9" '
+                'To transfer credit balance to your own card -> Press "9" ',
+                ' To quit -> Press "Any key" '
                 ]
     def __init__(self, name, age, pswrd):
         self.validate_age(age)
@@ -1236,15 +1480,30 @@ class Bank:
             bank_ac_1.close_cred_bal()
             self.main_serv()
             self.serVices()
+
+        elif n == '9':
+            if creditation.wd_from_credit(bank_ac_1) > 0:
+                money_4 = self.balance + creditation.wd_from_credit(bank_ac_1)
+                print(f' After transaction! your balance : {money_4}')
+                self.balance = money_4
+                bank_ac_1.credit_balance = 0
+                self.main_serv()
+                self.serVices()
+            else:
+                print('Your credit balance is negative or has no money !!SORRY!!')
+                self.main_serv()
+                self.serVices()
+
         else:
-            if input('Press the key-> "ENTER" to leave') == '':
+            if input('Press Any key to leave') == '':
                 print('!!!Goodbye!!! See you soon.!')
             else:
                 self.main_serv()
                 self.serVices()
 
     def deposite(self, summa):
-        self.balance += summa
+        money_1 = self.balance + summa
+        self.balance = money_1
         return self.balance
 
     def withdraw(self, summa):
@@ -1252,7 +1511,9 @@ class Bank:
             print('Less money in balance')
             return self.balance
         else:
-            return self.balance - summa
+            money_2 = self.balance - summa
+            self.balance = money_2
+            return self.balance
 
     @classmethod
     def validate_pswrd(cls, pswrd):
@@ -1278,7 +1539,6 @@ class Bank:
         print('Your password must be a number with 4 characters')
         print('You must be older then 18-years old or less then 120-years old')
 
-
 class creditation:
     percent = 0.17
     counter = 0
@@ -1299,12 +1559,19 @@ class creditation:
     def view_cr_bal(self):
         print(f'Your credit balance : {self.credit_balance }$')
 
+    def wd_from_credit(self):
+        if self.credit_balance >= 0:
+            money_3 = self.credit_balance
+            return money_3
+        else:
+            return self.credit_balance == 0
+
     def close_cred_bal(self):
         if self.credit_balance < 0:
             print(f'For closing your credit balance, you must deposit{self.credit_balance}$')
             print('Press the key -> "7" to deposit')
         else:
-            print(f'Your credit balance is positif,  your balance : {self.credit_balance}$')
+            print(f'Your credit balance is positive,  your balance : {self.credit_balance}$')
 
 
 
@@ -1314,17 +1581,17 @@ class Bank_acount_1(Bank, creditation):
     neg_bal = 0
 
 
-class Bank_acount_2(Bank, creditation):
-    credit_balance = 0
-    balance = 0
-    neg_bal = 0
+# class Bank_acount_2(Bank, creditation):
+#     credit_balance = 0
+#     balance = 0
+#     neg_bal = 0
 
 
 counter = 0
 while counter < 3:
     try:
         print('___________________________________________')
-        print('For creating acount, fill the case below:')
+        print('For creating account, fill the case below:')
         print('___________________________________________')
         Bank.avoid()
         print('___________________________________________')
@@ -1335,22 +1602,7 @@ while counter < 3:
         # bank_ac_2 = Bank_acount_2()
         bank_ac_1.creating_acount()
         counter = 3
-    except ValueError:
+    except TypeError:
         print('Incorrect format data')
         Bank.avoid()
         counter += 1
-
-
-# # bank_ac_2.creating_acount()
-# print(bank_ac_1.name)
-# print(bank_ac_1.ID)
-# print(bank_ac_1.status(-10))
-# print(bank_ac_1.neg_bal)
-# print(bank_ac_1.credit(1000))
-# bank_ac_1.clear_perc(1000)
-# # print('________________________________')
-# # print(bank_ac_2.name)
-# # print(bank_ac_2.ID)
-# # print(bank_ac_2.neg_bal)
-# # print(bank_ac_2.credit(1000))
-# # bank_ac_2.clear_perc(1000)
