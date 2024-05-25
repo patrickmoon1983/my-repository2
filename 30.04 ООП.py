@@ -2302,67 +2302,67 @@ removing items, and calculating the total price'''
 # print(zoo.animalsBycolors('white'))
 
 
-
-from math import pi, sqrt
-
-class Geom:
-
-    def __init__(self, a=0 , b=0, c=0):
-        self.a = a
-        self.b = b
-        self.c = c
-
-class Circle(Geom):
-    def area(self):
-        s = 0.5*pi*(self.a**2)
-        return s
-
-    def calculate_perimeter(self):
-        return pi * (self.a * 2)
-
-    def __repr__(self):
-        return f'The area of circle : {self.area()} cm2, Perimeter of circle :{self.calculate_perimeter()} cm'
-
-class Triangle(Geom):
-    def area(self):
-        s = (self.a * self.b)/2
-        return s
-
-    def calculate_perimeter(self):
-        return  self.a + self.b + self.c
-
-    def __repr__(self):
-        return f'The area of triangle: {self.area()} cm2, Perimeter of triangle :{self.calculate_perimeter()} cm'
-
-class Hexagon(Geom):
-    def area(self):
-        s = (self.a**2) * 2 * sqrt(3)
-        return s
-    def calculate_perimeter(self):
-        return self.a * 6
-
-    def __repr__(self):
-        return f'The area of hexagon: {self.area()} cm2, Perimeter of hexagon :{self.calculate_perimeter()} cm'
-
-class LibraryOfShapes:
-
-    def __init__(self):
-        self.libs = []
-
-    def add_geom(self, *args):
-        for geom in args:
-            self.libs.append(geom)
-
-    def __repr__(self):
-        output = f' Shape \n'
-        output += '\n'.join('\t' + str(geom) for geom in self.libs)
-        return output
-
-
-c1 = Circle(3)
-t1 = Triangle(4, 3)
-h1 = Hexagon(4)
-
+#
+# from math import pi, sqrt
+#
+# class Geom:
+#
+#     def __init__(self, a=0 , b=0, c=0):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+# class Circle(Geom):
+#     def area(self):
+#         s = 0.5*pi*(self.a**2)
+#         return s
+#
+#     def calculate_perimeter(self):
+#         return pi * (self.a * 2)
+#
+#     def __repr__(self):
+#         return f'The area of circle : {self.area()} cm2, Perimeter of circle :{self.calculate_perimeter()} cm'
+#
+# class Triangle(Geom):
+#     def area(self):
+#         s = (self.a * self.b)/2
+#         return s
+#
+#     def calculate_perimeter(self):
+#         return  self.a + self.b + self.c
+#
+#     def __repr__(self):
+#         return f'The area of triangle: {self.area()} cm2, Perimeter of triangle :{self.calculate_perimeter()} cm'
+#
+# class Hexagon(Geom):
+#     def area(self):
+#         s = (self.a**2) * 2 * sqrt(3)
+#         return s
+#     def calculate_perimeter(self):
+#         return self.a * 6
+#
+#     def __repr__(self):
+#         return f'The area of hexagon: {self.area()} cm2, Perimeter of hexagon :{self.calculate_perimeter()} cm'
+#
+# class LibraryOfShapes:
+#
+#     def __init__(self):
+#         self.libs = []
+#
+#     def add_geom(self, *args):
+#         for geom in args:
+#             self.libs.append(geom)
+#
+#     def __repr__(self):
+#         output = f' Shape \n'
+#         output += '\n'.join('\t' + str(geom) for geom in self.libs)
+#         return output
+#
+#
+# c1 = Circle(3)
+# t1 = Triangle(4, 3)
+# h1 = Hexagon(4)
+#
 # # print(c1.__dict__)
 # # print(c1.area())
 # print(c1)
@@ -2375,7 +2375,285 @@ h1 = Hexagon(4)
 # # print(h1.calculate_perimeter())
 # print(h1)
 
-libs = LibraryOfShapes()
-a = libs.add_geom(c1, t1, h1)
-print(libs)
+# libs = LibraryOfShapes()
+# a = libs.add_geom(c1, t1, h1)
+# print(libs)
 
+
+#
+# #
+# class Shape:
+#     def what_am_i(self):
+#         print(f'I am a {self.name_}')
+#
+# class Polygon:
+#     def __init__(self, a=0, b=0, c=0):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def calculate_perimeter(self):
+#         perimeter = (self.a + self.b + self.c) * self.n
+#         return perimeter
+#
+#     def change_size(self, x=0, y=0, z=0):
+#         self.a = self.a + x
+#         self.b = self.b + y
+#         self.c = self.c + z
+#
+#     def __repr__(self):
+#         return f'The perimeter of {self.name_}: {self.calculate_perimeter()}'
+# class Rectangle(Polygon, Shape):
+#     name_ = 'rectangle'
+#     n = 2
+# class Square(Polygon, Shape):
+#     name_ = 'square'
+#     n = 4
+#     square_list = []
+#     def __init__(self, a=0, b=0, c=0):
+#         super().__init__(a, b, c)
+#         self.square_list.append((self.a, self.a))
+#
+#     def __repr__(self):
+#         return f'{self.name_} parameters : {self.a} x {self.a}'
+#
+# rect = Rectangle(2, 4)
+# sqr = Square(4)
+# sqr1 = Square(6)
+# sqr2 = Square(4)
+#
+# rect.calculate_perimeter()
+# sqr.calculate_perimeter()
+#
+# print(rect)
+# print(sqr)
+#
+# print(sqr.square_list)
+#
+# # # rect.change_size(2, 4)
+# # sqr.change_size(1)
+# #
+# # rect.what_am_i()
+# # print(rect)
+# # sqr.what_am_i()
+#
+# print(sqr)
+#
+# print(sqr is sqr1)
+# print(sqr.calculate_perimeter() is sqr2.calculate_perimeter())
+
+
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+# class Horse:
+#     def __init__(self, name, age, owner):
+#         self.name = name
+#         self.age = age
+#         self.owner = owner
+#
+#     def __repr__(self):
+#         return f'The horse named {self.name} with his owner named {self.owner.name} are riding in city'
+#
+# prs = Person('Vlad', 45)
+# hrs = Horse('Violet', 12, prs)
+#
+# print(hrs)
+
+'''Write a Python program to create a class representing a Circle. Include methods to calculate its area and perimeter.'''
+
+# from math import *
+# class Circle:
+#     def __init__(self, r, id):
+#         self.id = id
+#         self.r = r
+#
+#     def perimeter(self):
+#         return (2 * self.r) * pi
+#
+#     def area(self):
+#         return pi * (self.r**2)
+#
+#     def __repr__(self):
+#         output = f'The perimeter of circle {self.id} : {self.perimeter()} cm \n '
+#         output += f'The Area of circle {self.id} : {self.area()} cm2'
+#         return output
+#
+# circle_1 = Circle(4, 1)
+# circle_2 = Circle(8, 2)
+# circle_3 = Circle(10, 3)
+# lst = [circle_1, circle_2, circle_3]
+#
+# for circle in lst:
+#     circle.perimeter()
+#     circle.area()
+#     print('\n', circle, '\n')
+
+
+'''Write a Python program to create a person class. Include attributes like name, country and date of birth. 
+ Implement a method to determine the person's age'''
+#
+# from  datetime import date
+# class Person:
+#     d = date(2024, 12, 20)
+#     y = d.year
+#     def __init__(self, name, country, year_of_bd):
+#         self.name = name
+#         self.country = country
+#         self.year_of_bd = year_of_bd
+#
+#     def define_age(self):
+#         t = self.y - self.year_of_bd
+#         return t
+#
+#     def __repr__(self):
+#         output = f'The age of Mr. {self.name} from {self.country} is {self.define_age()} year old'
+#         return output
+#
+# prs1 = Person('Mark', 'Germany', 1987)
+# prs2 = Person('Dmitriy', 'Russia', 1978)
+# prs3 = Person('Ntumba', 'D.R. Congo', 1959)
+#
+# lst = [prs1, prs2, prs3]
+# for person in lst:
+#     person.define_age()
+#     print('\n', person, '\n')
+
+
+''' Write a Python program to create a calculator class. Include methods for basic arithmetic operations.'''
+class Calculator:
+    operation = ['+', '-', '*', '/']
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def addition(self):
+        return self.x + self.y
+    def substraction(self):
+        return self.x - self.y
+    def multiplication(self):
+        return self.x * self.y
+    def division(self):
+        if self.y == 0:
+            return f'Zero division'
+        return self.x / self.y
+
+print('Welcome to our calculator')
+c = 1
+def start():
+    global c
+    try:
+        while c <= 1:
+            print('Press "ENTER" for living')
+            a = int(input('Enter first nbr : >> '))
+            b = int(input('Enter second nbr : >> '))
+            sg = input('Choose the sign below (+, -, /, *): >>')
+            if sg not in Calculator.operation:
+                print('choose the correct operation')
+                finish()
+            elif sg == '+':
+                calc = Calculator(a, b)
+                print(f'{a} + {b} = {calc.addition()}')
+            elif sg == '-':
+                calc = Calculator(a, b)
+                print(f'{a} - {b} = : {calc.substraction()}')
+            elif sg == '*':
+                calc = Calculator(a, b)
+                print(f'{a} * {b} = : {calc.multiplication()}')
+            elif sg == '/':
+                calc = Calculator(a, b)
+                print(f'{a} / {b} = : {calc.division()}')
+    except TypeError:
+        print('Not correct type value')
+        finish()
+
+    except ValueError:
+        print('Not correct type value')
+        finish()
+def finish():
+    global c
+    opt = input('Do you want to leave (y/n):>>')
+    if opt == 'n':
+        start()
+    else:
+        c = 2
+
+start()
+
+
+'''Write a Python program to create a class that represents a shape. Include methods to calculate its area
+ and perimeter. Implement subclasses for different shapes like circle, triangle, and square.'''
+
+from  math import *
+class Shape:
+    def __init__(self, a=0, b=0, c=0, h=0):
+        self.a = a
+        self.b = b
+        self.c = c
+        self.h = h
+
+    def perimeter(self):
+        p = (self.a + self.b + self.c) * self.n
+        return p
+
+    def area(self):
+        return f'Define formula'
+
+    def __repr__(self):
+        output = f'The perimeter of {self.name} : {self.perimeter()} cm, the area : {self.area()} cm^2'
+        return output
+
+class Circle(Shape):
+    n = pi
+    name = 'Circle'
+    def area(self):
+        s = pi * (self.a**2)
+        return s
+
+class Triangle(Shape):
+    n = 3
+    name = 'Triangle'
+    def area(self):
+        s = (self.a * self.h)/2
+        return s
+
+class Square(Shape):
+    n = 4
+    name = 'Square'
+    def area(self):
+        s = (self.a**2)
+        return s
+
+class List_of_Shape:
+    lst = []
+    def __init__(self):
+        self.lst = []
+
+    def add_shape(self, *args):
+        for shape in args:
+            self.lst.append(shape)
+        return self.lst
+    def __repr__(self):
+        output = f'shape \n'
+        output += '\n'.join('\t' + str(shape) for shape in self.lst)
+        return output
+
+circle = Circle(9)
+triangle = Triangle(8, 5, 6, 7)
+square = Square(3)
+
+circle.perimeter()
+circle.area()
+triangle.perimeter()
+triangle.area()
+square.perimeter()
+square.area()
+
+list = List_of_Shape()
+list.add_shape(circle, triangle, square)
+print(list)
+
+'''Write a Python program to create a class representing a stack data structure. Include methods for pushing 
+and popping elements.'''
