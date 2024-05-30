@@ -262,7 +262,7 @@ removing items, and calculating the total price'''
 # addition = Shop_crt(4)
 # Magasin = addition.magasin
 # for el, price in Magasin.items():
-#     print(el,':', price, 'Рублей', ' ', end=' ')
+#     print(el, ':', price, 'Рублей', ' ', end=' ')
 # lst = []
 # summa = 0
 # product = 0
@@ -2521,139 +2521,429 @@ removing items, and calculating the total price'''
 #     person.define_age()
 #     print('\n', person, '\n')
 
-
-''' Write a Python program to create a calculator class. Include methods for basic arithmetic operations.'''
-class Calculator:
-    operation = ['+', '-', '*', '/']
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    def addition(self):
-        return self.x + self.y
-    def substraction(self):
-        return self.x - self.y
-    def multiplication(self):
-        return self.x * self.y
-    def division(self):
-        if self.y == 0:
-            return f'Zero division'
-        return self.x / self.y
-
-print('Welcome to our calculator')
-c = 1
-def start():
-    global c
-    try:
-        while c <= 1:
-            print('Press "ENTER" for living')
-            a = int(input('Enter first nbr : >> '))
-            b = int(input('Enter second nbr : >> '))
-            sg = input('Choose the sign below (+, -, /, *): >>')
-            if sg not in Calculator.operation:
-                print('choose the correct operation')
-                finish()
-            elif sg == '+':
-                calc = Calculator(a, b)
-                print(f'{a} + {b} = {calc.addition()}')
-            elif sg == '-':
-                calc = Calculator(a, b)
-                print(f'{a} - {b} = : {calc.substraction()}')
-            elif sg == '*':
-                calc = Calculator(a, b)
-                print(f'{a} * {b} = : {calc.multiplication()}')
-            elif sg == '/':
-                calc = Calculator(a, b)
-                print(f'{a} / {b} = : {calc.division()}')
-    except TypeError:
-        print('Not correct type value')
-        finish()
-
-    except ValueError:
-        print('Not correct type value')
-        finish()
-def finish():
-    global c
-    opt = input('Do you want to leave (y/n):>>')
-    if opt == 'n':
-        start()
-    else:
-        c = 2
-
-start()
-
-
-'''Write a Python program to create a class that represents a shape. Include methods to calculate its area
- and perimeter. Implement subclasses for different shapes like circle, triangle, and square.'''
-
-from  math import *
-class Shape:
-    def __init__(self, a=0, b=0, c=0, h=0):
-        self.a = a
-        self.b = b
-        self.c = c
-        self.h = h
-
-    def perimeter(self):
-        p = (self.a + self.b + self.c) * self.n
-        return p
-
-    def area(self):
-        return f'Define formula'
-
-    def __repr__(self):
-        output = f'The perimeter of {self.name} : {self.perimeter()} cm, the area : {self.area()} cm^2'
-        return output
-
-class Circle(Shape):
-    n = pi
-    name = 'Circle'
-    def area(self):
-        s = pi * (self.a**2)
-        return s
-
-class Triangle(Shape):
-    n = 3
-    name = 'Triangle'
-    def area(self):
-        s = (self.a * self.h)/2
-        return s
-
-class Square(Shape):
-    n = 4
-    name = 'Square'
-    def area(self):
-        s = (self.a**2)
-        return s
-
-class List_of_Shape:
-    lst = []
-    def __init__(self):
-        self.lst = []
-
-    def add_shape(self, *args):
-        for shape in args:
-            self.lst.append(shape)
-        return self.lst
-    def __repr__(self):
-        output = f'shape \n'
-        output += '\n'.join('\t' + str(shape) for shape in self.lst)
-        return output
-
-circle = Circle(9)
-triangle = Triangle(8, 5, 6, 7)
-square = Square(3)
-
-circle.perimeter()
-circle.area()
-triangle.perimeter()
-triangle.area()
-square.perimeter()
-square.area()
-
-list = List_of_Shape()
-list.add_shape(circle, triangle, square)
-print(list)
+#
+# ''' Write a Python program to create a calculator class. Include methods for basic arithmetic operations.'''
+# class Calculator:
+#     operation = ['+', '-', '*', '/']
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#     def addition(self):
+#         return self.x + self.y
+#     def substraction(self):
+#         return self.x - self.y
+#     def multiplication(self):
+#         return self.x * self.y
+#     def division(self):
+#         if self.y == 0:
+#             return f'Zero division'
+#         return self.x / self.y
+#
+# print('Welcome to our calculator')
+# c = 1
+# def start():
+#     global c
+#     try:
+#         while c <= 1:
+#             print('Press "ENTER" for living')
+#             a = int(input('Enter first nbr : >> '))
+#             b = int(input('Enter second nbr : >> '))
+#             sg = input('Choose the sign below (+, -, /, *): >>')
+#             if sg not in Calculator.operation:
+#                 print('choose the correct operation')
+#                 finish()
+#             elif sg == '+':
+#                 calc = Calculator(a, b)
+#                 print(f'{a} + {b} = {calc.addition()}')
+#             elif sg == '-':
+#                 calc = Calculator(a, b)
+#                 print(f'{a} - {b} = : {calc.substraction()}')
+#             elif sg == '*':
+#                 calc = Calculator(a, b)
+#                 print(f'{a} * {b} = : {calc.multiplication()}')
+#             elif sg == '/':
+#                 calc = Calculator(a, b)
+#                 print(f'{a} / {b} = : {calc.division()}')
+#     except TypeError:
+#         print('Not correct type value')
+#         finish()
+#
+#     except ValueError:
+#         print('Not correct type value')
+#         finish()
+# def finish():
+#     global c
+#     opt = input('Do you want to leave (y/n):>>')
+#     if opt == 'n':
+#         start()
+#     else:
+#         c = 2
+#
+# start()
+#
+#
+# '''Write a Python program to create a class that represents a shape. Include methods to calculate its area
+#  and perimeter. Implement subclasses for different shapes like circle, triangle, and square.'''
+#
+# from  math import *
+# class Shape:
+#     def __init__(self, a=0, b=0, c=0, h=0):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#         self.h = h
+#
+#     def perimeter(self):
+#         p = (self.a + self.b + self.c) * self.n
+#         return p
+#
+#     def area(self):
+#         return f'Define formula'
+#
+#     def __repr__(self):
+#         output = f'The perimeter of {self.name} : {self.perimeter()} cm, the area : {self.area()} cm^2'
+#         return output
+#
+# class Circle(Shape):
+#     n = pi
+#     name = 'Circle'
+#     def area(self):
+#         s = pi * (self.a**2)
+#         return s
+#
+# class Triangle(Shape):
+#     n = 3
+#     name = 'Triangle'
+#     def area(self):
+#         s = (self.a * self.h)/2
+#         return s
+#
+# class Square(Shape):
+#     n = 4
+#     name = 'Square'
+#     def area(self):
+#         s = (self.a**2)
+#         return s
+#
+# class List_of_Shape:
+#     lst = []
+#     def __init__(self):
+#         self.lst = []
+#
+#     def add_shape(self, *args):
+#         for shape in args:
+#             self.lst.append(shape)
+#         return self.lst
+#     def __repr__(self):
+#         output = f'shape \n'
+#         output += '\n'.join('\t' + str(shape) for shape in self.lst)
+#         return output
+#
+# circle = Circle(9)
+# triangle = Triangle(8, 5, 6, 7)
+# square = Square(3)
+#
+# circle.perimeter()
+# circle.area()
+# triangle.perimeter()
+# triangle.area()
+# square.perimeter()
+# square.area()
+#
+# list = List_of_Shape()
+# list.add_shape(circle, triangle, square)
+# print(list)
 
 '''Write a Python program to create a class representing a stack data structure. Include methods for pushing 
 and popping elements.'''
+
+# class Stack:
+#     stk = []
+#     def __init__(self):
+#         self.stk = []
+#     def pushing(self, x):
+#         lst = self.stk.append(x)
+#         self.stk.sort()
+#         return lst
+#     def popping(self, x):
+#         if len(self.stk) == 0:
+#             return f'stack is empty'
+#         elif x not in self.stk:
+#             return f'{x} not in stack'
+#         r = self.stk.index(x)
+#         self.stk.pop(r)
+#         return self.stk
+#
+#     def displaying_stk(self):
+#         print(f'Actual stack : {self.stk}')
+#
+#
+# stack = Stack()
+# print(stack.popping(4))
+# stack.pushing(4)
+# stack.pushing(0)
+# stack.pushing(1)
+# stack.popping(4)
+# stack.displaying_stk()
+
+'''Write a Python program to create a class representing a queue data structure. Include methods for 
+enqueueing and dequeueing elements.'''
+#
+# class Queue:
+#
+#     lst = []
+#
+#     def __init__(self):
+#         self.lst = []
+#
+#     def enqueueing(self, x):
+#         if x not in self.lst:
+#             self.lst.append(x)
+#             return self.lst
+#         return f'Item  already in queue'
+#
+#     def dequeueing(self, x):
+#         if x not in self.lst:
+#             print(f'Item {x} not in queue')
+#         else:
+#             self.lst.remove(x)
+#             return self.lst
+#
+#     def __repr__(self):
+#         output = f'The queue {self.lst}'
+#         return output
+#
+#
+# queue = Queue()
+# queue.enqueueing(10)
+# queue.enqueueing(10)
+# queue.enqueueing(30)
+# queue.enqueueing(40)
+# queue.enqueueing(50)
+# queue.enqueueing(60)
+# queue.dequeueing(10)
+# queue.enqueueing(20)
+# queue.enqueueing(30)
+# queue.enqueueing(10)
+# queue.dequeueing(80)
+# print(queue)
+
+#
+# class Calculator:
+#
+#     def add (self, x=0, y=0):
+#         return x + y
+#
+#
+# class Screen:
+#     def display(self):
+#         return f'Show : {cal.add(4, 6)}'
+#
+# cal = Calculator()
+# screen = Screen()
+# y = screen.display()
+#
+# print(y)
+
+
+# class Animal:
+#     def move(self):
+#         print('moving foward')
+#
+#     def left_foot_forward(self):
+#         print('Moving left foot forward')
+#
+#     def right_foot_forward(self):
+#         print('Moving right foot forward')
+#
+#     def left_foot_back(self):
+#         print('Moving left foot back')
+#
+#     def right_foot_back(self):
+#         print('Moving right foot back')
+#
+# class Giraffe(Animal):
+#     def __init__(self, spots):
+#         self.spots = spots
+#     def dacing(self):
+#         self.move()
+#         self.left_foot_forward()
+#         self.right_foot_back()
+#         self.left_foot_back()
+#         self.right_foot_forward()
+#
+# gerald = Giraffe(200)
+# gerald.dacing()
+
+
+
+# class MyEnumerate:
+#
+#     def __init__(self, data):
+#         self.data = data
+#         self.index = 0
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index >= len(self.data):
+#             raise StopIteration
+#         value = (self.index, self.data[self.index])
+#         self.index += 1
+#         return value
+#
+#
+# for index, element in MyEnumerate([1, 4, 5, 7]):
+#     print(f'{index}, {element}')
+
+
+
+# class MyEnumerate:
+#
+#     def __init__(self, data, max_time):
+#         self.data = data
+#         self.max_time = max_time
+#         self.index = 0
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index >= self.max_time:
+#             raise StopIteration
+#         value = (self.index, self.data[self.index % len(self.data)])
+#         self.index += 1
+#         return value
+#
+#
+# for index, element in MyEnumerate([1, 4, 5, 7], 6):
+#     print(f'{index}, {element}')
+
+
+
+# for i, el in enumerate('abc'):
+#     print(f'{i+1}, {el}')
+
+
+# def Myenumerate(data):
+#     for i, el in enumerate(data):
+#         print(f'{i}, {data[i]}')
+#
+# Myenumerate('abc')
+
+# def Myenumerate():
+#     yield 'a'
+#     yield 'b'
+#     yield 'c'
+#
+# for el in Myenumerate():
+#     print(el)
+
+# lst_1 = (1, 2, 3)
+# lst_2 = ('a', 'b', 'c')
+#
+# lst_3 = zip(lst_1, lst_2)
+# lst_3 = dict(lst_3)
+# print(lst_3)
+
+
+#
+# dict_1 = {1: 'a', 2: 'b', 3: 'c'}
+# def unzip(data):
+#     lst_1, lst_2 = [], []
+#     for item in data:
+#         lst_1.append(item)
+#     for value in data.values():
+#         lst_2.append(value)
+#     return lst_1, lst_2
+#
+# print(unzip(dict_1))
+
+
+# x = 'Hello'
+# print(f'{ "hi" if x == "Hello" else "hello"}')
+
+
+'''Лернер реувен : Python интенсив стр.108. Упражнение Ресторан'''
+
+# \Процедурное программирование
+
+menu = {'Bread': 2,
+        'Pepper-soup': 10,
+        'Spagethie': 7,
+        'Rice': 5,
+        'Potatos': 8,
+        'Chicken': 15,
+        'Salad': 11
+        }
+c = 0
+dict_0 = {}
+lst_price = []
+def prices():
+    for el, count in dict_0.items():
+        price = count * menu[el]
+        lst_price.append(price)
+    return sum(lst_price)
+
+prices()
+def resume():
+    print(f'Your order:{dict_0}, total items :{sum(dict_0.values())}')
+resume()
+
+print('_'*100, '|')
+print('Welcome to our online menu')
+print('_'*100, '|')
+print('Here our menu ->')
+for el in menu:
+    print(f'{el}: {menu[el]} $')
+print('_'*100, '|')
+if input('Do you like to do some order ? (y/n) ->> ') == 'n':
+    print(f'Your finally cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
+else:
+    while not c:
+        a = input('Tape your order Here or Press key "q" to quit:->> ')
+        if a == 'q':
+            resume()
+            print('See you!!')
+            break
+        elif a in menu:
+            x = input('Do you like to add or remove food ? (+/-) ->>')
+            if x == '+':
+                y = int(input('How many items do you like to add? ->>'))
+                if a not in dict_0:
+                    dict_0[a] = y
+                    resume()
+                else:
+                    dict_0[a] += y
+                    resume()
+            elif x == '-':
+                if a not in dict_0:
+                    print('No food in cart')
+                    resume()
+                else:
+                    y = int(input('How many items do you like to remove? ->>'))
+                    if dict_0[a] < y:
+                        print('Wrong quantity')
+                        resume()
+                    else:
+                        dict_0[a] = dict_0[a] - y
+                    resume()
+        elif a not in menu:
+            print('For now, we dont have this food')
+            if input('Would you like to leave our menu? (y/n) ->>:') == 'y':
+                print('See you!!')
+                break
+            else:
+                print('Great')
+
+    print(f'Your cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
+
+
+
+
+
+
+
+
