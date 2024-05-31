@@ -2867,78 +2867,204 @@ enqueueing and dequeueing elements.'''
 
 
 '''Лернер реувен : Python интенсив стр.108. Упражнение Ресторан'''
+#
+# # \Процедурное программирование
+#
+# menu = {'Bread': 2,
+#         'Pepper-soup': 10,
+#         'Spagethie': 7,
+#         'Rice': 5,
+#         'Potatos': 8,
+#         'Chicken': 15,
+#         'Salad': 11
+#         }
+# c = 0
+# dict_0 = {}
+# lst_price = []
+# def prices():
+#     for el, count in dict_0.items():
+#         price = count * menu[el]
+#         lst_price.append(price)
+#     return sum(lst_price)
+#
+# prices()
+# def resume():
+#     print(f'Your order:{dict_0}, total items :{sum(dict_0.values())}')
+# resume()
+#
+# print('_'*100, '|')
+# print('Welcome to our online menu')
+# print('_'*100, '|')
+# print('Here our menu ->')
+# for el in menu:
+#     print(f'{el}: {menu[el]} $')
+# print('_'*100, '|')
+# if input('Do you like to do some order ? (y/n) ->> ') == 'n':
+#     print(f'Your finally cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
+# else:
+#     while not c:
+#         a = input('Tape your order Here or Press key "q" to quit:->> ')
+#         if a == 'q':
+#             resume()
+#             print('See you!!')
+#             break
+#         elif a in menu:
+#             x = input('Do you like to add or remove food ? (+/-) ->>')
+#             if x == '+':
+#                 y = int(input('How many items do you like to add? ->>'))
+#                 if a not in dict_0:
+#                     dict_0[a] = y
+#                     resume()
+#                 else:
+#                     dict_0[a] += y
+#                     resume()
+#             elif x == '-':
+#                 if a not in dict_0:
+#                     print('No food in cart')
+#                     resume()
+#                 else:
+#                     y = int(input('How many items do you like to remove? ->>'))
+#                     if dict_0[a] < y:
+#                         print('Wrong quantity')
+#                         resume()
+#                     else:
+#                         dict_0[a] = dict_0[a] - y
+#                     resume()
+#         elif a not in menu:
+#             print('For now, we dont have this food')
+#             if input('Would you like to leave our menu? (y/n) ->>:') == 'y':
+#                 break
+#             else:
+#                 print('Great')
+#
+#     print(f'Your cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
+#     print('See you!!')
 
-# \Процедурное программирование
+# Объектно-ориентированное программирование
 
-menu = {'Bread': 2,
+class Menu:
+
+    menu = {'Bread': 2,
         'Pepper-soup': 10,
         'Spagethie': 7,
         'Rice': 5,
         'Potatos': 8,
         'Chicken': 15,
-        'Salad': 11
+        'Salad': 11,
+        'Limonad' : 1,
+        'Beer': 20,
+        'Water' : 1
         }
-c = 0
-dict_0 = {}
-lst_price = []
-def prices():
-    for el, count in dict_0.items():
-        price = count * menu[el]
-        lst_price.append(price)
-    return sum(lst_price)
+    script = ['For adding items to your cart PRESS "+" ',
+              'For removing items to your cart PRESS "-" ',
+              'For clear  your cart PRESS "0" ',
+              'For showing your cart PRESS "*" ',
+              'For Exit  PRESS "x" ']
 
-prices()
-def resume():
-    print(f'Your order:{dict_0}, total items :{sum(dict_0.values())}')
-resume()
+    def __init__(self):
+        print('_' * 100, '|')
+        print('Our menu ->')
+        for el in self.menu:
+            print(f'{el}: {self.menu[el]} $')
+        self.cart = {}
 
-print('_'*100, '|')
-print('Welcome to our online menu')
-print('_'*100, '|')
-print('Here our menu ->')
-for el in menu:
-    print(f'{el}: {menu[el]} $')
-print('_'*100, '|')
-if input('Do you like to do some order ? (y/n) ->> ') == 'n':
-    print(f'Your finally cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
-else:
-    while not c:
-        a = input('Tape your order Here or Press key "q" to quit:->> ')
-        if a == 'q':
-            resume()
-            print('See you!!')
-            break
-        elif a in menu:
-            x = input('Do you like to add or remove food ? (+/-) ->>')
-            if x == '+':
-                y = int(input('How many items do you like to add? ->>'))
-                if a not in dict_0:
-                    dict_0[a] = y
-                    resume()
-                else:
-                    dict_0[a] += y
-                    resume()
-            elif x == '-':
-                if a not in dict_0:
-                    print('No food in cart')
-                    resume()
-                else:
-                    y = int(input('How many items do you like to remove? ->>'))
-                    if dict_0[a] < y:
-                        print('Wrong quantity')
-                        resume()
-                    else:
-                        dict_0[a] = dict_0[a] - y
-                    resume()
-        elif a not in menu:
-            print('For now, we dont have this food')
-            if input('Would you like to leave our menu? (y/n) ->>:') == 'y':
-                print('See you!!')
-                break
+    def create_order(self):
+        self.script_0(self.script)
+        y = input('Tape here : ->> ')
+        if y == '+':
+            z = input('Enter item here : ->> ')
+            if z not in self.menu:
+                print('No item in menu')
             else:
-                print('Great')
+                print(f'Your cart : {self.add_food(z)}')
+        elif y == '-':
+            z = input('Enter item here : ->> ')
+            if z not in self.menu:
+                print('No item in menu')
+            else:
+                print(f'Your cart : {self.remove_food(z)}')
+        elif y == '0':
+            if input('Do you like to clear your cart ? (y/n)') == 'y':
+                self.clear_menu()
+                print(f' Your cart is clear : {self.cart}')
+            else:
+                print(f'Your cart : {self.cart} ')
+        elif y == '*':
+            if len(self.cart) == 0:
+                print('No order')
+            else:
+                print(f' Your order : {self.cart}, Total price : {self.total_price(self.cart, self.menu)} $')
+        elif y == 'x':
+            pass
+    def add_food(self, x):
+        y = int(input('How many items too add ->_'))
+        if x not in self.cart:
+            self.cart[x] = y
+        else:
+            self.cart[x] = self.cart[x] + y
+        return self.cart
+    def remove_food(self, x):
+        y = int(input('How many items to remove ->_'))
+        if x not in self.cart:
+            print('No item in cart!!')
+        else:
+            if y <= self.cart[x]:
+                self.cart[x] = self.cart[x] - y
+            else:
+                print('Wrong quantity')
+        return self.cart
+    def clear_menu(self):
+        return self.cart.clear()
 
-    print(f'Your cart:{dict_0}, total items:{sum(dict_0.values())}, Total price {prices()} $ ')
+    def show_cart(self):
+        return self.cart
+    @staticmethod
+    def total_price(data_1, data_2):
+        lst = []
+        for el in data_1:
+            price = data_1[el] * data_2[el]
+            lst.append(price)
+        return sum(lst)
+    @staticmethod
+    def script_0(data):
+        print(' Our online services')
+        print('_' * 100, '|')
+        for el in data:
+            print(el)
+    @staticmethod
+    def continue_0():
+        print('_' * 100, '|')
+        print(input('Press "c" key to continue or any key to quit : __'))
+
+
+print('_' * 100, '|')
+print('WELCOME TO OUR ONLINE MENU')
+order = Menu()
+c = True
+service = input('Do you wish a personal help ? (y/n) ->> _')
+if service == 'n':
+    while c:
+        order.create_order()
+        stop = input('Would you like to continue ? (y/n):__')
+        if stop == 'y':
+            c = True
+        else:
+            print(f' Total to pay : {order.total_price(order.cart, order.menu)} $')
+            print('THANK YOU!!')
+            break
+elif service == 'y':
+    print('Great')
+    print('Our manager will join you soon')
+
+else:
+    print('See you soon')
+
+
+
+
+# order.add_food('Bread')
+# order.remove_food('Bread')
+# print(order.cart)
 
 
 
