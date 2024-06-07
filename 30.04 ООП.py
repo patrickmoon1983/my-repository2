@@ -2941,135 +2941,348 @@ enqueueing and dequeueing elements.'''
 #     print('See you!!')
 
 # Объектно-ориентированное программирование
-
-class Menu:
-
-    menu = {'Bread': 2,
-        'Pepper-soup': 10,
-        'Spagethie': 7,
-        'Rice': 5,
-        'Potatos': 8,
-        'Chicken': 15,
-        'Salad': 11,
-        'Limonad' : 1,
-        'Beer': 20,
-        'Water' : 1
-        }
-    script = ['For adding items to your cart PRESS "+" ',
-              'For removing items to your cart PRESS "-" ',
-              'For clear  your cart PRESS "0" ',
-              'For showing your cart PRESS "*" ',
-              'For Exit  PRESS "x" ']
-
-    def __init__(self):
-        print('_' * 100, '|')
-        print('Our menu ->')
-        for el in self.menu:
-            print(f'{el}: {self.menu[el]} $')
-        self.cart = {}
-
-    def create_order(self):
-        self.script_0(self.script)
-        y = input('Tape here : ->> ')
-        if y == '+':
-            z = input('Enter item here : ->> ')
-            if z not in self.menu:
-                print('No item in menu')
-            else:
-                print(f'Your cart : {self.add_food(z)}')
-        elif y == '-':
-            z = input('Enter item here : ->> ')
-            if z not in self.menu:
-                print('No item in menu')
-            else:
-                print(f'Your cart : {self.remove_food(z)}')
-        elif y == '0':
-            if input('Do you like to clear your cart ? (y/n)') == 'y':
-                self.clear_menu()
-                print(f' Your cart is clear : {self.cart}')
-            else:
-                print(f'Your cart : {self.cart} ')
-        elif y == '*':
-            if len(self.cart) == 0:
-                print('No order')
-            else:
-                print(f' Your order : {self.cart}, Total price : {self.total_price(self.cart, self.menu)} $')
-        elif y == 'x':
-            pass
-    def add_food(self, x):
-        y = int(input('How many items too add ->_'))
-        if x not in self.cart:
-            self.cart[x] = y
-        else:
-            self.cart[x] = self.cart[x] + y
-        return self.cart
-    def remove_food(self, x):
-        y = int(input('How many items to remove ->_'))
-        if x not in self.cart:
-            print('No item in cart!!')
-        else:
-            if y <= self.cart[x]:
-                self.cart[x] = self.cart[x] - y
-            else:
-                print('Wrong quantity')
-        return self.cart
-    def clear_menu(self):
-        return self.cart.clear()
-
-    def show_cart(self):
-        return self.cart
-    @staticmethod
-    def total_price(data_1, data_2):
-        lst = []
-        for el in data_1:
-            price = data_1[el] * data_2[el]
-            lst.append(price)
-        return sum(lst)
-    @staticmethod
-    def script_0(data):
-        print(' Our online services')
-        print('_' * 100, '|')
-        for el in data:
-            print(el)
-    @staticmethod
-    def continue_0():
-        print('_' * 100, '|')
-        print(input('Press "c" key to continue or any key to quit : __'))
-
-
-print('_' * 100, '|')
-print('WELCOME TO OUR ONLINE MENU')
-order = Menu()
-c = True
-service = input('Do you wish a personal help ? (y/n) ->> _')
-if service == 'n':
-    while c:
-        order.create_order()
-        stop = input('Would you like to continue ? (y/n):__')
-        if stop == 'y':
-            c = True
-        else:
-            print(f' Total to pay : {order.total_price(order.cart, order.menu)} $')
-            print('THANK YOU!!')
-            break
-elif service == 'y':
-    print('Great')
-    print('Our manager will join you soon')
-
-else:
-    print('See you soon')
-
-
-
-
-# order.add_food('Bread')
-# order.remove_food('Bread')
-# print(order.cart)
+#
+# class Menu:
+#
+#     menu = {'Bread': 2,
+#         'Pepper-soup': 10,
+#         'Spagethie': 7,
+#         'Rice': 5,
+#         'Potatos': 8,
+#         'Chicken': 15,
+#         'Salad': 11,
+#         'Limonad' : 1,
+#         'Beer': 20,
+#         'Water' : 1
+#         }
+#     script = ['For adding items to your cart PRESS "+" ',
+#               'For removing items to your cart PRESS "-" ',
+#               'For clear  your cart PRESS "0" ',
+#               'For showing your cart PRESS "*" ',
+#               'For Exit  PRESS "x" ']
+#
+#     def __init__(self):
+#         print('_' * 100, '|')
+#         print('Our menu ->')
+#         for el in self.menu:
+#             print(f'{el}: {self.menu[el]} $')
+#         self.cart = {}
+#
+#     def create_order(self):
+#         self.script_0(self.script)
+#         y = input('Tape here : ->> ')
+#         if y == '+':
+#             z = input('Enter item here : ->> ')
+#             if z not in self.menu:
+#                 print('No item in menu')
+#             else:
+#                 print(f'Your cart : {self.add_food(z)}')
+#         elif y == '-':
+#             z = input('Enter item here : ->> ')
+#             if z not in self.menu:
+#                 print('No item in menu')
+#             else:
+#                 print(f'Your cart : {self.remove_food(z)}')
+#         elif y == '0':
+#             if input('Do you like to clear your cart ? (y/n)') == 'y':
+#                 self.clear_menu()
+#                 print(f' Your cart is clear : {self.cart}')
+#             else:
+#                 print(f'Your cart : {self.cart} ')
+#         elif y == '*':
+#             if len(self.cart) == 0:
+#                 print('No order')
+#             else:
+#                 print(f' Your order : {self.cart}, Total price : {self.total_price(self.cart, self.menu)} $')
+#         elif y == 'x':
+#             pass
+#     def add_food(self, x):
+#         y = int(input('How many items too add ->_'))
+#         if x not in self.cart:
+#             self.cart[x] = y
+#         else:
+#             self.cart[x] = self.cart[x] + y
+#         return self.cart
+#     def remove_food(self, x):
+#         y = int(input('How many items to remove ->_'))
+#         if x not in self.cart:
+#             print('No item in cart!!')
+#         else:
+#             if y <= self.cart[x]:
+#                 self.cart[x] = self.cart[x] - y
+#             else:
+#                 print('Wrong quantity')
+#         return self.cart
+#     def clear_menu(self):
+#         return self.cart.clear()
+#
+#     def show_cart(self):
+#         return self.cart
+#     @staticmethod
+#     def total_price(data_1, data_2):
+#         lst = []
+#         for el in data_1:
+#             price = data_1[el] * data_2[el]
+#             lst.append(price)
+#         return sum(lst)
+#     @staticmethod
+#     def script_0(data):
+#         print(' Our online services')
+#         print('_' * 100, '|')
+#         for el in data:
+#             print(el)
+#     @staticmethod
+#     def continue_0():
+#         print('_' * 100, '|')
+#         print(input('Press "c" key to continue or any key to quit : __'))
+#
+#
+# print('_' * 100, '|')
+# print('WELCOME TO OUR ONLINE MENU')
+# order = Menu()
+# c = True
+# service = input('Do you wish a personal help ? (y/n) ->> _')
+# if service == 'n':
+#     while c:
+#         order.create_order()
+#         stop = input('Would you like to continue ? (y/n):__')
+#         if stop == 'y':
+#             c = True
+#         else:
+#             print(f' Total to pay : {order.total_price(order.cart, order.menu)} $')
+#             print('THANK YOU!!')
+#             break
+# elif service == 'y':
+#     print('Great')
+#     print('Our manager will join you soon')
+#
+# else:
+#     print('See you soon')
+#
+# # order.add_food('Bread')
+# # order.remove_food('Bread')
+# # print(order.cart)
 
 
+'''Лернер реувен : Python интенсив стр.111. Упражнение Ресторан'''
+#
+# class Autorization:
+#
+#     Autorized = {'Patrick': 'djopat',
+#                  'Richard': 'standoff',
+#                  'Gaby': 'Xinkalik',
+#                  'Julia': 'Yusik'}
+#     c = False
+#     output = ''
+#
+#     def __init__(self):
+#         print('Welcome to our portal')
+#
+#     def check_in(self, login, pswrd):
+#         if login not in self.Autorized:
+#             print('Wrong login')
+#             return self.c
+#         else:
+#             if self.Autorized[login] != pswrd:
+#                 print('No match between login and password')
+#                 return self.c
+#             else:
+#                 print('Great')
+#                 self.c = True
+#                 return self.c
+#
+#     def __repr__(self):
+#         if self.c == True:
+#             self.output += f'Access comfirmed !!'
+#         else:
+#             self.output += f'Acces denied'
+#         return self.output
+#
+#
+#
+# profile_0 = Autorization()
+#
+# print('Enter your login and password for acceding')
+# login =input('Enter your Login ->>__')
+# pswrd = input('Enter your password ->>__')
+#
+# profile_0.check_in(login, pswrd)
+# print(profile_0)
 
 
 
+# l= []
+# summa = 0
+# for current_line in open('file_me.txt'):
+#     l.append(current_line)
+# print(l)
+# for x in l:
+#     for el in x:
+#         if el.isdigit():
+#             summa += int(el)
+# print(summa)
 
 
+# with open('file_me.txt') as file:
+#     for i in range(2):
+#         print(file.readline(), end='')
+
+# with open('file_me.txt', 'a') as file:
+#     file.write('I want to be a Python devellops \n')
+#     file.write('She whis too \n')
+
+# f = open('file_me.txt')
+# print(f.read())
+
+
+# def read_nline(file, n):
+#     with open(file) as file:
+#         f = file.readlines()
+#         a = len(f)
+#         f_1 = f[abs(a - n):]
+#         for el in f_1:
+#             print(el, end='')
+#
+# file = 'file_me.txt'
+# n = 2
+#
+# read_nline(file, n)
+
+
+
+#
+# # l = []
+# with open('file_me.txt') as file:
+#     f = file.readlines()
+#     a = len(f)
+#     print(a)
+#
+# f = open('file_me.txt')
+# for i in range(a):
+#     str_1 = f.readline()
+#     l.append(str_1)
+# print(l)
+
+
+# with open('file_me.txt') as file:
+#     f = file.read().split()
+#     max_len = len(max(f, key=len))
+#     print([word for word in f if len(word) == max_len])
+
+
+# c = 0
+# with open('file_me.txt') as file:
+#     f = file.readlines()
+#     for el in f:
+#         c += 1
+# print(c)
+
+# lst = []
+# maxi = 0
+# word = []
+# with open('file_me.txt') as file:
+#     f = file.read().split()
+#     for el in f:
+#         c = f.count(el)
+#         lst.append(c)
+#         maxi = max(lst)
+#         word = set([word for word in f if f.count(word) == maxi])
+# print(f)
+# print(lst)
+# print(maxi)
+# print(word)
+
+
+# dict_1 = {}
+# maxi = 0
+# word = []
+# with open('file_me.txt') as file:
+#     f = file.read().split()
+#     for el in f:
+#         c = f.count(el)
+#         dict_1[el] = c
+#
+# print(f)
+# print(dict_1)
+
+
+
+# lst = ['apple', 'mango', 'berry', 'banana']
+# with open('file_me.txt', 'a') as file:
+#      for i in range(len(lst)):
+#          file.write('%s\n' % lst[i])
+#
+# f = open('file_me.txt')
+# print(f.read()
+
+# with open('file_me.txt') as file:
+#     f = open('file_me_2.txt', 'w+')
+#     f.write(file.read())
+#     f.close()
+#
+# with open('file_me_2.txt') as file:
+#     print(file.read())
+
+
+
+# with open('file_me.txt') as f1, open('file_me_2.txt') as f2:
+#     for line1, line2 in zip(f1, f2):
+#         print(line1 + line2)
+
+
+# import random
+#
+# f = open('file_me.txt').read().splitlines()
+# # f = open('file_me.txt').read().split()
+# print(random.choice(f))
+
+
+
+# f = open('file_me.txt').readlines()
+# print(f)
+# f = [s.rstrip('\n') for s in f]
+# print(f)
+
+
+# def txt_file(data, txt):
+#     with open(data, 'a') as file:
+#         file.write(txt)
+#     f = open(data)
+#     data = f.read().replace(',', ' ')
+#     return len(data.splitlines())
+#
+# print(txt_file(('file_me.txt'), 'gjhk'))
+
+
+# with open('file_me.txt') as f1, open('file_me_2.txt') as f2:
+#     lst = f1.readlines()
+#     lst_1 = f2.readlines()
+#     s = lst + lst_1
+#     s = [x.rstrip('\n') for x in s]
+#     print(s)
+
+
+
+# def save_answr(file, qst):
+#     with open(file, 'a') as f:
+#         f.write(f"\n{qst}")
+# file = 'file_me.txt'
+# qst = input('Как тебя зовут ?:')
+#
+# save_answr(file, qst)
+
+#
+# lst = [['1', '2', '3'], ['4', '5', '6']]
+# import csv
+#
+# with open('test.cvs', 'w') as file:
+#     w = csv.writer(file, delimiter='|')
+#     w.writerow(lst[0])
+#     w.writerow(lst[1])
+#
+# with open('test.cvs', 'r') as f:
+#     r = csv.reader(f, delimiter=',')
+#     for row in r:
+#         t = ','.join(row)
+#         print(t)
 
