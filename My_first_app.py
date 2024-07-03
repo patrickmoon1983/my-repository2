@@ -280,164 +280,575 @@ Window.clearcolor = (0.2, 0.1, 0.1, 1)
 class MyMenuApp(App):
     def __init__(self):
         super().__init__()
-        self.items = []
-        self.qte = []
-        self.menu ={}
-        self.lbl_0 = Label(text='0', font_size=25)
-        self.lb_1 = Label(text='Sushi hot one\nIngred: fish, milk\n100g\n \nPrice 10$', italic=True, size_hint_x=0.4)
-        self.lb_2 = Label(text='Sushi cold one\nIngred: fish, milk\n100g\n \nPrice 12$', italic=True, size_hint_x=0.4)
-        self.lb_3 = Label(text='Midle sushi cold one\nIngred: fish, milk, cheese\n100g\n \nPrice 15$',
-                          italic=True, size_hint_x=0.4)
-        self.lb_4 = Label(text='Hot Sushi one\nIngred: fish,tomato, milk\n100g\n \nPrice 13$', italic=True,
-                          size_hint_x=0.4)
-        self.lb_5 = Label(text='Sushi for one bigest\nIngred: fish, chesse\n100g\n \nPrice 12$', italic=True,
-                          size_hint_x=0.4)
-        self.lb_6 = Label(text='Burger for two\nIngred:bread, meat, cheese, frie\n200g\n \nPrice 20$',
-                          italic=True, size_hint_x=0.4)
-        self.lb_7 = Label(text='Burger set\nIngred:bread, meat, cheese, frie, drink\n200g\nPrice 25$',italic=True,
-                              size_hint_x=0.4)
-        self.lb_8 = Label(text='Burger set\nIngred:bread, meat, cheese, frie, drink\n200g\nPrice 25$', italic=True,
-                          size_hint_x=0.4)
-        self.lb_9 = Label(text='Pizza margarita\nIngred:pizza, tomatos, cheese\n100g\nPrice 13$', italic=True,
-                          size_hint_x=0.4)
-        self.lb_10 = Label(text='Pizza 5 cheeses\nIngred:pizza, chicken, tomatos, cheese\n100g\nPrice 15$',
-                               italic=True, size_hint_x=0.4)
 
-        self.chb_1 = CheckBox(size_hint_x=0.1)
-        self.chb_2 = CheckBox(size_hint_x=0.1)
-        self.chb_3 = CheckBox(size_hint_x=0.1)
-        self.chb_4 = CheckBox(size_hint_x=0.1)
-        self.chb_5 = CheckBox(size_hint_x=0.1)
-        self.chb_6 = CheckBox(size_hint_x=0.1)
-        self.chb_7 = CheckBox(size_hint_x=0.1)
-        self.chb_8 = CheckBox(size_hint_x=0.1)
-        self.chb_9 = CheckBox(size_hint_x=0.1)
-        self.chb_10 = CheckBox(size_hint_x=0.1)
+        self.menu ={}
+        self.lbl_ord_show = Label(text='')
+        self.lbl_00 = Label(text='1', font_size=25)
+        self.lbl_01 = Label(text='1', font_size=25)
+        self.lbl_02 = Label(text='1', font_size=25)
+        self.lbl_03 = Label(text='1', font_size=25)
+        self.lbl_04 = Label(text='1', font_size=25)
+        self.lbl_05 = Label(text='1', font_size=25)
+        self.lbl_06 = Label(text='1', font_size=25)
+        self.lbl_07 = Label(text='1', font_size=25)
+        self.lbl_08 = Label(text='1', font_size=25)
+        self.lbl_09 = Label(text='1', font_size=25)
+        self.lbl_010 = Label(text='1', font_size=25)
+        self.lb_1 = Label(text='Sushi hot one\nIngred: fish, milk\n100g\nPrice 10$', italic=True, size_hint_x=0.2)
+        self.lb_2 = Label(text='Sushi cold one\nIngred: fish, milk\n100g\n Price 12$', italic=True, size_hint_x=0.2)
+        self.lb_3 = Label(text='Midle sushi cold one\nIngred: fish, milk, cheese\n100g\nPrice 15$',
+                          italic=True, size_hint_x=0.2)
+        self.lb_4 = Label(text='Hot Sushi one\nIngred: fish,tomato, milk\n100g\nPrice 13$', italic=True,
+                          size_hint_x=0.2)
+        self.lb_5 = Label(text='Sushi for one bigest\nIngred: fish, chesse\n100g\nPrice 12$', italic=True,
+                          size_hint_x=0.2)
+        self.lb_6 = Label(text='Burger for two\nIngred:bread, meat,\ncheese, frie\n200g\nPrice 20$',
+                          italic=True, size_hint_x=0.2)
+        self.lb_7 = Label(text='Burger set\nIngred:bread, meat, cheese,\nfrie, drink\n200g\nPrice 25$',italic=True,
+                              size_hint_x=0.2)
+        self.lb_8 = Label(text='Burger set\nIngred:bread, meat, \ncheese, frie, drink\n200g\nPrice 25$', italic=True,
+                          size_hint_x=0.2)
+        self.lb_9 = Label(text='Pizza margarita\nIngred:pizza,\n tomatos, cheese\n100g\nPrice 13$', italic=True,
+                          size_hint_x=0.2)
+        self.lb_10 = Label(text='Pizza 5 cheeses\nIngred:pizza, chicken,\n tomatos, cheese\n100g\nPrice 15$',
+                               italic=True, size_hint_x=0.2)
+
+        self.chb_1 = CheckBox(size_hint_x=0.05)
+        self.chb_2 = CheckBox(size_hint_x=0.05)
+        self.chb_3 = CheckBox(size_hint_x=0.05)
+        self.chb_4 = CheckBox(size_hint_x=0.05)
+        self.chb_5 = CheckBox(size_hint_x=0.05)
+        self.chb_6 = CheckBox(size_hint_x=0.05)
+        self.chb_7 = CheckBox(size_hint_x=0.05)
+        self.chb_8 = CheckBox(size_hint_x=0.05)
+        self.chb_9 = CheckBox(size_hint_x=0.05)
+        self.chb_10 = CheckBox(size_hint_x=0.05)
 
 
     def build(self):
+        def add0(instance):
+            self.lbl_00.text = str(int(self.lbl_01.text)+1)
+
+        def sub0(instance):
+            self.lbl_00.text = str(int(self.lbl_01.text)-1)
+
         def add(instance):
-            self.lbl_0.text = str(int(self.lbl_0.text)+1)
+            self.lbl_01.text = str(int(self.lbl_01.text)+1)
 
         def sub(instance):
-            self.lbl_0.text = str(int(self.lbl_0.text)-1)
+            self.lbl_01.text = str(int(self.lbl_01.text)-1)
 
+
+        def add2(instance):
+            self.lbl_02.text = str(int(self.lbl_02.text) + 1)
+
+        def sub2(instance):
+            self.lbl_02.text = str(int(self.lbl_02.text) - 1)
+
+
+        def add3(instance):
+            self.lbl_03.text = str(int(self.lbl_03.text) + 1)
+
+        def sub3(instance):
+            self.lbl_03.text = str(int(self.lbl_03.text) - 1)
+
+
+        def add4(instance):
+            self.lbl_04.text = str(int(self.lbl_04.text) + 1)
+
+        def sub4(instance):
+            self.lbl_04.text = str(int(self.lbl_04.text) - 1)
+
+        def add5(instance):
+            self.lbl_05.text = str(int(self.lbl_05.text) + 1)
+
+        def sub5(instance):
+            self.lbl_05.text = str(int(self.lbl_05.text) - 1)
+
+
+        def add6(instance):
+            self.lbl_06.text = str(int(self.lbl_06.text) + 1)
+
+        def sub6(instance):
+            self.lbl_06.text = str(int(self.lbl_06.text) - 1)
+
+        def add7(instance):
+            self.lbl_07.text = str(int(self.lbl_07.text) + 1)
+
+        def sub7(instance):
+            self.lbl_07.text = str(int(self.lbl_07.text) - 1)
+
+        def add8(instance):
+            self.lbl_08.text = str(int(self.lbl_08.text) + 1)
+
+        def sub8(instance):
+            self.lbl_08.text = str(int(self.lbl_08.text) - 1)
+
+        def add9(instance):
+            self.lbl_09.text = str(int(self.lbl_09.text) + 1)
+
+        def sub9(instance):
+            self.lbl_09.text = str(int(self.lbl_09.text) - 1)
+
+        def add10(instance):
+            self.lbl_010.text = str(int(self.lbl_010.text) + 1)
+
+        def sub10(instance):
+            self.lbl_010.text = str(int(self.lbl_010.text) - 1)
 
         def checkbox1(instance, value):
             if  value:
-                self.menu[(self.lb_1.text)] = '0'
-                print(self.menu)
+                if int(str(self.lbl_01.text)) >=0:
+                    self.menu[(self.lb_1.text)] = str(self.lbl_01.text)
+                    self.lbl_01.text = '1'
+                    print(self.menu)
+                    show_popup_order(instance)
+                    print(self.lbl_ord_show.text)
+                else:
+                    self.menu[(self.lb_1.text)] ='0'
+
             else:
                 if self.lb_1.text in self.menu:
                     self.menu.pop(self.lb_1.text)
-                    print(self.menu)
+                    self.lbl_01.text = '1'
+                    bn1.background_color = [1, 1, 0, 0.5]
+                    bn1.text = 'Add\nitems'
+                    # print(self.menu)
+
                 else:
                     print('item not in order')
                     print(self.menu)
 
         def checkbox2(instance, value):
+
             if value:
-                self.menu[(self.lb_2.text)] = '0'
+                self.menu[(self.lb_2.text)] =str(self.lbl_02.text)
+                self.lbl_02.text = '1'
                 print(self.menu)
+                show_popup_order(instance)
+                print(self.lbl_ord_show.text)
+
             else:
                 if self.lb_2.text in self.menu:
                     self.menu.pop(self.lb_2.text)
-                    print(self.menu)
+                    self.lbl_02.text = '1'
+                    bn2.background_color = [1, 1, 0, 0.5]
+                    bn2.text = 'Add\nitems'
+                    # print(self.menu)
+
                 else:
                     print('item not in order')
                     print(self.menu)
+
         def checkbox3(instance, value):
             if value:
-                self.menu[(self.lb_3.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_3.text)] =str(self.lbl_03.text)
+                self.lbl_03.text = '1'
+                # print(self.menu)
+                show_popup_order(instance)
             else:
                 if self.lb_3.text in self.menu:
                     self.menu.pop(self.lb_3.text)
-                    print(self.menu)
+                    self.lbl_03.text = '1'
+                    bn3.background_color = [1, 1, 0, 0.5]
+                    bn3.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
 
         def checkbox4(instance, value):
             if value:
-                self.menu[(self.lb_4.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_4.text)] = str(self.lbl_04.text)
+                self.lbl_04.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
+
             else:
                 if self.lb_4.text in self.menu:
                     self.menu.pop(self.lb_4.text)
-                    print(self.menu)
+                    self.lbl_04.text = '1'
+                    bn4.background_color = [1, 1, 0, 0.5]
+                    bn4.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
+
                 else:
                     print('item not in order')
                     print(self.menu)
 
         def checkbox5(instance, value):
             if value:
-                self.menu[(self.lb_5.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_5.text)] =str(self.lbl_05.text)
+                self.lbl_05.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_5.text in self.menu:
                     self.menu.pop(self.lb_5.text)
-                    print(self.menu)
+                    self.lbl_05.text = '1'
+                    bn5.background_color = [1, 1, 0, 0.5]
+                    bn5.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
 
         def checkbox6(instance, value):
             if value:
-                self.menu[(self.lb_6.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_6.text)] = str(self.lbl_06.text)
+                self.lbl_06.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_6.text in self.menu:
                     self.menu.pop(self.lb_6.text)
-                    print(self.menu)
+                    self.lbl_06.text = '1'
+                    bn6.background_color = [1, 1, 0, 0.5]
+                    bn6.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
+
         def checkbox7(instance, value):
             if value:
-                self.menu[(self.lb_7.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_7.text)] = str(self.lbl_07.text)
+                self.lbl_07.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_7.text in self.menu:
                     self.menu.pop(self.lb_7.text)
-                    print(self.menu)
+                    self.lbl_07.text = '1'
+                    bn7.background_color = [1, 1, 0, 0.5]
+                    bn7.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
 
         def checkbox8(instance, value):
             if value:
-                self.menu[(self.lb_8.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_8.text)] =str(self.lbl_08.text)
+                self.lbl_08.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_7.text in self.menu:
                     self.menu.pop(self.lb_8.text)
-                    print(self.menu)
+                    self.lbl_08.text = '1'
+                    bn8.background_color = [1, 1, 0, 0.5]
+                    bn8.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
         def checkbox9(instance, value):
             if value:
-                self.menu[(self.lb_9.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_9.text)] = str(self.lbl_09.text)
+                self.lbl_09.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_9.text in self.menu:
                     self.menu.pop(self.lb_9.text)
-                    print(self.menu)
+                    self.lbl_09.text = '1'
+                    bn9.background_color = [1, 1, 0, 0.5]
+                    bn9.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
         def checkbox10(instance, value):
             if value:
-                self.menu[(self.lb_10.text)] = '0'
-                print(self.menu)
+                self.menu[(self.lb_10.text)] = str(self.lbl_010.text)
+                self.lbl_010.text = '1'
+                # print(self.menu)
+                # show_popup_order()
+                show_popup_order(instance)
             else:
                 if self.lb_10.text in self.menu:
                     self.menu.pop(self.lb_10.text)
-                    print(self.menu)
+                    self.lbl_010.text = '1'
+                    bn10.background_color = [1, 1, 0, 0.5]
+                    bn10.text = 'Add\nitems'
+                    # print(self.menu)
+                    # show_popup_order()
                 else:
                     print('item not in order')
                     print(self.menu)
+
+        def change_color(instance):
+            instance.background_color = [0.1, 0.2, 0, 1]
+
+        def added1(instance):
+            bn1.text = 'Added'+'\n '+str(self.lbl_01.text)+'pcs'
+        def added2(instance):
+            bn2.text = 'Added' +'\n '+str(self.lbl_02.text)+'pcs'
+        def added3(instance):
+            bn3.text = 'Added'+'\n '+str(self.lbl_03.text)+'pcs'
+        def added4(instance):
+            bn4.text = 'Added'+'\n '+str(self.lbl_04.text)+'pcs'
+        def added5(instance):
+            bn5.text = 'Added'+'\n '+str(self.lbl_05.text)+'pcs'
+        def added6(instance):
+            bn6.text = 'Added'+'\n '+str(self.lbl_06.text)+'pcs'
+        def added7(instance):
+            bn7.text = 'Added'+'\n '+str(self.lbl_07.text)+'pcs'
+        def added8(instance):
+            bn8.text = 'Added'+'\n '+str(self.lbl_08.text)+'pcs'
+        def added9(instance):
+            bn9.text = 'Added'+'\n '+str(self.lbl_09.text)+'pcs'
+        def added10(instance):
+            bn10.text = 'Added'+'\n '+str(self.lbl_010.text)+'pcs'
+
+        def show_popup1(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub)
+                for el in (btn_0, self.lbl_01, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added1)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                try:
+                    popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1),
+                                  title_size=20,
+                                  size_hint=(0.2, 0.15), auto_dismiss=False)
+                    bl_0 = BoxLayout()
+                    bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                    btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add0)
+                    btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub0)
+                    for el in (btn_0, self.lbl_00, btn_01):
+                        bl_01.add_widget(el)
+                    bl_0.add_widget(bl_01)
+                    bl_0.add_widget(Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss))
+                    popup.content = bl_0
+                    popup.open()
+                except:
+                     pass
+
+
+
+        def show_popup2(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add2)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub2)
+                for el in (btn_0, self.lbl_02, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added2)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+
+
+        def show_popup3(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add3)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub3)
+                for el in (btn_0, self.lbl_03, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added3)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+
+
+        def show_popup4(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add4)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub4)
+                for el in (btn_0, self.lbl_04, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added4)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+        def show_popup5(instance):
+            try:
+
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add5)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub5)
+                for el in (btn_0, self.lbl_05, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added5)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+
+        def show_popup6(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add6)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub6)
+                for el in (btn_0, self.lbl_06, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added6)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+
+            except:
+                pass
+
+
+        def show_popup7(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add7)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub7)
+                for el in (btn_0, self.lbl_07, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added7)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+
+        def show_popup8(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add8)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub8)
+                for el in (btn_0, self.lbl_08, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added8)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+        def show_popup9(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add9)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub9)
+                for el in (btn_0, self.lbl_09, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added9)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+        def show_popup10(instance):
+            try:
+                popup = Popup(title="Items", title_align='center', background_color=(0.1, 0.5, 0.4, 1), title_size=20,
+                              size_hint=(0.2, 0.15), auto_dismiss=False)
+                bl_0 = BoxLayout()
+                bl_01 = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+                btn_0 = Button(text='+', font_size=25, background_color=[1, 1, 0, 0.5], on_press=add10)
+                btn_01 = Button(text='-', font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub10)
+                for el in (btn_0, self.lbl_010, btn_01):
+                    bl_01.add_widget(el)
+                bl_0.add_widget(bl_01)
+                btn_02 = Button(text='add', size_hint=(0.5, 1), on_press=popup.dismiss)
+                btn_02.bind(on_press=added10)
+                bl_0.add_widget(btn_02)
+                popup.content = bl_0
+                popup.open()
+            except:
+                pass
+
+        def order():
+            for key, value in self.menu.items():
+                self.lbl_ord_show.text = (f'{key},\n {value}pc(s)')
+
+        def show_popup_order(instance):
+            order()
+            popup = Popup(title='Added', title_align='center', size_hint=(0.3, 0.3), auto_dismiss=True)
+            stlout = StackLayout()
+            scrv= ScrollView(size_hint_x=1, size_hint_y=1, bar_color=[1, 1, 1, 1],
+                        bar_margin=2, bar_width=10)
+            lbl_show_ord =Label(text=self.lbl_ord_show.text, size_hint_y=None)
+            # lbl_show_ord.bind(minimum_height=lbl_show_ord.setter("height"))
+            scrv.add_widget(lbl_show_ord)
+            stlout.add_widget(scrv)
+            # stlout.add_widget(Button(text='Close', size_hint=(1,0.1), on_press=popup.dismiss))
+            popup.content = stlout
+            popup.open()
+
 
 
         self.chb_1.bind(active=checkbox1)
@@ -451,33 +862,28 @@ class MyMenuApp(App):
         self.chb_9.bind(active=checkbox9)
         self.chb_10.bind(active=checkbox10)
 
-        # self.chb_2.bind(active=checkbox1_solution)
-        # self.chb_3.bind(active=checkbox1_solution)
-        # self.chb_4.bind(active=checkbox1_solution)
-
-
+        for key, value in self.menu.items():
+            self.lbl_ord_show.text = (f'{key},\n {value}pc(s)')
 
         fl = FloatLayout()
-        sv = ScrollView(size_hint_x=0.5, size_hint_y=1, x=250, bar_color=[1, 1, 1, 1],
+        sv = ScrollView(size_hint_x=0.8, size_hint_y=1, x=150, bar_color=[1, 1, 1, 1],
                         bar_margin=2, bar_width=10)
 
 
-        sl_0 = StackLayout( size_hint_x=0.1, size_hint_y=0.05, x=160)
-        bl_0 = BoxLayout(orientation='horizontal')
-        btn_0 = Button(text='+',font_size=25, background_color=[1, 1, 0, 0.5], on_press=add)
-        btn_01=Button(text='-',font_size=25, background_color=[1, 1, 0, 0.5], on_press=sub)
-        for el in (btn_0, self.lbl_0, btn_01):
-            bl_0.add_widget(el)
-        sl_0.add_widget(bl_0)
-
         #panels
         bl = BoxLayout(orientation='vertical', size_hint_x=0.15, size_hint_y=1, x=0, y=0, spacing=6, padding=10)
-        bl.add_widget(Button(text='Add to\norder', bold=True,italic=True, font_size= 18, padding=5, background_color=[1, 1, 0, 0.5]))
-        bl.add_widget(Button(text='Send order', bold=True,italic=True, font_size= 18, padding=5, background_color=[0.9, 0.9, 0, 0.5]))
-        bl.add_widget(Button(text='Delete order', bold=True,italic=True, font_size= 18, padding=5, background_color=[0.8, 0.8, 0, 0.5]))
-        bl.add_widget(Button(text='Show your\n order', bold=True,italic=True, font_size= 18, padding=5, background_color=[0.7, 0.7, 0, 0.5]))
-        bl.add_widget(Button(text='Call\npersonal', bold=True,italic=True, font_size= 18, padding=5, background_color=[0.6, 0.6, 0, 0.5]))
-        bl.add_widget(Button(text='Call\nTaxi', background_color=[1, 1, 0, 0.5], bold=True,italic=True, font_size=18, padding=5))
+        bl.add_widget(Button(text='Add to\norder', bold=True,italic=True, font_size= 18, padding=5,
+                             background_color=[1, 1, 0, 0.5]))
+        bl.add_widget(Button(text='Send order', bold=True,italic=True, font_size= 18, padding=5,
+                             background_color=[0.9, 0.9, 0, 0.5]))
+        bl.add_widget(Button(text='Delete order', bold=True,italic=True, font_size= 18, padding=5,
+                             background_color=[0.8, 0.8, 0, 0.5]))
+        bl.add_widget(Button(text='Show your\n order', bold=True,italic=True, font_size= 18, padding=5,
+                             background_color=[0.7, 0.7, 0, 0.5], on_press=show_popup_order))
+        bl.add_widget(Button(text='Call\npersonal', bold=True,italic=True, font_size= 18, padding=5,
+                             background_color=[0.6, 0.6, 0, 0.5]))
+        bl.add_widget(Button(text='Call\nTaxi', background_color=[1, 1, 0, 0.5], bold=True,italic=True,
+                             font_size=18, padding=5))
         bl.add_widget(Widget())
 
         #image panels
@@ -486,39 +892,69 @@ class MyMenuApp(App):
         sl_1.add_widget(self.chb_1)
         sl_1.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi1.JPG', size_hint_y=0.95, size_hint_x=0.5))
         sl_1.add_widget(self.lb_1)
+        bn1 = Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8,background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup1)
+        bn1.bind(on_press=change_color)
+        sl_1.add_widget(bn1)
 
 
         sl_2 = StackLayout(size_hint_y=None)
         sl_2.add_widget(self.chb_2)
         sl_2.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi2.JPG', size_hint_y=0.95, size_hint_x=0.5))
         sl_2.add_widget(self.lb_2)
+        bn2 = Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup2)
+        bn2.bind(on_press=change_color)
+        sl_2.add_widget(bn2)
 
 
         sl_3 = StackLayout(size_hint_y=None)
         sl_3.add_widget(self.chb_3)
         sl_3.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi4.JPG', size_hint_y=0.95,size_hint_x=0.5))
         sl_3.add_widget(self.lb_3)
+        bn3 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup3))
+        bn3.bind(on_press=change_color)
+        sl_3.add_widget(bn3)
 
         sl_4 = StackLayout(size_hint_y=None)
         sl_4.add_widget(self.chb_4)
         sl_4.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi3.JPG', size_hint_y=0.95,size_hint_x=0.5))
         sl_4.add_widget(self.lb_4)
+        bn4 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup4))
+        bn4.bind(on_press=change_color)
+        sl_4.add_widget(bn4)
 
         sl_5 = StackLayout(size_hint_y=None)
         sl_5.add_widget(self.chb_5)
         sl_5.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi5.JPG', size_hint_y=0.95,size_hint_x=0.5))
         sl_5.add_widget(self.lb_5)
+        bn5 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup5))
+        bn5.bind(on_press=change_color)
+        sl_5.add_widget(bn5)
 
         sl_6 = StackLayout(size_hint_y=None)
         sl_6.add_widget(self.chb_6)
         sl_6.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger1.JPG', size_hint_y=0.95,size_hint_x=0.5))
         sl_6.add_widget(self.lb_6)
+        bn6 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup6))
+        bn6.bind(on_press=change_color)
+        sl_6.add_widget(bn6)
 
         sl_7 = StackLayout(size_hint_y=None)
         sl_7.add_widget(self.chb_7)
+
         sl_7.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger2.JPG', size_hint_y=0.95,
                               size_hint_x=0.5))
         sl_7.add_widget(self.lb_7)
+        bn7 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup7))
+        bn7.bind(on_press=change_color)
+        sl_7.add_widget(bn7)
+
 
         sl_8 = StackLayout(size_hint_y=None)
         sl_8.add_widget(self.chb_8)
@@ -526,16 +962,28 @@ class MyMenuApp(App):
         sl_8.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger3.JPG', size_hint_y=0.95,
                               size_hint_x=0.5))
         sl_8.add_widget(self.lb_8)
+        bn8 =(Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup8))
+        bn8.bind(on_press=change_color)
+        sl_8.add_widget(bn8)
 
         sl_9 = StackLayout(size_hint_y=None)
         sl_9.add_widget(self.chb_9)
         sl_9.add_widget(Image(source='C:/Users/Patrick moon/Downloads/pizza1.JPG', size_hint_y=0.95, size_hint_x=0.5))
         sl_9.add_widget(self.lb_9)
+        bn9 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup9))
+        bn9.bind(on_press=change_color)
+        sl_9.add_widget(bn9)
 
         sl_10 = StackLayout(size_hint_y=None)
         sl_10.add_widget(self.chb_10)
         sl_10.add_widget(Image(source='C:/Users/Patrick moon/Downloads/pizza2.JPG', size_hint_y=0.95, size_hint_x=0.5))
         sl_10.add_widget(self.lb_10)
+        bn10 = (Button(text='Add\nitems', size_hint_x=0.1, size_hint_y=0.8, background_color=[1, 1, 0, 0.5],
+                               on_press=show_popup10))
+        bn10.bind(on_press=change_color)
+        sl_10.add_widget(bn10)
 
         for el in (sl_1, sl_2, sl_3,sl_4, sl_5, sl_6, sl_7, sl_8, sl_9, sl_10):
             sl.add_widget(el)
@@ -545,9 +993,8 @@ class MyMenuApp(App):
         sv.add_widget(sl)
         fl.add_widget(bl)
         fl.add_widget(sv)
-        fl.add_widget(sl_0)
-        # print(self.items)
-        print(self.menu)
+        # print(self.menu)
+
 
         return fl
 if __name__ == '__main__':
