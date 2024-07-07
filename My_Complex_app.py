@@ -45,11 +45,13 @@ from random import random
 from math import *
 import winsound
 import webbrowser
+from random import *
 
-Config.set("graphics", "width", "400")
-Config.set("graphics", "height", "500")
-Config.set("graphics", "resizable", "0")
+# Config.set("graphics", "width", "400")
+# Config.set("graphics", "height", "500")
+# Config.set("graphics", "resizable", "0")
 Window.clearcolor = (0.5, 0.9, 0.9, 0.3)
+Window.size = (500, 500)
 
 class MyComplexApp(App):
     def __init__(self):
@@ -77,6 +79,14 @@ class MyComplexApp(App):
         self.input_text_tr_2 = TextInput(hint_text='b=', font_size=20)
         self.input_text_poly_1 = TextInput(hint_text='a=', font_size=20)
         self.input_text_poly_2 = TextInput(hint_text='n=', font_size=20)
+        self.label = Label(text='Press next\n  for\n'
+                                'the game', size_hint=(1, 0.3), font_size=30, italic=True)
+        self.label_1 = Label(text='Score:', size_hint=(1, 0.2), font_size=20, italic=True)
+        self.input_ans = TextInput(hint_text='Answer', size_hint=(1, 0.1), font_size=25)
+        self.count = 0
+        self.score = 0
+        self.rigth = 0
+        self.wrong = 0
 
 
     def build(self):
@@ -98,6 +108,20 @@ class MyComplexApp(App):
 
         def clear(instance):
             self.lbl.text = '0'
+
+        def clear_conv(instance):
+            self.input_data.text =''
+
+        def clear_geo(instance):
+            self.input_text_rect_1.text = ''
+            self.input_text_rect_2.text = ''
+            self.input_text_elps_1.text = ''
+            self.input_text_elps_2.text = ''
+            self.input_text_tr_1.text= ''
+            self.input_text_tr_2 .text=''
+            self.input_text_poly_1.text =''
+            self.input_text_poly_2 .text= ''
+
 
         def undo(instance):
             try:
@@ -161,9 +185,83 @@ class MyComplexApp(App):
                 self.lbl_poly_1.text = '0'
                 self.lbl_poly_2.text = '0'
 
+        def next(instance):
+            try:
+                if self.input_ans.text == str(eval(self.label.text)):
+                    self.score += 10
+                    self.rigth += 1
+                    self.label_1.text = f'Score = {self.score}\nCorrect: {self.rigth}\n Wrong: {self.wrong}'
+                elif self.input_ans.text != str(eval(self.label.text)):
+                    self.score -= 10
+                    self.wrong += 1
+                    self.label_1.text = f'Score = {self.score}\nCorrect: {self.rigth}\n Wrong: {self.wrong}'
+                self.input_ans.text = ''
+
+            except:
+                self.input_ans.text = ''
+
+            operation(instance)
+            self.count += 1
+            if self.wrong == 3:
+                stop(instance)
+
+
+        def stop(instance):
+            self.label.text = 'End of session\n Press next\nfor new session'
+            self.label_1.text = f'Exercices:{self.count}\nCorrect answers: {self.rigth}\n Wrong answers: {self.wrong}\n' \
+                                f'Your score = {self.score}'
+            self.count = 0
+            self.wrong = 0
+            self.rigth = 0
+            self.score = 0
+
+        def operation(instance, *args):
+            self.a = randint(0, 50)
+            self.b = randint(1, 50)
+            sign = randint(0, 3)
+            if sign == 0:
+                z = self.a + self.b
+                self.label.text = f'{self.a} + {self.b} '
+
+            elif sign == 1:
+                if self.a >= self.b:
+                    z = self.a - self.b
+                    self.label.text = f'{self.a} - {self.b}'
+                else:
+                    z = self.b - self.a
+                    self.label.text = f'{self.b} - {self.a} '
+            elif sign == 2:
+                z = self.a * self.b
+                self.label.text = f'{self.a} * {self.b} '
+            elif sign == 3:
+                if self.a > 0 and self.b > 0:
+                    if self.a > self.b and self.a // self.b == 0:
+                        z = self.a / self.b
+                        self.label.text = f'{self.a} / {self.b} '
+                    else:
+                        z = self.a % self.b
+                        self.label.text = f'{self.b} % {self.a} '
+
         tb = TabbedPanel(
             do_default_tab=True, tab_pos='top_left', default_tab_text='Main page',height=200, width=300,
             background_color=(0.1, 0.1, 0.25, 0.5))
+        #Examinator
+
+        stack = StackLayout()
+        stack.add_widget(self.label)
+        stack.add_widget(self.input_ans)
+        btn_1 = Button(text='Send', size_hint=(1, 0.1), font_size=25,
+                       background_color=[0.1, 0.4, 0.4, 0.5], italic=True, on_press=next)
+        # btn_1.bind(on_press= operation)
+        stack.add_widget(btn_1)
+        stack.add_widget(Button(text='Next', size_hint=(1, 0.1), font_size=25,
+                                background_color=[0.1, 0.4, 0.4, 0.5], italic=True, on_press=operation))
+        stack.add_widget(Button(text='Stop', size_hint=(1, 0.1), font_size=25,
+                                background_color=[0.1, 0.4, 0.4, 0.5], italic=True, on_press=stop))
+
+        stack.add_widget(self.label_1)
+        # self.input_ans.bind(text=on_text)
+        tb.default_tab_content = stack
 
         #calculator
         tbi = TabbedPanelItem(text='Calculator', font_size=15, background_color=(0.5, 0.8, 0.8, 1),
@@ -207,6 +305,7 @@ class MyComplexApp(App):
         box.add_widget(self.miles)
         box.add_widget(self.ft)
         box.add_widget(self.inch)
+        box.add_widget(Button(text='Clear',background_color=[0.4, 0.4, 0.9, 0.4], font_size=30, on_press=clear_conv))
         tbi2.add_widget(box)
         self.input_data.bind(text=on_text)
 
@@ -263,7 +362,12 @@ class MyComplexApp(App):
         grid.add_widget(box_4)
         grid.add_widget(self.lbl_poly_1)
         grid.add_widget(self.lbl_poly_2)
-        tbi3.add_widget(grid)
+        st = StackLayout(size_hint=(1, 0.9))
+        st.add_widget(grid)
+        st.add_widget(Button(text='Clear', size_hint=(1, 0.1),font_size=25, background_color=[0.4, 0.4, 0.9, 0.4]
+                             ,  padding_x= 300, on_press=clear_geo))
+        tbi3.add_widget(st)
+
 
         self.input_text_rect_1.bind(text=on_text_1)
         self.input_text_rect_2.bind(text=on_text_1)
