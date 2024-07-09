@@ -1199,5 +1199,574 @@ from random import *
 #
 # if __name__ == '__main__':
 #     Examinator().run()
+#
+# class MyApp(App):
+#     def build(self):
+#         main_layout = ScreenManager()
+#         screen1 = Screen(name="screen_1")
+#         button1 = Button(text="Переход на второй экран", size_hint=(0.3, 0.3), pos=(250, 250))
+#         def go_second_page(instance):
+#             main_layout.current = "screen_2"
+#         button1.bind(on_press=go_second_page)
+#         screen1.add_widget(button1)
+#         main_layout.add_widget(screen1)
+#
+#         screen2 = Screen(name="screen_2")
+#         button2 = Button(text="Переход на первый экран", size_hint=(0.3, 0.3), pos=(250, 250), background_color=[1, 0, 0, 1])
+#         def go_first_page(instance):
+#             main_layout.current = "screen_1"
+#         button2.bind(on_press=go_first_page)
+#         screen2.add_widget(button2)
+#         main_layout.add_widget(screen2)
+#
+#         return main_layout
+#
+# if __name__ == "__main__":
+#     MyApp().run()
 
+
+
+
+Window.clearcolor = (0.5, 0.2, 0.1, 0.4)
+Window.size = (800, 700)
+class MyApp(App):
+    def __init__(self):
+        super().__init__()
+        self.label = Label(text='Choose fishy sushi', halign='center', font_size=30, italic=True, size_hint=(1, 0.1))
+        self.label_scr_1 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_2 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_3 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_4 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_5 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_6 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_7 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_8 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+
+        #page_1
+        self.label_pop_1 = Label(text='Sushi set cold\n ingredient: Fish ,Rice,\n cheese, pepper\n\n'
+                                      '     5$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_01 = Label(text='Sushi set cold\n ingredient: Fish, Rice,\n cheese, pepper\n\n'
+                                      '     2$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.btn_1 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                       size_hint=(0.2, 1), on_press=self.popup_1)
+        self.btn_01 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.rmved_1)
+
+        # page_2
+        self.label_pop_2 = Label(text='Sushi lovers\n ingredient: Fish, Rice, salad\nmilk, pepper\n\n'
+                                      '     5.5$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_02 = Label(text='Sushi lovers\n ingredient: Fish, Rice, salad\nmilk, pepper\n\n'
+                                       '     5.5$', font_size=25,
+                                  italic=True, size_hint=(1, 0.7))
+        self.btn_2 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.popup_2)
+        self.btn_02 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                             size_hint=(0.2, 1), on_press=self.rmved_2)
+
+        # page_3
+        self.label_pop_3 = Label(text='Sushi fresh\n ingredient: Fish, Rice, salad\npepper, ginger\n\n'
+                                      '     4$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_03 = Label(text='Sushi fresh\n ingredient: Fish, Rice, salad\npepper, ginger\n\n'
+                                       '     4$', font_size=25,
+                                  italic=True, size_hint=(1, 0.7))
+        self.btn_3 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.popup_3)
+        self.btn_03 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                             size_hint=(0.2, 1), on_press=self.rmved_3)
+
+        # page_4
+        self.label_pop_4 = Label(text='Japan sushi \n ingredient: Fish, Rice,\nlemon, eggs \nwassabi\n\n'
+                                      '     6$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_04 = Label(text='Sushi fresh\n ingredient: Fish, Rice,\nlemon, eggs\nwassabi\n\n'
+                                       '     6$', font_size=25,
+                                  italic=True, size_hint=(1, 0.7))
+        self.btn_4 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.popup_4)
+        self.btn_04 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                             size_hint=(0.2, 1), on_press=self.rmved_4)
+
+        # page_5
+
+        self.label_pop_5 = Label(text='Sushi philadelphia \n ingredient: Fish, Rice, \ncucumber \nwassabi\n\n'
+                                      '     3.5$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_05 = Label(text='Sushi philadelphia\n ingredient: Fish, Rice,\n cucumber\nwassabi\n\n'
+                                       '     3.5$', font_size=25,
+                                  italic=True, size_hint=(1, 0.7))
+        self.btn_5 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.popup_5)
+        self.btn_05 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                             size_hint=(0.2, 1), on_press=self.rmved_5)
+
+        # page_6
+
+        self.label_pop_6 = Label(text='Sushi original \n ingredient: Fish, Rice, \nginger \nwassabi\n\n'
+                                      '     6$', font_size=25,
+                                 italic=True, size_hint=(1, 0.7))
+        self.label_pop_06 = Label(text='Sushioriginal\n ingredient: Fish, Rice,\n ginger\nwassabi\n\n'
+                                       '     6$', font_size=25,
+                                  italic=True, size_hint=(1, 0.7))
+        self.btn_6 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                            size_hint=(0.2, 1), on_press=self.popup_6)
+        self.btn_06 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                             size_hint=(0.2, 1), on_press=self.rmved_6)
+
+
+
+    #add-sub_1
+    def add_scr_1(self, instance):
+        self.label_scr_1.text = str(int(self.label_scr_1.text) + 1)
+    def sub_scr_1(self, instance):
+        if int(self.label_scr_1.text) < 1:
+            self.label_scr_1.text = '0'
+        self.label_scr_1.text = str(int(self.label_scr_1.text) - 1)
+
+    # add-sub_2
+    def add_scr_2(self, instance):
+        self.label_scr_2.text = str(int(self.label_scr_2.text) + 1)
+    def sub_scr_2(self, instance):
+        if int(self.label_scr_2.text) < 1:
+            self.label_scr_2.text = '0'
+        self.label_scr_2.text = str(int(self.label_scr_2.text) - 1)
+
+    # add-sub_3
+    def add_scr_3(self, instance):
+        self.label_scr_3.text = str(int(self.label_scr_3.text) + 1)
+    def sub_scr_3(self, instance):
+        if int(self.label_scr_3.text) < 1:
+            self.label_scr_3.text = '0'
+        self.label_scr_3.text = str(int(self.label_scr_4.text) - 1)
+
+    # add-sub_4
+    def add_scr_4(self, instance):
+        self.label_scr_4.text = str(int(self.label_scr_4.text) + 1)
+    def sub_scr_4(self, instance):
+        if int(self.label_scr_4.text) < 1:
+            self.label_scr_4.text = '0'
+        self.label_scr_4.text = str(int(self.label_scr_4.text) - 1)
+
+    # add-sub_5
+    def add_scr_5(self, instance):
+        self.label_scr_5.text = str(int(self.label_scr_5.text) + 1)
+    def sub_scr_5(self, instance):
+        if int(self.label_scr_5.text) < 1:
+            self.label_scr_5.text = '0'
+        self.label_scr_5.text = str(int(self.label_scr_5.text) - 1)
+
+    # add-sub_6
+    def add_scr_6(self, instance):
+        self.label_scr_6.text = str(int(self.label_scr_6.text) + 1)
+
+    def sub_scr_6(self, instance):
+        if int(self.label_scr_6.text) < 1:
+            self.label_scr_6.text = '0'
+        self.label_scr_6.text = str(int(self.label_scr_6.text) - 1)
+
+    # add-sub_7
+    def add_scr_7(self, instance):
+        self.label_scr_7.text = str(int(self.label_scr_7.text) + 1)
+
+    def sub_scr_7(self, instance):
+        if int(self.label_scr_7.text) < 1:
+            self.label_scr_7.text = '0'
+        self.label_scr_7.text = str(int(self.label_scr_7.text) - 1)
+
+    # add-sub_8
+    def add_scr_8(self, instance):
+        self.label_scr_8.text = str(int(self.label_scr_8.text) + 1)
+
+    def sub_scr_8(self, instance):
+        if int(self.label_scr_8.text) < 1:
+            self.label_scr_8.text = '0'
+        self.label_scr_8.text = str(int(self.label_scr_8.text) - 1)
+
+
+    # popup_1
+    def popup_1(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_1)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_1))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_01)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_1))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_1(self, instance):
+        self.btn_1.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_1.text = 'Added'
+
+    def rmved_1(self, instance):
+        self.btn_1.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_1.text = 'Add'
+        self.label_scr_1.text = '0'
+
+    # popup_2
+    def popup_2(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_2)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_2))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_02)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_2))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_2(self, instance):
+        self.btn_2.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_2.text = 'Added'
+
+    def rmved_2(self, instance):
+        self.btn_2.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_2.text = 'Add'
+        self.label_scr_2.text = '0'
+
+    # popup_3
+
+    def popup_3(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_3)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_3))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_03)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_3))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_3(self, instance):
+        self.btn_3.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_3.text = 'Added'
+
+    def rmved_3(self, instance):
+        self.btn_3.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_3.text = 'Add'
+        self.label_scr_3.text = '0'
+
+    # popup_4
+
+    def popup_4(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_4)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_4))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_04)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_4))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_4(self, instance):
+        self.btn_4.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_4.text = 'Added'
+
+    def rmved_4(self, instance):
+        self.btn_4.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_4.text = 'Add'
+        self.label_scr_4.text = '0'
+
+    # popup_5
+    def popup_5(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_5)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_5))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_05)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_5))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_5(self, instance):
+        self.btn_5.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_5.text = 'Added'
+
+    def rmved_5(self, instance):
+        self.btn_5.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_5.text = 'Add'
+        self.label_scr_5.text = '0'
+
+    # popup_6
+    def popup_6(self, instance):
+
+        try:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_6)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_6))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+        except:
+            popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            content_box = StackLayout()
+            content_box.add_widget(self.label_pop_06)
+            content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_6))
+            content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(content_box)
+            popup.open()
+
+    def added_6(self, instance):
+        self.btn_6.background_color = [0.4, 0.4, 0.4, 1]
+        self.btn_6.text = 'Added'
+
+    def rmved_6(self, instance):
+        self.btn_6.background_color = [0.3, 0.5, 0.6, 0.7]
+        self.btn_6.text = 'Add'
+        self.label_scr_6.text = '0'
+
+
+
+
+
+
+
+
+    def build(self):
+
+        stack = StackLayout()
+        scr = ScreenManager(size_hint=(1, 0.9))
+
+    #screen_page_1
+
+        scr_1 = Screen(name='page_1')
+        img_1 = Image(source='C:/Users/Patrick moon/Downloads/sushi1.JPG',size_hint=(0.8, 0.9), x=20, y=100)
+        scr_1.add_widget(img_1)
+        stack_scr_1 = StackLayout(size_hint=(1, 0.1), x=20 , y=0)
+        stack_scr_1.add_widget(Button(text='+',font_size=20, italic=True,background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_1))
+        stack_scr_1.add_widget(self.label_scr_1)
+        stack_scr_1.add_widget(Button(text='-',font_size=20, italic=True,background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_1))
+        stack_scr_1.add_widget(self.btn_1)
+        stack_scr_1.add_widget(self.btn_01)
+        scr_1.add_widget(stack_scr_1)
+
+        def page_1(instance):
+            scr.current = 'page_1'
+            self.label.text = 'Sushi set cold\n 5$'
+
+    # screen_page_2
+
+        scr_2 = Screen(name='page_2')
+        scr_2.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi2.JPG',size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_2 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_2.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_2))
+        stack_scr_2.add_widget(self.label_scr_2)
+        stack_scr_2.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_2))
+        stack_scr_2.add_widget(self.btn_2)
+        stack_scr_2.add_widget(self.btn_02)
+        scr_2.add_widget(stack_scr_2)
+
+        def page_2(instance):
+            scr.current = 'page_2'
+            self.label.text = 'Sushi lover\n  5.5$'
+            # Window.clearcolor = (0.7, 0.2, 0.3, 0.4)
+
+        # screen_page_3
+
+        scr_3 = Screen(name='page_3')
+        scr_3.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi3.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_3 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_3.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_3))
+        stack_scr_3.add_widget(self.label_scr_3)
+        stack_scr_3.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_3))
+        stack_scr_3.add_widget(self.btn_3)
+        stack_scr_3.add_widget(self.btn_03)
+        scr_3.add_widget(stack_scr_3)
+
+        def page_3(instance):
+            scr.current = 'page_3'
+            self.label.text = 'Sushi fresh\n 4$'
+
+            # Window.clearcolor = (0.6, 0.1, 0.4, 0.4)
+
+        # screen_page_4
+
+        scr_4 = Screen(name='page_4')
+        scr_4.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi4.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_4 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_4.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_4))
+        stack_scr_4.add_widget(self.label_scr_4)
+        stack_scr_4.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_4))
+        stack_scr_4.add_widget(self.btn_4)
+        stack_scr_4.add_widget(self.btn_04)
+        scr_4.add_widget(stack_scr_4)
+        def page_4(instance):
+            scr.current = 'page_4'
+            self.label.text = 'Japan sushi\n 6$'
+
+        # screen_page_5
+
+        scr_5 = Screen(name='page_5')
+        scr_5.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_5 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_5.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_5))
+        stack_scr_5.add_widget(self.label_scr_5)
+        stack_scr_5.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_5))
+        stack_scr_5.add_widget(self.btn_5)
+        stack_scr_5.add_widget(self.btn_05)
+        scr_5.add_widget(stack_scr_5)
+        def page_5(instance):
+            scr.current = 'page_5'
+            self.label.text = 'Sushi philadelphia\n 3.5$'
+
+        # screen_page_5
+
+        scr_6 = Screen(name='page_6')
+        scr_6.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi6.JPG',size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_6 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_6.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.add_scr_6))
+        stack_scr_6.add_widget(self.label_scr_6)
+        stack_scr_6.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1), on_press=self.sub_scr_6))
+        stack_scr_6.add_widget(self.btn_6)
+        stack_scr_6.add_widget(self.btn_06)
+        scr_6.add_widget(stack_scr_6)
+        def page_6(instance):
+            scr.current = 'page_6'
+            self.label.text = 'Sushi origin\n 6$'
+
+        scr_7 = Screen(name='page_7')
+        scr_7.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi7.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_7 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_7.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.2, 1), on_press=self.add_scr_7))
+        stack_scr_7.add_widget(self.label_scr_7)
+        stack_scr_7.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.2, 1), on_press=self.sub_scr_7))
+        stack_scr_7.add_widget(Button(text='add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1)))
+        scr_7.add_widget(stack_scr_7)
+        def page_7(instance):
+            scr.current = 'page_7'
+            self.label.text = 'Hot sushi\n 5$'
+
+        scr_8 = Screen(name='page_8')
+        scr_8.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi8.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        stack_scr_8 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_8.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.2, 1), on_press=self.add_scr_8))
+        stack_scr_8.add_widget(self.label_scr_8)
+        stack_scr_8.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.2, 1), on_press=self.sub_scr_8))
+        stack_scr_8.add_widget(Button(text='add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+        size_hint=(0.1, 1)))
+        scr_8.add_widget(stack_scr_8)
+        def page_8(instance):
+            scr.current = 'page_8'
+            self.label.text = 'Sushi prestige\n 5$'
+
+        for el in (scr_1, scr_2, scr_3, scr_4, scr_5, scr_6, scr_7, scr_8):
+            scr.add_widget(el)
+
+        stack_1 = StackLayout(size_hint=(0.8, 1))
+        stack_1.add_widget(self.label)
+        stack_1.add_widget(scr)
+
+        scroll = ScrollView(size_hint=(0.2, 1), bar_width=10)
+        box = BoxLayout(orientation='vertical', size_hint_y=None, padding=20)
+        box.bind(minimum_height=box.setter('height'))
+        scroll.add_widget(box)
+
+        btn_1 = Button(text='Sushi\nset cold', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_1)
+
+        btn_2 = Button(text='Sushi\nlover', size_hint_y=None,font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_2)
+
+        btn_3 = Button(text='Sushi\nfresh', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_3)
+        btn_4 = Button(text='Japan\nsushi', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_4)
+        btn_5 =Button(text='Sushi\nPhiladelphia', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_5)
+        btn_6 = Button(text='Sushi\nOrigin', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_6)
+        btn_7 = Button(text='Hot\nsushi', size_hint_y=None, font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_7)
+        btn_8 = Button(text='Prestige\nsushi', size_hint_y=None,font_size=20, italic=True, bold=True,
+        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_8)
+
+        for el in(btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8):
+            box.add_widget(el)
+
+
+        stack.add_widget(scroll)
+        stack.add_widget(stack_1)
+
+
+        return stack
+
+
+if __name__ == '__main__':
+    MyApp().run()
 
