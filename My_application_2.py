@@ -50,12 +50,14 @@ from random import *
 
 
 
-Window.clearcolor = (0.5, 0.2, 0.1, 0.4)
+Window.clearcolor = (0.7, 0.5, 0.1, 0.1)
 Window.size = (800, 700)
 class MyApp(App):
     def __init__(self):
         super().__init__()
+
         self.card = {}
+        self.total_price_all = 0
         self.label = Label(text='Choose tasty burger', halign='center', font_size=30, italic=True, size_hint=(1, 0.1))
         self.label_scr_1 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
         self.label_scr_2 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
@@ -66,13 +68,32 @@ class MyApp(App):
         self.label_scr_7 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
         self.label_scr_8 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
 
+        self.btn1 = Button(text='Burger\nhot', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+
+        self.btn2 = Button(text='Burger\nmodesty', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+
+        self.btn3 = Button(text='Burger\nmexicana', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+        self.btn4 = Button(text='Juicy\nburger', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+        self.btn5 = Button(text='Burger\npeppe', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+        self.btn6 = Button(text='Burger\ntwin', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+        self.btn7 = Button(text='Big\nKombo', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+        self.btn8 = Button(text='Black\nangus', size_hint_y=None, font_size=20, italic=True, bold=True,
+                      background_color=[0.1, 0.3, 0.4, 0.7])
+
         #page_1
 
         self.label_pop_1 = Label(text='Burger hot\n ingredient: beef,oignon\n cheese, pepper\n\n'
                                       '     2$', font_size=25,
                                  italic=True, size_hint=(1, 0.7))
         self.label_pop_01 = Label(text='Burger hot\n ingredient: Beef, salad,\n cheese, pepper\n\n'
-                                      '     1.5$', font_size=25,
+                                      '     2$', font_size=25,
                                  italic=True, size_hint=(1, 0.7))
         self.btn_1 = Button(text='Add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                        size_hint=(0.2, 1), on_press=self.popup_1)
@@ -167,7 +188,58 @@ class MyApp(App):
         self.btn_08 = Button(text='Clear', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                              size_hint=(0.2, 1), on_press=self.rmved_8)
 
+        self.menu = {self.label_pop_1.text: 2,
+                     self.label_pop_2.text: 1.5,
+                     self.label_pop_3.text: 3,
+                     self.label_pop_4.text: 4,
+                     self.label_pop_5.text: 3.5,
+                     self.label_pop_6.text: 9,
+                     self.label_pop_7.text: 8.5,
+                     self.label_pop_8.text: 8.5
 
+                     }
+
+        self.lst = []
+
+    def total_price_1(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_1.text]) * float(self.menu[self.label_pop_1.text])
+            self.total_price_all += price
+
+    def total_price_2(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_2.text]) * float(self.menu[self.label_pop_2.text])
+            self.total_price_all += price
+
+    def total_price_3(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_3.text]) * float(self.menu[self.label_pop_3.text])
+            self.total_price_all += price
+
+    def total_price_4(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_1.text]) * float(self.menu[self.label_pop_1.text])
+            self.total_price_all += price
+
+    def total_price_5(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_5.text]) * float(self.menu[self.label_pop_5.text])
+            self.total_price_all += price
+
+    def total_price_6(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_6.text]) * float(self.menu[self.label_pop_6.text])
+            self.total_price_all += price
+
+    def total_price_7(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_7.text]) * float(self.menu[self.label_pop_7.text])
+            self.total_price_all += price
+
+    def total_price_8(self, instance):
+        for el in self.card.keys():
+            price = float(self.card[self.label_pop_8.text]) * float(self.menu[self.label_pop_8.text])
+            self.total_price_all += price
 
     #add-sub_1
     def add_scr_1(self, instance):
@@ -266,10 +338,18 @@ class MyApp(App):
         self.card[self.label_pop_1.text] = self.label_scr_1.text
         if self.card[self.label_pop_1.text] == '-1':
             self.card[self.label_pop_1.text] = '0'
-        print(self.card)
+        self.btn1.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn1.text = f'Burger\nhot {self.label_scr_1.text}'
 
-        # btn_1 = Button(text='Burger\nhot', size_hint_y=None, font_size=20, italic=True, bold=True,
-        #                background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_1)
+        # if self.label_pop_1.text not in self.card:
+        #     self.lst.append(float(self.card[self.label_pop_1.text]) * self.menu[self.label_pop_1.text])
+        # else:
+        #     self.lst.append(float(self.card[self.label_pop_1.text]) * self.menu[self.label_pop_1.text])
+
+
+        print(self.card)
+        # print(self.lst)
+
 
     def rmved_1(self, instance):
         self.btn_1.background_color = [0.3, 0.5, 0.6, 0.7]
@@ -280,11 +360,10 @@ class MyApp(App):
         except:
             self.card
 
+        self.btn1.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn1.text = f'Burger\nhot'
 
-        # if self.label_pop_1 in self.card:
-        #     self.card.pop(self.label_pop_1.text)
-        # else:
-        #     self.card
+
         print(self.card)
 
     # popup_2
@@ -315,6 +394,10 @@ class MyApp(App):
         self.card[self.label_pop_2.text] = self.label_scr_2.text
         if self.card[self.label_pop_2.text] == '-1':
             self.card[self.label_pop_2.text] = '0'
+
+        self.btn2.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn2.text = f'Burger\nmodesty {self.label_scr_2.text}'
+
         print(self.card)
 
     def rmved_2(self, instance):
@@ -325,6 +408,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_2.text)
         except:
             self.card
+
+        self.btn2.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn2.text = f'Burger\nmodesty'
 
         print(self.card)
 
@@ -357,6 +443,10 @@ class MyApp(App):
         self.card[self.label_pop_3.text] = self.label_scr_3.text
         if self.card[self.label_pop_3.text] == '-1':
             self.card[self.label_pop_3.text] = '0'
+
+        self.btn3.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn3.text = f'Burger\nmexicana  {self.label_scr_3.text}'
+
         print(self.card)
 
     def rmved_3(self, instance):
@@ -367,6 +457,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_3.text)
         except:
             self.card
+
+        self.btn3.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn3.text = f'Burger\nmexicana'
 
         print(self.card)
 
@@ -397,6 +490,10 @@ class MyApp(App):
         self.btn_4.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_4.text = 'Added'
         self.card[self.label_pop_4.text] = self.label_scr_4.text
+
+        self.btn4.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn4.text = f'Juicy\nburger  {self.label_scr_4.text}'
+
         print(self.card)
 
     def rmved_4(self, instance):
@@ -407,6 +504,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_4.text)
         except:
             self.card
+
+        self.btn4.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn4.text = f'Juicy\nburger'
 
         print(self.card)
 
@@ -436,6 +536,10 @@ class MyApp(App):
         self.btn_5.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_5.text = 'Added'
         self.card[self.label_pop_5.text] = self.label_scr_5.text
+
+        self.btn5.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn5.text = f'Burger\npeppe  {self.label_scr_5.text}'
+
         print(self.card)
 
     def rmved_5(self, instance):
@@ -446,6 +550,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_5.text)
         except:
             self.card
+
+        self.btn5.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn5.text = f'Burger\npeppe'
 
         print(self.card)
 
@@ -475,6 +582,10 @@ class MyApp(App):
         self.btn_6.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_6.text = 'Added'
         self.card[self.label_pop_6.text] = self.label_scr_6.text
+
+        self.btn6.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn6.text = f'Burger\ntwin  {self.label_scr_6.text}'
+
         print(self.card)
 
     def rmved_6(self, instance):
@@ -485,6 +596,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_6.text)
         except:
             self.card
+
+        self.btn6.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn6.text = f'Burger\ntwin'
 
         print(self.card)
 
@@ -515,6 +629,9 @@ class MyApp(App):
         self.btn_7.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_7.text = 'Added'
         self.card[self.label_pop_7.text] = self.label_scr_7.text
+
+        self.btn7.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn7.text = f'Burger\nkombo  {self.label_scr_7.text}'
         print(self.card)
 
     def rmved_7(self, instance):
@@ -525,6 +642,9 @@ class MyApp(App):
             self.card.pop(self.label_pop_7.text)
         except:
             self.card
+
+        self.btn7.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn7.text = f'Burger\nkombo'
 
         print(self.card)
 
@@ -555,6 +675,10 @@ class MyApp(App):
         self.btn_8.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_8.text = 'Added'
         self.card[self.label_pop_8.text] = self.label_scr_8.text
+
+        self.btn8.background_color = [0.5, 0.3, 0.7, 0.7]
+        self.btn8.text = f'Black\nangus  {self.label_scr_8.text}'
+
         print(self.card)
 
     def rmved_8(self, instance):
@@ -566,7 +690,12 @@ class MyApp(App):
         except:
             self.card
 
+        self.btn8.background_color = [0.1, 0.3, 0.4, 0.7]
+        self.btn8.text = f'Black\nangus'
+
         print(self.card)
+
+
 
     def build(self):
 
@@ -576,13 +705,13 @@ class MyApp(App):
     #screen_page_1
 
         scr_1 = Screen(name='page_1')
-        img_1 = Image(source='C:/Users/Конструктор СО/Downloads/burger1.JPG',size_hint=(0.8, 0.9), x=20, y=100)
+        img_1 = Image(source='C:/Users/Patrick moon/Downloads/burger1.JPG',size_hint=(0.8, 0.9), x=20, y=100)
         scr_1.add_widget(img_1)
-        stack_scr_1 = StackLayout(size_hint=(1, 0.1), x=20 , y=0)
-        stack_scr_1.add_widget(Button(text='+',font_size=20, italic=True,background_color=[0.3, 0.5, 0.6, 0.7],
+        stack_scr_1 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_1.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_1))
         stack_scr_1.add_widget(self.label_scr_1)
-        stack_scr_1.add_widget(Button(text='-',font_size=20, italic=True,background_color=[0.3, 0.5, 0.6, 0.7],
+        stack_scr_1.add_widget(Button(text='-', font_size=20, italic=True,background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.sub_scr_1))
         stack_scr_1.add_widget(self.btn_1)
         stack_scr_1.add_widget(self.btn_01)
@@ -595,7 +724,7 @@ class MyApp(App):
     # screen_page_2
 
         scr_2 = Screen(name='page_2')
-        scr_2.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger2.JPG',size_hint=(0.8, 0.9), x=20, y=100))
+        scr_2.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger2.JPG',size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_2 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_2.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_2))
@@ -614,7 +743,7 @@ class MyApp(App):
         # screen_page_3
 
         scr_3 = Screen(name='page_3')
-        scr_3.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger3.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        scr_3.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger3.JPG', size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_3 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_3.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_3))
@@ -634,7 +763,7 @@ class MyApp(App):
         # screen_page_4
 
         scr_4 = Screen(name='page_4')
-        scr_4.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger4.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        scr_4.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger4.JPG', size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_4 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_4.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_4))
@@ -651,7 +780,7 @@ class MyApp(App):
         # screen_page_5
 
         scr_5 = Screen(name='page_5')
-        scr_5.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        scr_5.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_5 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_5.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_5))
@@ -668,7 +797,7 @@ class MyApp(App):
         # screen_page_5
 
         scr_6 = Screen(name='page_6')
-        scr_6.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger6.JPG',size_hint=(0.8, 0.9), x=20, y=100))
+        scr_6.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger7.JPG',size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_6 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_6.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_6))
@@ -683,7 +812,7 @@ class MyApp(App):
             self.label.text ='Burger twin  9$'
 
         scr_7 = Screen(name='page_7')
-        scr_7.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger7.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        scr_7.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_7 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_7.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_7))
@@ -698,7 +827,7 @@ class MyApp(App):
             self.label.text ='Burger kombo  8.5$'
 
         scr_8 = Screen(name='page_8')
-        scr_8.add_widget(Image(source='C:/Users/Конструктор СО/Downloads/burger8.JPG', size_hint=(0.8, 0.9), x=20, y=100))
+        scr_8.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger6.JPG', size_hint=(0.8, 0.9), x=20, y=100))
         stack_scr_8 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
         stack_scr_8.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
         size_hint=(0.1, 1), on_press=self.add_scr_8))
@@ -724,35 +853,27 @@ class MyApp(App):
         box.bind(minimum_height=box.setter('height'))
         scroll.add_widget(box)
 
-        btn1 = Button(text='Burger\nhot', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_1)
+        self.btn1.bind(on_press=page_1)
+        self.btn2.bind(on_press=page_2)
+        self.btn3.bind(on_press=page_3)
+        self.btn4.bind(on_press=page_4)
+        self.btn5.bind(on_press=page_5)
+        self.btn6.bind(on_press=page_6)
+        self.btn7.bind(on_press=page_7)
+        self.btn8.bind(on_press=page_8)
 
-        btn2 = Button(text='Burger\nmodesty', size_hint_y=None,font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_2)
-
-        btn3 = Button(text='Burger\nmexicana', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_3)
-        btn4 = Button(text='Juicy\nburger', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_4)
-        btn5 =Button(text='Burger\npeppe', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_5)
-        btn6 = Button(text='Burger\ntwin', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_6)
-        btn7 = Button(text='Big\nKombo', size_hint_y=None, font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_7)
-        btn8 = Button(text='Black\nangus', size_hint_y=None,font_size=20, italic=True, bold=True,
-        background_color=[0.1, 0.3, 0.4, 0.7], on_press=page_8)
-
-        for el in(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8):
+        for el in (self.btn1, self.btn2, self.btn3, self.btn4, self.btn5, self.btn6, self.btn7, self.btn8):
             box.add_widget(el)
-
 
         stack.add_widget(scroll)
         stack.add_widget(stack_1)
 
 
-        return stack
+        # def btn_1():
+        #     btn1.background_color = [0.5, 0.3, 0.7, 0.7]
 
+
+        return stack
 
 if __name__ == '__main__':
     MyApp().run()
