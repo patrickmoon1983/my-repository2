@@ -47,35 +47,46 @@ import webbrowser
 from math import *
 from random import *
 
-Window.clearcolor = (0.7, 0.5, 0.1, 0.1)
-Window.size = (800, 700)
+Window.clearcolor = (0.2, 0.2, 0.2, 0.1)
+Window.size = (800, 900)
 class MyApp(App):
     def __init__(self):
         super().__init__()
         self.card = {}
-        # self.total_price_all = 0
+        # Attributes main page
+        self.btn_mm_1 = Button(text='Send\norder', background_color=[0.1, 0.3, 0.4, 0.7], font_size=20, italic=True
+                               , on_press=self.popup_send)
+        self.btn_mm_2 = Button(text='Clear\norder', background_color=[0.1, 0.3, 0.4, 0.7], font_size=20, italic=True,
+                                on_press=self.popup_clear)
+        self.btn_mm_3 = Button(text='Call\npersonal', background_color=[0.1, 0.3, 0.4, 0.7], font_size=20, italic=True)
+        self.label_mm = Label(text='Total:', font_size=30, size_hint=(0.3, 0.4), italic=True)
+        self.label_sum = Label()
+        self.img_mm_1 = Image(source='C:/Users/Patrick moon/Downloads/sushi3.JPG', size_hint=(0.8, 0.5))
+        self.img_mm_2 = Image(source='C:/Users/Patrick moon/Downloads/drink.JPG', size_hint=(0.6, 0.4))
+        self.img_mm_3 = Image(source='C:/Users/Patrick moon/Downloads/burger4.JPG', size_hint=(0.9, 0.5))
+
         #Attributes for burger
         self.labels = Label(text='Choose tasty burger', halign='center', font_size=30, italic=True, size_hint=(1, 0.1))
         self.label_tps = Label(text='Total:', size_hint_y=None, font_size=30, italic=True)
-        self.label_scr_1s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_2s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_3s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_4s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_5s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_6s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_7s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_8s = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_1s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_2s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_3s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_4s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_5s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_6s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_7s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_8s = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
 
         self.label = Label(text='Choose fishy sushi', halign='center', font_size=30, italic=True, size_hint=(1, 0.1))
         self.label_tpss = Label(text='Total:', size_hint_y=None, font_size=30, italic=True)
-        self.label_scr_1 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_2 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_3 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_4 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_5 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_6 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_7 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
-        self.label_scr_8 = Label(text='0', font_size=20, italic=True, size_hint=(0.2, 1))
+        self.label_scr_1 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_2 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_3 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_4 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_5 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_6 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_7 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
+        self.label_scr_8 = Label(text='0', font_size=20, italic=True, size_hint=(0.15, 1))
 
         self.btn1s = Button(text='Burger\nhot', size_hint_y=None, font_size=20, italic=True, bold=True,
                       background_color=[0.1, 0.3, 0.4, 0.7])
@@ -315,9 +326,79 @@ class MyApp(App):
             total_price += price
         self.label_tps.text = f'Total:\n{total_price} $'
         self.label_tpss.text = f'Total:\n{total_price} $'
+        self.label_mm.text = f'Total:\n{total_price} $'
+
+    def popup_send(self, instance):
+
+        if len(self.card) !=0:
+            popup = Popup(title="order's status", title_align='center', title_size=25, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            stack = StackLayout(padding=10)
+            stack.add_widget(Label(text=f"Your order's completed !!\n\n  {self.label_mm.text}\n\n  !!THANK YOU!!",
+                                   font_size=30, size_hint=(1, 0.9)))
+            stack.add_widget(Button(text='ok', font_size=20, size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(stack)
+            popup.open()
+
+            return popup
+        else:
+            popup = Popup(title="order's status", title_align='center', title_size=25, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            stack = StackLayout()
+            stack.add_widget(Label(text="No order", font_size=30, size_hint=(1, 0.8)))
+            stack.add_widget(Button(text='ok', font_size=20, size_hint=(1, 0.2), on_press=popup.dismiss))
+            popup.add_widget(stack)
+            popup.open()
+
+            return popup
+
+    def popup_clear(self, instance):
+
+        if len(self.card) == 0:
+            popup = Popup(title="order's status", title_align='center', title_size=25, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            stack = StackLayout(padding=10)
+            stack.add_widget(Label(text=f"No order",
+                                   font_size=30, size_hint=(1, 0.9)))
+            stack.add_widget(Button(text='ok', font_size=20, size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(stack)
+            popup.open()
+            return popup
+        else:
+            self.card.clear()
+            self.rmved_1s(instance)
+            self.rmved1(instance)
+            self.rmved_2s(instance)
+            self.rmved2(instance)
+            self.rmved_3s(instance)
+            self.rmved3(instance)
+            self.rmved_4s(instance)
+            self.rmved4(instance)
+            self.rmved_5s(instance)
+            self.rmved5(instance)
+            self.rmved_6s(instance)
+            self.rmved6(instance)
+            self.rmved_7s(instance)
+            # self.rmved7(instance)
+            self.rmved_8s(instance)
+            # self.rmved8(instance)
+
+            popup = Popup(title="order's status", title_align='center', title_size=25, size_hint=(0.5, 0.5),
+                          auto_dismiss=False)
+            stack = StackLayout(padding=10)
+            stack.add_widget(Label(text=f"Order is cleared",
+                                   font_size=30, size_hint=(1, 0.9)))
+            stack.add_widget(Button(text='ok', font_size=20, size_hint=(1, 0.15), on_press=popup.dismiss))
+            popup.add_widget(stack)
+            popup.open()
+            return popup
+
+
+
+
+
 
     # For adding or substracting qty on screens
-
     #add-sub_1
     def add_scr_1s(self, instance):
         self.label_scr_1s.text = str(int(self.label_scr_1s.text) + 1)
@@ -1083,10 +1164,35 @@ class MyApp(App):
             content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
             popup.add_widget(content_box)
             popup.open()
+
+    # def popup7(self, instance):
+    #
+    #     try:
+    #         popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+    #                       auto_dismiss=False)
+    #         content_box = StackLayout()
+    #         content_box.add_widget(self.label_pop_7)
+    #         content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_7))
+    #         content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+    #         popup.add_widget(content_box)
+    #         popup.open()
+    #     except:
+    #         popup = Popup(title='confirmation', title_align='center', title_size=30, size_hint=(0.5, 0.5),
+    #                       auto_dismiss=False)
+    #         content_box = StackLayout()
+    #         content_box.add_widget(self.label_pop_07)
+    #         content_box.add_widget(Button(text='Confirm', size_hint=(1, 0.15), on_press=self.added_7))
+    #         content_box.add_widget(Button(text='ok', size_hint=(1, 0.15), on_press=popup.dismiss))
+    #         popup.add_widget(content_box)
+    #         popup.open()
+
     def added_7s(self, instance):
         self.btn_7s.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_7s.text = 'Added'
-        self.card[self.label_pop_7s.text] = self.label_scr_7s.text
+        if self.label_scr_7s.text == '-1':
+            self.card[self.label_pop_7s.text] = '0'
+        else:
+            self.card[self.label_pop_7s.text] = self.label_scr_7s.text
 
         self.btn7s.background_color = [0.5, 0.3, 0.7, 0.7]
         self.btn7s.text = f'Burger\nkombo  \n{self.label_scr_7s.text}pc(s)'
@@ -1107,6 +1213,35 @@ class MyApp(App):
         self.btn7s.text = f'Burger\nkombo'
 
         print(self.card)
+
+    # def added7(self, instance):
+    #     self.btn7.background_color = [0.4, 0.4, 0.4, 1]
+    #     self.btn7.text = 'Added'
+    #     if self.label_scr_7.text == '-1':
+    #         self.card[self.label_pop_7.text] = '0'
+    #     else:
+    #         self.card[self.label_pop_7.text] = self.label_scr_7.text
+    #
+    #     self.btn7.background_color = [0.5, 0.3, 0.7, 0.7]
+    #     self.btn7.text = f'Burger\nkombo  \n{self.label_scr_7.text}pc(s)'
+    #     print(self.card)
+    #     self.total_prices()
+    #
+    # def rmved7(self, instance):
+    #     self.btn_7.background_color = [0.3, 0.5, 0.6, 0.7]
+    #     self.btn_7.text = 'Add'
+    #     self.label_scr_7.text = '0'
+    #     try:
+    #         self.card.pop(self.label_pop_7.text)
+    #     except:
+    #         self.card
+    #
+    #     self.total_prices()
+    #
+    #     self.btn7.background_color = [0.1, 0.3, 0.4, 0.7]
+    #     self.btn7.text = f'Burger\nkombo'
+    #
+    #     print(self.card)
 
     # popup_8
     def popup_8s(self, instance):
@@ -1132,7 +1267,11 @@ class MyApp(App):
     def added_8s(self, instance):
         self.btn_8s.background_color = [0.4, 0.4, 0.4, 1]
         self.btn_8s.text = 'Added'
-        self.card[self.label_pop_8s.text] = self.label_scr_8s.text
+
+        if self.label_scr_8s.text < '0':
+            self.card[self.label_pop_8s.text] = '0'
+        else:
+            self.card[self.label_pop_8s.text] = self.label_scr_8s.text
 
         self.btn8s.background_color = [0.5, 0.3, 0.7, 0.7]
         self.btn8s.text = f'Black\nangus  \n{self.label_scr_8s.text} pc(s)'
@@ -1160,9 +1299,23 @@ class MyApp(App):
 
         tb = TabbedPanel(
             do_default_tab=True, tab_pos='top_left', default_tab_text='Main page', height=200, width=300,
-            background_color=(0.1, 0.1, 0.25, 0.5))
-        tbis = TabbedPanelItem(text='Burger', font_size=15, background_color=(0.5, 0.8, 0.8, 1),
-                              height=100, width=500, underline=True)
+            background_color=(0.1, 0.1, 0.25, 0.5), spacing=20)
+        # stack_mm = StackLayout()
+        # stack_mm_1 = StackLayout(size_hint=(0.8, 0.7), padding=20, spacing=10)
+        # stack_mm_1.add_widget(self.img_mm_1)
+        # stack_mm_1.add_widget(self.img_mm_2)
+        # stack_mm_1.add_widget(self.label_mm)
+        # stack_mm_1.add_widget(self.img_mm_3)
+        #
+        # box_mm = BoxLayout(orientation='vertical', size_hint=(0.2, 0.9), padding=20, spacing=20)
+        # for el in (self.btn_mm_1, self.btn_mm_2, self.btn_mm_3):
+        #     box_mm.add_widget(el)
+        # stack_mm.add_widget(box_mm)
+        # stack_mm.add_widget(stack_mm_1)
+        # tb.default_tab_content = stack_mm
+
+        tbis = TabbedPanelItem(text='Burger', background_color=(0.5, 0.8, 0.8, 1),
+                              height=100, width=500, font_size=20)
         stacks = StackLayout()
         scrs = ScreenManager(size_hint=(1, 0.9))
 
@@ -1171,12 +1324,13 @@ class MyApp(App):
         scr_1s = Screen(name='page_1')
         img_1s = Image(source='C:/Users/Patrick moon/Downloads/burger1.JPG', size_hint=(0.8, 0.95), x=20, y=100)
         scr_1s.add_widget(img_1s)
-        stack_scr_1s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_1s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_1s))
-        stack_scr_1s.add_widget(self.label_scr_1s)
+        stack_scr_1s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_1s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_1s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_1s))
+        stack_scr_1s.add_widget(self.label_scr_1s)
+        stack_scr_1s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_1s))
+
         stack_scr_1s.add_widget(self.btn_1s)
         stack_scr_1s.add_widget(self.btn_01s)
         # stack_scr_1.add_widget(self.label_tp_1)
@@ -1190,12 +1344,13 @@ class MyApp(App):
 
         scr_2s = Screen(name='page_2')
         scr_2s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger2.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_2s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_2s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_2s))
-        stack_scr_2s.add_widget(self.label_scr_2s)
+        stack_scr_2s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_2s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_2s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_2s))
+        stack_scr_2s.add_widget(self.label_scr_2s)
+        stack_scr_2s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_2s))
+
         stack_scr_2s.add_widget(self.btn_2s)
         stack_scr_2s.add_widget(self.btn_02s)
         # stack_scr_2.add_widget(self.label_tp_2)
@@ -1209,12 +1364,13 @@ class MyApp(App):
 
         scr_3s = Screen(name='page_3')
         scr_3s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger3.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_3s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_3s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_3s))
-        stack_scr_3s.add_widget(self.label_scr_3s)
+        stack_scr_3s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_3s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_3s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_3s))
+        stack_scr_3s.add_widget(self.label_scr_3s)
+
+        stack_scr_3s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_3s))
         stack_scr_3s.add_widget(self.btn_3s)
         stack_scr_3s.add_widget(self.btn_03s)
         scr_3s.add_widget(stack_scr_3s)
@@ -1227,12 +1383,13 @@ class MyApp(App):
 
         scr_4s = Screen(name='page_4')
         scr_4s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger4.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_4s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_4s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_4s))
-        stack_scr_4s.add_widget(self.label_scr_4s)
+        stack_scr_4s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_4s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_4s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_4s))
+        stack_scr_4s.add_widget(self.label_scr_4s)
+
+        stack_scr_4s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_4s))
         stack_scr_4s.add_widget(self.btn_4s)
         stack_scr_4s.add_widget(self.btn_04s)
         scr_4s.add_widget(stack_scr_4s)
@@ -1245,12 +1402,12 @@ class MyApp(App):
 
         scr_5s = Screen(name='page_5')
         scr_5s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_5s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_5s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_5s))
-        stack_scr_5s.add_widget(self.label_scr_5s)
+        stack_scr_5s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_5s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_5s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_5s))
+        stack_scr_5s.add_widget(self.label_scr_5s)
+        stack_scr_5s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_5s))
         stack_scr_5s.add_widget(self.btn_5s)
         stack_scr_5s.add_widget(self.btn_05s)
         scr_5s.add_widget(stack_scr_5s)
@@ -1259,16 +1416,17 @@ class MyApp(App):
             scrs.current = 'page_5'
             self.labels.text = 'Burger peppe 3.5$'
 
-        # screen_page_5
+        # screen_page_6
 
         scr_6s = Screen(name='page_6')
         scr_6s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger7.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_6s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_6s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_6s))
-        stack_scr_6s.add_widget(self.label_scr_6s)
+        stack_scr_6s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_6s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_6s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_6s))
+        stack_scr_6s.add_widget(self.label_scr_6s)
+        stack_scr_6s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_6s))
+
         stack_scr_6s.add_widget(self.btn_6s)
         stack_scr_6s.add_widget(self.btn_06s)
         scr_6s.add_widget(stack_scr_6s)
@@ -1279,12 +1437,13 @@ class MyApp(App):
 
         scr_7s = Screen(name='page_7')
         scr_7s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_7s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_7s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_7s))
-        stack_scr_7s.add_widget(self.label_scr_7s)
+        stack_scr_7s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
+
         stack_scr_7s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_7s))
+        stack_scr_7s.add_widget(self.label_scr_7s)
+        stack_scr_7s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_7s))
         stack_scr_7s.add_widget(self.btn_7s)
         stack_scr_7s.add_widget(self.btn_07s)
         scr_7s.add_widget(stack_scr_7s)
@@ -1295,12 +1454,13 @@ class MyApp(App):
 
         scr_8s = Screen(name='page_8')
         scr_8s.add_widget(Image(source='C:/Users/Patrick moon/Downloads/burger6.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_8s = StackLayout(size_hint=(1, 0.1), x=20, y=10)
-        stack_scr_8s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_8s))
-        stack_scr_8s.add_widget(self.label_scr_8s)
+        stack_scr_8s = StackLayout(size_hint=(1, 0.1), x=20, y=10, spacing=15)
         stack_scr_8s.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.sub_scr_8s))
+                                       size_hint=(0.1, 1), on_press=self.sub_scr_8s))
+        stack_scr_8s.add_widget(self.label_scr_8s)
+        stack_scr_8s.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                       size_hint=(0.1, 1), on_press=self.add_scr_8s))
+
         stack_scr_8s.add_widget(self.btn_8s)
         stack_scr_8s.add_widget(self.btn_08s)
         scr_8s.add_widget(stack_scr_8s)
@@ -1340,8 +1500,8 @@ class MyApp(App):
         stacks.add_widget(stack_1s)
         tbis.add_widget(stacks)
 
-        tbi2s = TabbedPanelItem(text='Sushi', font_size=15, background_color=(0.5, 0.8, 0.8, 1),
-                               height=100, width=500, underline=True)
+        tbi2s = TabbedPanelItem(text='Sushi', background_color=(0.5, 0.8, 0.8, 1),
+                               height=100, width=500, font_size=20)
         # Window.clearcolor = (0.5, 0.2, 0.1, 0.4)
 
         stack = StackLayout()
@@ -1352,12 +1512,13 @@ class MyApp(App):
         scr_1 = Screen(name='page_1')
         img_1 = Image(source='C:/Users/Patrick moon/Downloads/sushi1.JPG', size_hint=(0.8, 0.9), x=20, y=100)
         scr_1.add_widget(img_1)
-        stack_scr_1 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_1.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_1))
-        stack_scr_1.add_widget(self.label_scr_1)
+        stack_scr_1 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_1.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_1))
+        stack_scr_1.add_widget(self.label_scr_1)
+        stack_scr_1.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_1))
+
         stack_scr_1.add_widget(self.btn_1)
         stack_scr_1.add_widget(self.btn_01)
         scr_1.add_widget(stack_scr_1)
@@ -1370,12 +1531,13 @@ class MyApp(App):
 
         scr_2 = Screen(name='page_2')
         scr_2.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi2.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_2 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_2.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_2))
-        stack_scr_2.add_widget(self.label_scr_2)
+        stack_scr_2 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_2.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_2))
+        stack_scr_2.add_widget(self.label_scr_2)
+        stack_scr_2.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_2))
+
         stack_scr_2.add_widget(self.btn_2)
         stack_scr_2.add_widget(self.btn_02)
         scr_2.add_widget(stack_scr_2)
@@ -1389,12 +1551,13 @@ class MyApp(App):
 
         scr_3 = Screen(name='page_3')
         scr_3.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi3.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_3 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_3.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_3))
-        stack_scr_3.add_widget(self.label_scr_3)
+        stack_scr_3 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_3.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_3))
+        stack_scr_3.add_widget(self.label_scr_3)
+        stack_scr_3.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_3))
+
         stack_scr_3.add_widget(self.btn_3)
         stack_scr_3.add_widget(self.btn_03)
         scr_3.add_widget(stack_scr_3)
@@ -1409,12 +1572,13 @@ class MyApp(App):
 
         scr_4 = Screen(name='page_4')
         scr_4.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi4.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_4 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_4.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_4))
-        stack_scr_4.add_widget(self.label_scr_4)
+        stack_scr_4 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_4.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_4))
+        stack_scr_4.add_widget(self.label_scr_4)
+        stack_scr_4.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_4))
+
         stack_scr_4.add_widget(self.btn_4)
         stack_scr_4.add_widget(self.btn_04)
         scr_4.add_widget(stack_scr_4)
@@ -1427,12 +1591,13 @@ class MyApp(App):
 
         scr_5 = Screen(name='page_5')
         scr_5.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi5.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_5 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_5.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_5))
-        stack_scr_5.add_widget(self.label_scr_5)
+        stack_scr_5 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_5.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_5))
+        stack_scr_5.add_widget(self.label_scr_5)
+        stack_scr_5.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_5))
+
         stack_scr_5.add_widget(self.btn_5)
         stack_scr_5.add_widget(self.btn_05)
         scr_5.add_widget(stack_scr_5)
@@ -1445,12 +1610,13 @@ class MyApp(App):
 
         scr_6 = Screen(name='page_6')
         scr_6.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi6.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_6 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
-        stack_scr_6.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.1, 1), on_press=self.add_scr_6))
-        stack_scr_6.add_widget(self.label_scr_6)
+        stack_scr_6 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
         stack_scr_6.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1), on_press=self.sub_scr_6))
+        stack_scr_6.add_widget(self.label_scr_6)
+        stack_scr_6.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                      size_hint=(0.1, 1), on_press=self.add_scr_6))
+
         stack_scr_6.add_widget(self.btn_6)
         stack_scr_6.add_widget(self.btn_06)
         scr_6.add_widget(stack_scr_6)
@@ -1461,12 +1627,12 @@ class MyApp(App):
 
         scr_7 = Screen(name='page_7')
         scr_7.add_widget(Image(source='C:/Users/Patrick moon/Downloads/sushi7.JPG', size_hint=(0.8, 0.9), x=20, y=100))
-        stack_scr_7 = StackLayout(size_hint=(1, 0.1), x=20, y=0)
+        stack_scr_7 = StackLayout(size_hint=(1, 0.1), x=20, y=0, spacing=15)
+        stack_scr_7.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
+                                     size_hint=(0.2, 1), on_press=self.sub_scr_7))
+        stack_scr_7.add_widget(self.label_scr_7)
         stack_scr_7.add_widget(Button(text='+', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.2, 1), on_press=self.add_scr_7))
-        stack_scr_7.add_widget(self.label_scr_7)
-        stack_scr_7.add_widget(Button(text='-', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
-                                      size_hint=(0.2, 1), on_press=self.sub_scr_7))
         stack_scr_7.add_widget(Button(text='add', font_size=20, italic=True, background_color=[0.3, 0.5, 0.6, 0.7],
                                       size_hint=(0.1, 1)))
         scr_7.add_widget(stack_scr_7)
@@ -1512,17 +1678,36 @@ class MyApp(App):
         self.btn7.bind(on_press=page_7)
         self.btn8.bind(on_press=page_8)
 
-
-
         for el in (self.btn1, self.btn2, self.btn3, self.btn4, self.btn5, self.btn6, self.btn7, self.btn8, self.label_tpss):
             box.add_widget(el)
+
+        tbi3s = TabbedPanelItem(text='Drinks', background_color=(0.5, 0.8, 0.8, 1),
+                                height=100, width=500, font_size=20)
+
+        tbi4s = TabbedPanelItem(text='Send', background_color=(0.5, 0.8, 0.8, 1),
+                                height=100, width=500, font_size=20)
+
+
+        stack_mm = StackLayout()
+        stack_mm_1 = StackLayout(size_hint=(0.8, 0.7), padding=20, spacing=10)
+        stack_mm_1.add_widget(self.img_mm_1)
+        stack_mm_1.add_widget(self.label_mm)
+        stack_mm_1.add_widget(self.img_mm_2)
+        stack_mm_1.add_widget(self.img_mm_3)
+
+        box_mm = BoxLayout(orientation='vertical', size_hint=(0.2, 0.9), padding=20, spacing=20)
+        for el in (self.btn_mm_1, self.btn_mm_2, self.btn_mm_3):
+            box_mm.add_widget(el)
+        stack_mm.add_widget(box_mm)
+        stack_mm.add_widget(stack_mm_1)
+        tbi4s.add_widget(stack_mm)
 
         stack.add_widget(scroll)
         stack.add_widget(stack_1)
         tbi2s.add_widget(stack)
 
 
-        for el in (tbis, tbi2s):
+        for el in (tbis, tbi2s, tbi3s, tbi4s):
             tb.add_widget(el)
 
         return tb
