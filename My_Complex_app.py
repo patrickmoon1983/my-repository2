@@ -111,6 +111,9 @@ class MyComplexApp(App):
 
         def clear_conv(instance):
             self.input_data.text =''
+            self.miles.text = 'miles = '
+            self.ft.text = 'feet = '
+            self.inch.text = 'inches = '
 
         def clear_geo(instance):
             self.input_text_rect_1.text = ''
