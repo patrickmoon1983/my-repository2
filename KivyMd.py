@@ -7,7 +7,11 @@ Config.set("graphics", "height", "600")
 Config.set("graphics", "resizable", "1")
 from kivy.core.window import Window
 from kivymd.app import MDApp
+from kivy.uix.vkeyboard import VKeyboard
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
+from kivy_garden.mapview import *
 import pickle
 from kivy.uix.floatlayout import FloatLayout
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
@@ -2273,47 +2277,164 @@ from kivy.lang import Builder
 # MainApp().run()
 
 
+#
+# #Add matplotlib Graph
+#
+#
+# # Define what we want to graph
+#
+# x = [1, 2, 3, 4, 5]
+#
+# y = [5, 12, 6, 9, 15]
+#
+# plt.plot(x, y)
+# plt.ylabel('Y axis')
+# plt.xlabel('X axis')
+#
+#
+# class Matty(FloatLayout):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#
+#         box = self.ids.box
+#         box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+#
+#
+#     def save_it(self):
+#
+#         name = self.ids.namer.text
+#         if name:
+#             plt.savefig(name)
+#
+#
+# class MainApp(MDApp):
+#
+#     def build(self):
+#         self.theme_cls.theme_style = 'Dark'
+#         self.theme_cls.primary_palette = 'BlueGray'
+#         Builder.load_file('matty.kv')
+#
+#         return Matty()
+#
+# MainApp().run()
 
-#Add matplotlib Graph
+
+#Add a map to kivy
 
 
-# Define what we want to graph
-
-x = [1, 2, 3, 4, 5]
-
-y = [5, 12, 6, 9, 15]
-
-plt.plot(x, y)
-plt.ylabel('Y axis')
-plt.xlabel('X axis')
-
-
-class Matty(FloatLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        box = self.ids.box
-        box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+# class MapViewApp(MDApp):
+#
+#     def build(self):
+#         # self.theme_cls.theme_style = 'Dark'
+#         # self.theme_cls.primary_palette = 'BlueGray'
+#         mapview = MapView(zoom=10, lat=36 , lon=115 )
+#
+#         return mapview
+#
+# MapViewApp().run()
 
 
-    def save_it(self):
 
-        name = self.ids.namer.text
-        if name:
-            plt.savefig(name)
+
+# class MainApp(MDApp):
+#
+#     def build(self):
+#         self.theme_cls.theme_style = 'Dark'
+#         self.theme_cls.primary_palette = 'BlueGray'
+#
+#         return Builder.load_file('map.kv')
+#
+# MainApp().run()
+
+
+
+
+# Using python code on a KV
+
+
+#
+# class MainApp(MDApp):
+#     str = 'Hello world!'
+#     lst = ['Patrick', 'Yulia', 'Gaby']
+#
+#     def build(self):
+#
+#         self.theme_cls.theme_style = 'Dark'
+#         self.theme_cls.primary_palette = 'BlueGray'
+#
+#         return Builder.load_file('code.kv')
+#
+# MainApp().run()
+
+
+
+# Add Keybord with Vkeybord
+
+
+# class MainApp(MDApp):
+#
+#     def build(self):
+#         self.theme_cls.theme_style = 'Dark'
+#         self.theme_cls.primary_palette = 'BlueGray'
+#         self.label = Label(text='Type something!', font_size=32)
+#
+#         #define our layout
+#
+#         layout = GridLayout(cols=1)
+#
+#         #define our vkeyboard
+#         keyboard = VKeyboard(on_key_up=self.key_up)
+#
+#         layout.add_widget(self.label)
+#         layout.add_widget(keyboard)
+#
+#
+#         return layout
+#
+#
+#     def key_up(self, keyboard, keycode, *args):
+#
+#         if isinstance(keycode, tuple):
+#             print(keycode)
+#             keycode = keycode[1]
+#         # Tracking what was already in the label
+#         str = self.label.text
+#
+#         #Run some logic
+#         if str == 'Type something!':
+#             str = ''
+#         #backspace
+#         if keycode == 'backspace':
+#             str = str[:-1]
+#             keycode = ''
+#         #spacebar
+#         if keycode == 'spacebar':
+#             keycode = '  '
+#
+#
+#         self.label.text = f'{str}{keycode}'
+#
+#
+# MainApp().run()
+
+
+#List with kivymd
 
 
 class MainApp(MDApp):
 
+    title = 'Simple list'
+
     def build(self):
+
         self.theme_cls.theme_style = 'Dark'
         self.theme_cls.primary_palette = 'BlueGray'
-        Builder.load_file('matty.kv')
 
-        return Matty()
+        return Builder.load_file('lists.kv')
+
+    def presser(self, pressed, list_id):
+        pressed.secondary_text = f'You pressed {list_id}'
+        pressed.tertiary_text = f'Yes !! You pressed {list_id}'
 
 MainApp().run()
-
-
-
 
