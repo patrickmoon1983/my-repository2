@@ -1,0 +1,208 @@
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+
+<CustomizeScreen@MDBoxLayout>:
+    orientation:'vertical'
+    text:''
+    padding: 20
+    MDLabel:
+        text:root.text
+        halign: 'center'
+        pos_hint: {'center':0.5}
+    MDIconButton:
+        icon: 'arrow-left'
+        text: 'Back'
+        pos_hint: {'center':0.3}
+        on_release:
+            app.root.current = 'Main_Screen'
+            app.root.transition = SlideTransition(direction='left')
+
+
+<UI>:
+    MDScreen:
+        name: 'Main_Screen'
+        md_bg_color: 0, 0.5, 0.5, 1
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDBoxLayout:
+                size_hint: 1, 0.2
+                padding: '10dp'
+                MDCard:
+                    radius: '10dp'
+                    padding:'10dp'
+                    line_color:0.6, 0, 0.5, 0.5
+
+                    MDLabel:
+                        text: 'TOOLS STORE'
+                        font_size: 30
+                        bold: True
+                        halign:'center'
+                        pos_hint: {'center_y':0.5}
+                    MDSwitch:
+                        pos_hint: {'center_y':0.5}
+                        active: True
+                        on_active:
+                            app.change_style(*args)
+
+            MDGridLayout:
+                cols:3
+                size_hint: 1, 0.8
+                padding:['10dp', '10dp', '10dp', '10dp']
+                spacing:'10dp'
+
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_1'
+                    ripple_behavior: True
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/vent.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'VENT'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Ventilation and cooling'
+                                halign: 'center'
+                                italic: True
+
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_2'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/machine.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'MACHINE'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Machineries & Engeneering'
+                                halign: 'center'
+                                italic: True
+
+
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_3'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/equipment.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'EQUIPMENT'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Tools & equipments'
+                                halign: 'center'
+                                italic: True
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_4'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/filter.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'FILTRATION'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Cooling & air filtration'
+                                halign: 'center'
+                                italic: True
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_5'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/wc.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'CANALISATION'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Water closet and sinks'
+                                halign: 'center'
+                                italic: True
+
+                MDCard:
+                    radius: '10dp'
+                    spacing: '10dp'
+                    on_release:
+                        root.current = 'screen_6'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: ['5dp', '5dp', '5dp', '5dp']
+                        Image:
+                            source: 'image/protection.PNG'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            MDLabel:
+                                text: 'PROTECTION'
+                                bold: True
+                                halign: 'center'
+                            MDLabel:
+                                text: 'Individual protection and fire protection'
+                                halign: 'center'
+                                italic: True
+
+
+
+    MDScreen:
+        name: 'screen_1'
+        CustomizeScreen:
+            text:'page 1'
+    MDScreen:
+        name: 'screen_2'
+        CustomizeScreen:
+            text:'page 2'
+
+    MDScreen:
+        name: 'screen_3'
+        CustomizeScreen:
+            text:'page 3'
+
+    MDScreen:
+        name: 'screen_4'
+        CustomizeScreen:
+            text:'page 4'
+    MDScreen:
+        name: 'screen_5'
+        CustomizeScreen:
+            text:'page 5'
+
+    MDScreen:
+        name: 'screen_6'
+        CustomizeScreen:
+            text:'page 6'
