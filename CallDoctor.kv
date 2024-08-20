@@ -1,0 +1,888 @@
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+<Homebutton@MDFillRoundFlatButton>:
+    text: 'home'
+    font_size: 20
+    pos_hint: {'center_x':0.5, 'center_y':0.05}
+    on_release:
+        root.current = 'main_screen'
+        app.root.transition = SlideTransition(direction='left')
+
+
+Screens:
+    MDScreen:
+        name: 'main_screen'
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDTopAppBar:
+                title: 'CALL A DOCTOR '
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['hospital-building', lambda x:root.about_page()]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+
+            ScrollView:
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 20
+                    spacing: 10
+                    size_hint_y: None
+                    adaptive_height: True
+                    bar_width: 10
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.04, 0.4, 0.05, 0.4
+                        on_release:
+                            root.current = 'screen_6'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/about.PNG'
+                        MDLabel:
+                            text: 'About us'
+                            bold: True
+                            halign: 'center'
+                            font_size:20
+                        MDLabel:
+                            text: 'Contact us'
+                            halign: 'center'
+                            italic: True
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.2, 0.1, 0.4, 0.4
+                        #on_press: app.writing()
+                        on_release:
+                            root.current = 'screen_1'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/appointment.PNG'
+                        MDLabel:
+                            text: 'Make appointment'
+                            bold: True
+                            halign: 'center'
+                            font_size: 20
+                        MDLabel:
+                            text: 'Pick up an appointment'
+                            halign: 'center'
+                            italic: True
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        on_release:
+                            root.current = 'screen_4'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/doctor.PNG'
+                        MDLabel:
+                            text: 'Doctors'
+                            bold: True
+                            halign: 'center'
+                            font_size:20
+                        MDLabel:
+                            text: 'Our doctors & specialists'
+                            halign: 'center'
+                            italic: True
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.1, 0.1, 0.4
+                        on_release:
+                            root.current = 'screen_3'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/clinic.PNG'
+                        MDLabel:
+                            text: 'Clinics'
+                            bold: True
+                            halign: 'center'
+                            font_size: 20
+                        MDLabel:
+                            text: 'Our clinics locations'
+                            halign: 'center'
+                            italic: True
+
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.04, 0.4, 0.05, 0.4
+                        on_release:
+                            root.current = 'screen_5'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/price.PNG'
+                        MDLabel:
+                            text: 'Prices'
+                            bold: True
+                            halign: 'center'
+                            font_size:20
+                        MDLabel:
+                            text: 'Price lists'
+                            halign: 'center'
+                            italic: True
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0, 0.2, 0.1, 0.4
+                        on_release:
+                            root.current = 'screen_2'
+                            root.transition = SlideTransition(direction='left')
+                            ripple_behavior: True
+                        Image:
+                            source: 'image/meet.PNG'
+                        MDLabel:
+                            text: 'My appointments'
+                            bold: True
+                            halign: 'center'
+                            font_size: 20
+                        MDLabel:
+                            text: 'view your appointments'
+                            halign: 'center'
+                            italic: True
+
+
+
+            MDBottomAppBar:
+                #panel_color: 0.2, 0.3, 0.2
+                MDTopAppBar:
+                    title: 'Quick services'
+                    specific_text_color: 0.2, 0.2, 0.2, 1
+                    type: 'bottom'
+                    icon: 'account'
+                    on_action_button:root.login_page(args)
+                    mode: 'end'
+                    left_action_items:[['book-open-outline', root.appointment],['doctor', root.doctors] , ['hospital', root.clinics],['cash-multiple', root.cash]]
+
+    MDScreen:
+        name:'screen_1'
+        MDFloatLayout:
+            MDTopAppBar:
+                title: 'MAKE APPOINTMENT'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['arrow-left', root.home]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+                size_hint:1, 0.1
+                pos_hint:{'top':1}
+            MDCard:
+                radius:0
+                padding: 30
+                shadow_color: 0, 0, 0
+                md_bg_color:0.2, 0.1, 0.4, 0.3
+                size_hint:1, 0.9
+                MDFloatLayout:
+
+                    #MDRoundFlatIconButton:
+                        #id: choose_hos
+                        #text: 'Choose clinic'
+                        #text_color: 0.2, 0.2, 0.2, 1
+                        #icon_color: 0.2, 0.2, 0.2, 1
+                        #icon: 'hospital'
+                        #font_size: 20
+                        #pos_hint: {'center_x':0.5, 'center_y':0.9}
+                        #on_release: root.clinics()
+
+                    MDRoundFlatIconButton:
+                        id: choose_doc
+                        text: 'Choose doctor'
+                        text_color: 0.2, 0.2, 0.2, 1
+                        icon_color: 0.2, 0.2, 0.2, 1
+                        icon: 'doctor'
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.9}
+                        on_release: root.doctors()
+
+                    MDRoundFlatIconButton:
+                        id: date_pick
+                        text: 'Date picker'
+                        icon: 'calendar-month'
+                        text_color: 0.2, 0.2, 0.2, 1
+                        icon_color: 0.2, 0.2, 0.2, 1
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.75}
+                        on_release: root.show_date_picker()
+
+                    MDLabel:
+                        id: show_doc
+                        text:'No doctors'
+                        font_size: 30
+                        halign: 'center'
+                        pos_hint: {'center_x':0.5, 'center_y':0.6}
+
+                    MDLabel:
+                        id: show_hosp
+                        text:'No clinic'
+                        font_size: 30
+                        halign: 'center'
+                        pos_hint: {'center_x':0.5, 'center_y':0.45}
+
+                    MDLabel:
+                        id: show_date
+                        text:'No dates of appointments'
+                        font_size: 30
+                        halign: 'center'
+                        pos_hint: {'center_x':0.5, 'center_y':0.30}
+
+                    MDTextButton:
+                        text: 'I confirm'
+                        underline: True
+                        italic: True
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.15}
+                        on_release:
+
+        MDBottomAppBar:
+            #panel_color: 0.2, 0.3, 0.2
+            MDTopAppBar:
+                title: 'Quick services'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                type: 'bottom'
+                icon: 'account'
+                mode: 'end'
+                on_action_button:root.login_page(args)
+                left_action_items:[['home', root.home],['book-open-outline', root.appointment],['doctor', root.doctors], ['hospital', root.clinics],['cash-multiple', root.cash]]
+
+    MDScreen:
+        name:'screen_2'
+        MDFloatLayout:
+            MDTopAppBar:
+                title: 'MY APPOINTMENTS'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['arrow-left', root.home]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+                size_hint:1, 0.1
+                pos_hint:{'top':1}
+
+            MDCard:
+                radius:0
+                padding:50
+                md_bg_color:  0, 0.2, 0.1, 0.4
+                shadow_color:0, 0, 0
+                size_hint:1, 0.9
+                MDFloatLayout:
+                    MDRoundFlatIconButton:
+                        id: choose_doc
+                        text: 'Show my current appointment'
+                        icon: 'book'
+                        text_color: 0.2, 0.2, 0.2, 1
+                        icon_color: 0.2, 0.2, 0.2, 1
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.7}
+                        on_press:
+                            app.show_current_appoint()
+
+                    MDRoundFlatIconButton:
+                        id: choose_doc
+                        text: 'Show all appointments'
+                        icon: 'book'
+                        text_color: 0.2, 0.2, 0.2, 1
+                        icon_color: 0.2, 0.2, 0.2, 1
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.5}
+                        on_press:
+                            app.show_all_appoint()
+            MDBottomAppBar:
+                #panel_color: 0.2, 0.3, 0.2
+                MDTopAppBar:
+                    title: 'Quick services'
+                    specific_text_color: 0.2, 0.2, 0.2, 1
+                    type: 'bottom'
+                    icon: 'account'
+                    mode: 'end'
+                    on_action_button:root.login_page(args)
+                    left_action_items:[['home', root.home],['doctor', root.doctors], ['hospital', root.clinics], ['cash-multiple', root.cash]]
+
+    MDScreen:
+        name:'screen_3'
+        MDFloatLayout:
+            MDTopAppBar:
+                title: 'OUR CLINICS'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['arrow-left', root.home]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+                size_hint:1, 0.1
+                pos_hint:{'top':1}
+            ScrollView:
+                bar_width: 10
+                pos_hint:{'center_x':0.5, 'top':0.9}
+                size_hint_y:0.8
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 20
+                    spacing: 10
+                    size_hint_y: None
+                    adaptive_height: True
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'St Petersburg, lesnaya metro'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Kuzia str.21\n tel: 0325412'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox:
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'St Petersburg, Slava str. metro'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Slava str. 17\n tel: 0626412'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'Moscow, Moscow city'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Arbat str.2\n tel: 0126472'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'Moscow, Red square'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Pionerskaya  12\n tel: 0826512'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'Ekaterineburg, Klinov pl.'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Plaza place\n tel: 0526412'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.1, 0.4, 0.1, 0.4
+                        Image:
+                            source: 'image/hosp.PNG'
+                        MDLabel:
+                            text: 'Rostov on Don, Milosevich 5'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            text: 'Korolev st. 9\n tel: 0926912'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        #MDCheckbox
+
+            MDBottomAppBar:
+                #panel_color: 0.2, 0.3, 0.2
+                MDTopAppBar:
+                    title: 'Quick services'
+                    specific_text_color: 0.2, 0.2, 0.2, 1
+                    type: 'bottom'
+                    icon: 'account'
+                    mode: 'end'
+                    on_action_button:root.login_page(args)
+                    left_action_items:[['home', root.home], ['book-open-outline', root.appointment], ['doctor', root.doctors], ['cash-multiple', root.cash]]
+
+
+    MDScreen:
+        name:'screen_4'
+        MDFloatLayout:
+            MDTopAppBar:
+                title: 'OUR DOCTORS'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['arrow-left', root.home]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+                size_hint:1, 0.1
+                pos_hint:{'top':1}
+            ScrollView:
+                bar_width: 10
+                pos_hint:{'center_x':0.5, 'top':0.9}
+                size_hint_y:0.8
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 20
+                    spacing: 10
+                    size_hint_y: None
+                    adaptive_height: True
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor1.PNG'
+                        MDLabel:
+                            text: 'St Petersburg, street 21 tel: 0325412'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor1
+                            text: 'Ivanov Sergei '
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            id: chb_1
+                            on_press:
+                                app.add_appoint()
+                            #on_release: root.current= 'screen_1'
+                            group: 'doctor'
+
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor2.PNG'
+                        MDLabel:
+                            text: 'St Petersburg\nSlava street 17'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor2
+                            text: ' Malicheva aleksandra'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            on_active: app.add_appoint_2()
+                            group: 'doctor'
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor3.PNG'
+                        MDLabel:
+                            text: 'Moscow \nArbat street 2'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor3
+                            text: ' Sergeev mikhail'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            on_active: app.add_appoint_3()
+                            group: 'doctor'
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor4.PNG'
+                        MDLabel:
+                            text: 'Moscow \n Pionerskaya 12'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor4
+                            text: ' Antonova Uliyana'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            on_active: app.add_appoint_4()
+                            group: 'doctor'
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor5.PNG'
+                        MDLabel:
+                            text: 'Ekaterineburg\n Plaza place.'
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor5
+                            text: ' Kuzmina Olga'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            on_active: app.add_appoint_5()
+                            group: 'doctor'
+
+                    MDCard:
+                        size_hint_y: None
+                        pos_hint:{'center_x':0.5}
+                        radius: '20dp'
+                        md_bg_color: 0.3, 0.1, 0.05, 0.4
+                        Image:
+                            source: 'image/doctor.PNG'
+                        MDLabel:
+                            text: 'Rostov on Don,\nKorolev st. 9 '
+                            italic: True
+                            halign: 'center'
+                            font_size: 15
+                        MDLabel:
+                            id: doctor6
+                            text: ' Mironov Sergei'
+                            halign: 'center'
+                            italic: True
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDIconButton:
+                                icon:'calendar'
+                                on_release:
+                                    root.current = 'screen_1'
+                                    root.transition = SlideTransition(direction='right')
+                                    ripple_behavior: True
+                            MDIconButton:
+                                icon:'information'
+                        MDCheckbox:
+                            group: 'doctor'
+                            on_active: app.add_appoint_6()
+            MDBottomAppBar:
+                #panel_color: 0.2, 0.3, 0.2
+                MDTopAppBar:
+                    title: 'Quick services'
+                    specific_text_color: 0.2, 0.2, 0.2, 1
+                    type: 'bottom'
+                    icon: 'account'
+                    mode: 'end'
+                    on_action_button:root.login_page(args)
+                    left_action_items:[['home', root.home], ['book-open-outline', root.appointment],['hospital', root.clinics], ['cash-multiple', root.cash]]
+
+    MDScreen:
+        name:'screen_5'
+        MDFloatLayout:
+            MDTopAppBar:
+                title: 'PRICE LIST'
+                specific_text_color: 0.2, 0.2, 0.2, 1
+                shadow_color: 0, 0, 0
+                radius: '20dp'
+                left_action_items: [['arrow-left', root.home]]
+                right_action_items: [['phone',lambda x: app.writing()], ['magnify', lambda x: app.press_home()]]
+                size_hint:1, 0.1
+                pos_hint:{'top':1}
+
+            MDCard:
+                radius:0
+                padding:50
+                md_bg_color:  0, 0.2, 0.1, 0.4
+                shadow_color:0, 0, 0
+                size_hint:1, 0.9
+                MDFloatLayout:
+                    MDRoundFlatIconButton:
+                        id: choose_doc
+                        text: 'Show price lists'
+                        icon: 'cash-multiple'
+                        text_color: 0.2, 0.2, 0.2, 1
+                        icon_color: 0.2, 0.2, 0.2, 1
+                        font_size: 20
+                        pos_hint: {'center_x':0.5, 'center_y':0.7}
+            MDBottomAppBar:
+                #panel_color: 0.2, 0.3, 0.2
+                MDTopAppBar:
+                    title: 'Quick services'
+                    specific_text_color: 0.2, 0.2, 0.2, 1
+                    type: 'bottom'
+                    icon: 'account'
+                    mode: 'end'
+                    on_action_button:root.login_page(args)
+                    left_action_items:[['home', root.home], ['book-open-outline', root.appointment],['doctor', root.doctors], ['hospital', root.clinics]]
+
+    MDScreen:
+        name:'screen_6'
+        MDFloatLayout:
+            Image:
+                source:'image/dentist.PNG'
+                size_hint: 0.2, 0.2
+                pos_hint:{'center_x':0.5,'top':1}
+            MDCard:
+                radius:50
+                md_bg_color: 0, 0.2, 0.1, 0.4
+                size_hint: 0.8, 0.7
+                pos_hint:{'center_x':0.5,'top':0.8}
+                MDFloatLayout:
+                    MDLabel:
+                        size_hint: 0.9, 0.8
+                        text: 'MEDICAL GROUP ASU \n \n Tel: +7(981)-799-31-00 \n\n Lesnaya street 21 \nThank for choosing our  services \n We offer a lager option of dentist services'
+                        halign: 'center'
+                        font_size: 25
+                        bold: True
+                        pos_hint:{'center_x':0.5, 'top':1}
+                    Image:
+                        source:'image/welcome.PNG'
+                        pos_hint:{'center_x':0.5, 'center_y':0.2}
+                        size_hint: 0.2, 0.4
+
+            MDIconButton:
+                icon: 'home'
+                pos_hint: {'center_x':0.5, 'center_y':0.05}
+                on_release:
+                    root.current = 'main_screen'
+                    app.root.transition = SlideTransition(direction='left')
+
+    MDScreen:
+        name:'screen_7'
+        MDCard:
+            size_hint: None, None
+            size: 300, 450
+            pos_hint: {'center_x':0.5, 'center_y':0.55}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            radius: 30
+            orientation: 'vertical'
+
+            MDLabel:
+                id: welcome_label
+                text: 'WELCOME'
+                font_size: 30
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 1
+
+            MDTextField:
+                id:user
+                mode: 'round'
+                hint_text: 'username'
+                icon_right: 'account'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDTextField:
+                id:password
+                mode: 'round'
+                hint_text: 'password'
+                icon_right: 'eye-off'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+                password: True
+            MDTextField:
+                id:age
+                mode: 'round'
+                hint_text: 'age'
+                icon_right: 'sun-snowflake'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDTextField:
+                id:city
+                mode: 'round'
+                hint_text: 'city'
+                icon_right: 'city'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+                password: True
+
+
+            MDRoundFlatButton:
+                text: 'LOG IN'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_press: app.logger()
+
+            MDRoundFlatButton:
+                text: 'CLEAR'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_press: app.clear()
+        MDIconButton:
+            icon: 'home'
+            pos_hint: {'center_x':0.5, 'center_y':0.1}
+            on_release:
+                root.current = 'main_screen'
+                app.root.transition = SlideTransition(direction='left')
+    MDScreen:
+        name: 'profile'
+
+
+
