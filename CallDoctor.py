@@ -1,6 +1,4 @@
 from kivy.config import Config
-from kivy.uix.screenmanager import SlideTransition, RiseInTransition
-
 Config.set("graphics", "width", "550")
 Config.set("graphics", "height", "700")
 Config.set("graphics", "resizable", "0")
@@ -8,15 +6,23 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.screenmanager import MDScreenManager
+from kivy.uix.screenmanager import SlideTransition, RiseInTransition
+from kivymd.uix.list import *
 from kivymd.uix.button import MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.label import MDLabel
 from kivymd.uix.pickers import MDDatePicker
+import firebase_admin
+from firebase_admin import db, credentials
+cred = credentials.Certificate('my-third-project-a46f2-firebase-adminsdk-s869n-f7b3366d45.json')
+firebase_admin.initialize_app(cred,
+{'databaseURL': 'https://my-third-project-a46f2-default-rtdb.europe-west1.firebasedatabase.app/'})
 
 
 class Screens(MDScreenManager):
 
+    login = False
 
     def clinics(self, *args):
         self.current = 'screen_3'
@@ -30,6 +36,9 @@ class Screens(MDScreenManager):
 
     def home(self, *args):
         self.current = 'main_screen'
+
+    def dating(self, *args):
+        self.current = 'screen_1'
 
     def cash(self, *args):
         self.current = 'screen_5'
@@ -46,8 +55,7 @@ class Screens(MDScreenManager):
     def on_save(self, value, instance, date_range):
         self.ids.show_date.text = f'Date : {instance}'
 
-
-    def on_cancel(self, value):
+    def on_cancel(self, value, instance):
         self.ids.show_date = f'No dates'
 
     def show_date_picker(self):
@@ -55,8 +63,6 @@ class Screens(MDScreenManager):
         # date_dialog = MDDatePicker(mode='range')
         date_dialog.bind(on_save= self.on_save, on_cancel=self.on_cancel)
         date_dialog.open()
-
-
 
 
 class Scrollview:
@@ -68,47 +74,78 @@ class MyDoctorApp(MDApp):
         super().__init__()
 
         self.dialog = None
-        self.dialog_2 = None
-        self.dct = {'Ivanov SergeiSt / St Petersburg, Kuzia str.21': 1,
-                    'Malicheva Aleksandra / St Petersburg, Slava str.17': 2,
-                    'Sergeev mikhail / Moscow, Arbat street 2':3,
-                    'Antonova Uliyana / Moscow,Pionerskaya 12' : 4,
-                    'Kuzmina Olga / Ekaterineburg,Plaza place' : 5,
-                    'Mironov Sergei / Rostov on Don,Korolev st. 9' : 6
+        self.login = False
+        # self.dict = {}
+        ref = db.reference("/doctors")
+        self.dict = ref.get()
+        self.data = {
+                    'My profile': ['account', self.login_page_1],
+                    'Home': ['home', 'on_press', self.home_1],
 
-                    }
+                }
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
-        self.theme_cls.primary_palette = 'Cyan'
+        self.theme_cls.primary_palette = 'BlueGray'
         self.theme_cls.material_style = "M2"
         return Builder.load_file('CallDoctor.kv')
 
     def show_current_appoint(self):
+
+        a = self.root.ids.show_doc.text
+        b = self.root.ids.show_hosp.text
+        c = self.root.ids.show_date.text
+
+        # ref = db.reference("/doctors")
+        #
+        # self.dict = ref.get()
+        #
+        # ref.update({f'{c}': f'{a}/{b}'})
+        self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+
+    def home_1(self, *args):
+        self.root.current = 'main_screen'
+
+    def login_page_1(self, *args):
+        self.root.current = 'screen_7'
+
+    def confirm(self):
+
         if not self.dialog:
-            self.dialog = MDDialog(title='Current appointment', text='',
+            self.dialog = MDDialog(title='Cofirmation', text='Press Ok to confirm',
                                    buttons=[MDRectangleFlatButton(text='Ok',
                                                                  text_color=self.theme_cls.primary_color,
-                                                                  on_release= self.close_dialog),
-                                            MDRectangleFlatButton(text='Clear',
-                                                                  text_color=self.theme_cls.primary_color)
+                                                                  on_release= self.save_data),
+                                            MDRectangleFlatButton(text='Cancel',
+                                                                  text_color=self.theme_cls.primary_color,
+                                                                  on_release=self.close_dialog)
                                             ])
 
         self.dialog.open()
 
-    def show_all_appoint(self):
-        if not self.dialog_2:
-            self.dialog_2 = MDDialog(title='All appointments', text='',
-                                   buttons=[MDRectangleFlatButton(text='Ok',
-                                                                 text_color=self.theme_cls.primary_color
-                                                                  , on_release= self.close_dialog_2)])
-        self.dialog_2.open()
 
+    def show_all_appoint(self):
+
+        ref = db.reference("/doctors")
+        self.dict = ref.get()
+
+        word = ''
+        for key, value in self.dict.items():
+            word = f'{word} \n\n  {key} \n {value} '
+            self.root.ids.show_all_app.text =f'{word}'
+
+    #     if not self.dialog_2:
+    #         self.dialog_2 = MDDialog(title='All appointments', text='',
+    #                                buttons=[MDRectangleFlatButton(text='Ok',
+    #                                                              text_color=self.theme_cls.primary_color
+    #                                                               , on_release= self.close_dialog_2)])
+    #     self.dialog_2.open()
+    #
     def close_dialog(self, instance):
         self.dialog.dismiss()
-
-    def close_dialog_2(self, instance):
-        self.dialog_2.dismiss()
+    #
+    # def close_dialog_2(self, instance):
+    #     self.dialog_2.dismiss()
 
 
     def add_appoint(self):
@@ -134,6 +171,31 @@ class MyDoctorApp(MDApp):
     def add_appoint_6(self):
         self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor6.text}'
         self.root.ids.show_hosp.text = 'Clinic: Rostov on Don,Korolev st. 9\n tel: 0926912'
+
+    def save_data(self,*args):
+        a = self.root.ids.show_doc.text
+        b = self.root.ids.show_hosp.text
+        c = self.root.ids.show_date.text
+
+        ref = db.reference("/doctors")
+
+        self.dict = ref.get()
+
+        ref.update({ f'{c}': f'{a}/{b}'})
+        self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+
+    def clear_current(self):
+
+        self.root.ids.show_doc.text = 'Doctor: '
+        self.root.ids.show_hosp.text = 'Clinic: '
+        self.root.ids.show_date.text = 'Date of appointment: '
+
+
+        # self.dct.update({(a+'/'+b) : (c)})
+
+        print(self.dict)
+
+    # def
 
 
 
@@ -170,6 +232,18 @@ class MyDoctorApp(MDApp):
 
 
 MyDoctorApp().run()
+
+
+# {'Ivanov SergeiSt / St Petersburg, Kuzia str.21': 1,
+#         'Malicheva Aleksandra / St Petersburg, Slava str.17': 2,
+#         'Sergeev mikhail / Moscow, Arbat street 2':3,
+#         'Antonova Uliyana / Moscow,Pionerskaya 12' : 4,
+#         'Kuzmina Olga / Ekaterineburg,Plaza place' : 5,
+#         'Mironov Sergei / Rostov on Don,Korolev st. 9' : 6
+#
+#         }
+
+
 #
 # MDBottomNavigationItem:
 # name: 'screen 1'
@@ -200,3 +274,34 @@ MyDoctorApp().run()
 # text: 'My profile'
 # icon: 'account'
 
+
+
+# MDCard:
+    # radius:0
+    # padding:50
+    # md_bg_color:  0, 0.2, 0.1, 0.4
+    # shadow_color:0, 0, 0
+    # size_hint:1, 0.9
+    # MDFloatLayout:
+    #     MDRoundFlatIconButton:
+    #         id: choose_doc
+    #         text: 'Show my current appointment'
+    #         icon: 'book'
+    #         text_color: 0.2, 0.2, 0.2, 1
+    #         icon_color: 0.2, 0.2, 0.2, 1
+    #         font_size: 20
+    #         pos_hint: {'center_x':0.5, 'center_y':0.7}
+    #         on_press:
+    #             app.show_current_appoint()
+    #
+    #     MDRoundFlatIconButton:
+    #         id: choose_doc
+    #         text: 'Show all appointments'
+    #         icon: 'book'
+    #         text_color: 0.2, 0.2, 0.2, 1
+    #         icon_color: 0.2, 0.2, 0.2, 1
+    #         font_size: 20
+    #         pos_hint: {'center_x':0.5, 'center_y':0.5}
+    #         on_press:
+    #             app.show_all_appoint()
+    #
