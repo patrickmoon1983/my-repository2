@@ -18,7 +18,7 @@ Screens:
                 pos_hint:{'center_x':0.5,'top':1}
             MDCard:
                 radius:50
-                md_bg_color: 0.3, 0.2, 0.1, 0.4
+                md_bg_color: 0.04, 0.4, 0.05, 0.4
                 size_hint: 0.7, 0.7
                 pos_hint:{'center_x':0.5,'top':0.8}
                 MDFloatLayout:
@@ -40,7 +40,7 @@ Screens:
                 MDFloatingActionButtonSpeedDial:
                     data: app.data
                     root_button_anim: True
-                    hint_animation: False
+                    hint_animation: True
 
 
             #MDIconButton:
@@ -145,7 +145,7 @@ Screens:
                 type: 'bottom'
                 icon: 'account'
                 mode: 'end'
-                on_action_button:root.login_page(args)
+                on_action_button:app.login_page_1(args)
                 left_action_items:[['home', root.home],['book-open-outline', root.appointment],['doctor', root.doctors], ['hospital', root.clinics],['cash-multiple', root.cash]]
 
     MDScreen:
@@ -213,8 +213,8 @@ Screens:
                     type: 'bottom'
                     icon: 'account'
                     mode: 'end'
-                    on_action_button:root.login_page(args)
-                    left_action_items:[['home', root.home],['calendar', root.dating],['doctor', root.doctors], ['hospital', root.clinics], ['cash-multiple', root.cash]]
+                    on_action_button:app.login_page_1(args)
+                    left_action_items:[['home', root.home],['calendar', app.dating],['doctor', root.doctors], ['hospital', root.clinics], ['cash-multiple', root.cash]]
 
     MDScreen:
         name:'screen_3'
@@ -259,11 +259,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox:
 
                     MDCard:
@@ -287,11 +289,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox
                     MDCard:
                         size_hint_y: None
@@ -314,11 +318,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox
                     MDCard:
                         size_hint_y: None
@@ -341,11 +347,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox
                     MDCard:
                         size_hint_y: None
@@ -368,11 +376,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox
                     MDCard:
                         size_hint_y: None
@@ -395,11 +405,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform_2()
                         #MDCheckbox
 
             MDBottomAppBar:
@@ -410,8 +422,8 @@ Screens:
                     type: 'bottom'
                     icon: 'account'
                     mode: 'end'
-                    on_action_button:root.login_page(args)
-                    left_action_items:[['home', root.home],['calendar', root.dating], ['book-open-outline', root.appointment], ['doctor', root.doctors], ['cash-multiple', root.cash]]
+                    on_action_button:app.login_page_1(args)
+                    left_action_items:[['home', root.home],['calendar', app.dating], ['book-open-outline', root.appointment], ['doctor', root.doctors], ['cash-multiple', root.cash]]
 
     MDScreen:
         name:'screen_4'
@@ -459,18 +471,19 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             id: chb_1
                             on_press:
                                 app.add_appoint()
                             #on_release: root.current= 'screen_1'
                             group: 'doctor'
-
 
                     MDCard:
                         size_hint_y: None
@@ -496,11 +509,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             on_active: app.add_appoint_2()
                             group: 'doctor'
@@ -528,11 +543,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             on_active: app.add_appoint_3()
                             group: 'doctor'
@@ -560,11 +577,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             on_active: app.add_appoint_4()
                             group: 'doctor'
@@ -592,11 +611,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             on_active: app.add_appoint_5()
                             group: 'doctor'
@@ -625,11 +646,13 @@ Screens:
                             MDIconButton:
                                 icon:'calendar'
                                 on_release:
-                                    root.current = 'screen_1'
+                                    app.dating()
                                     root.transition = SlideTransition(direction='right')
                                     ripple_behavior: True
                             MDIconButton:
                                 icon:'information'
+                                on_release:
+                                    app.inform()
                         MDCheckbox:
                             group: 'doctor'
                             on_active: app.add_appoint_6()
@@ -641,8 +664,8 @@ Screens:
                     type: 'bottom'
                     icon: 'account'
                     mode: 'end'
-                    on_action_button:root.login_page(args)
-                    left_action_items:[['home', root.home],['calendar', root.dating], ['book-open-outline', root.appointment],['hospital', root.clinics], ['cash-multiple', root.cash]]
+                    on_action_button:app.login_page_1(args)
+                    left_action_items:[['home', root.home],['calendar', app.dating], ['book-open-outline', root.appointment],['hospital', root.clinics], ['cash-multiple', root.cash]]
 
     MDScreen:
         name:'screen_5'
@@ -680,8 +703,8 @@ Screens:
                     type: 'bottom'
                     icon: 'account'
                     mode: 'end'
-                    on_action_button:root.login_page(args)
-                    left_action_items:[['home', root.home], ['book-open-outline', root.appointment],['calendar', root.dating],['doctor', root.doctors], ['hospital', root.clinics]]
+                    on_action_button:app.login_page_1(args)
+                    left_action_items:[['home', root.home], ['book-open-outline', root.appointment],['calendar', app.dating],['doctor', root.doctors], ['hospital', root.clinics]]
 
     MDScreen:
         name: 'main_screen'
@@ -733,7 +756,7 @@ Screens:
                         md_bg_color: 0.2, 0.1, 0.4, 0.4
                         #on_press: app.writing()
                         on_release:
-                            root.current = 'screen_1'
+                            app.dating()
                             root.transition = SlideTransition(direction='left')
                             ripple_behavior: True
                         Image:
@@ -826,7 +849,7 @@ Screens:
                         radius: '20dp'
                         md_bg_color: 0, 0.2, 0.1, 0.4
                         on_release:
-                            root.current = 'screen_2'
+                            app.show_all_appoint()
                             root.transition = SlideTransition(direction='left')
                             ripple_behavior: True
                         Image:
@@ -850,15 +873,15 @@ Screens:
                     specific_text_color: 0.2, 0.2, 0.2, 1
                     type: 'bottom'
                     icon: 'account'
-                    on_action_button:root.login_page(args)
+                    on_action_button:app.login_page_1(args)
                     mode: 'end'
-                    left_action_items:[['book-open-outline', root.appointment],['calendar', root.dating],['doctor', root.doctors] , ['hospital', root.clinics],['cash-multiple', root.cash]]
+                    left_action_items:[['book-open-outline', root.appointment],['calendar', app.dating],['doctor', root.doctors] , ['hospital', root.clinics],['cash-multiple', root.cash]]
 
     MDScreen:
         name:'screen_7'
         MDCard:
             size_hint: None, None
-            size: 300, 450
+            size: 300, 400
             pos_hint: {'center_x':0.5, 'center_y':0.55}
             elevation: 10
             padding: 25
@@ -895,8 +918,73 @@ Screens:
                 font_size: 20
                 pos_hint:{'center_x':0.5}
                 password: True
+            MDIconButton:
+                icon: 'keyboard'
+                pos_hint:{'center_x':0.5}
+
+            MDRoundFlatButton:
+                text: 'LOG IN'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_press: app.logger()
+
+            MDRoundFlatButton:
+                text: 'SIGN UP'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_press: app.sign_up()
+        MDIconButton:
+            icon: 'home'
+            pos_hint: {'center_x':0.5, 'center_y':0.1}
+            on_release:
+                root.current = 'main_screen'
+                app.root.transition = SlideTransition(direction='left')
+
+
+    MDScreen:
+        name:'screen_8'
+        MDCard:
+            size_hint: None, None
+            size: 400, 600
+            pos_hint: {'center_x':0.5, 'center_y':0.55}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            radius: 30
+            orientation: 'vertical'
+
+            MDLabel:
+                id: sign_up
+                text: 'REGISTER'
+                font_size: 30
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 1
+
             MDTextField:
-                id:age
+                id:user_1
+                mode: 'round'
+                hint_text: 'username'
+                icon_right: 'account'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDTextField:
+                id:password_1
+                mode: 'round'
+                hint_text: 'create a password'
+                icon_right: 'key-variant'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+                password: True
+
+            MDTextField:
+                id:age_1
                 mode: 'round'
                 hint_text: 'age'
                 icon_right: 'sun-snowflake'
@@ -906,36 +994,114 @@ Screens:
                 pos_hint:{'center_x':0.5}
 
             MDTextField:
-                id:city
+                id:sex_1
                 mode: 'round'
-                hint_text: 'city'
-                icon_right: 'city'
+                hint_text: 'sex'
+                icon_right: 'gender-male-female'
                 size_hint_x: None
                 width: 200
                 font_size: 20
                 pos_hint:{'center_x':0.5}
-                password: True
 
+
+            MDTextField:
+                id:city_1
+                mode: 'round'
+                hint_text: 'city'
+                icon_right: 'gender-male-female'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDIconButton:
+                icon: 'keyboard'
+                pos_hint:{'center_x':0.5}
 
             MDRoundFlatButton:
-                text: 'LOG IN'
+                text: 'REGISTER'
                 font_size: 12
                 pos_hint:{'center_x':0.5}
-                on_press: app.logger()
+                on_press: app.register()
 
             MDRoundFlatButton:
                 text: 'CLEAR'
                 font_size: 12
                 pos_hint:{'center_x':0.5}
                 on_press: app.clear()
+
         MDIconButton:
             icon: 'home'
             pos_hint: {'center_x':0.5, 'center_y':0.1}
             on_release:
                 root.current = 'main_screen'
                 app.root.transition = SlideTransition(direction='left')
+
+
+
     MDScreen:
         name: 'profile'
+        MDCard:
+            size_hint: None, None
+            size: 350, 500
+            pos_hint: {'center_x':0.5, 'center_y':0.55}
+            elevation: 10
+            padding: 25
+            spacing: 20
+            radius: 30
+            orientation: 'vertical'
+
+            MDLabel:
+                id: profile_label
+                text: ''
+                font_size: 30
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 1
+            Image:
+                source:'image/user.PNG'
+                pos_hint:{'center_x':0.5}
+
+            MDRoundFlatIconButton:
+                text: 'my profile'
+                icon: 'account'
+                font_size: 18
+                pos_hint:{'center_x':0.5}
+                on_press:
+                    app.show_current_appoint()
+
+
+            MDRoundFlatIconButton:
+                text: 'my appointments'
+                icon: 'book-open-outline'
+                font_size: 18
+                pos_hint:{'center_x':0.5}
+                on_press:
+                    app.show_current_appoint()
+
+            MDRoundFlatIconButton:
+                text: 'my wallet'
+                icon: 'wallet'
+                font_size: 18
+                pos_hint:{'center_x':0.5}
+
+            MDTextButton:
+                text: 'log out'
+                italic: True
+                bold : True
+                font_size: 15
+                pos_hint:{'center_x':0.5}
+                on_release:
+                    app.log_out()
+
+
+        MDIconButton:
+            icon: 'home'
+            pos_hint: {'center_x':0.5, 'center_y':0.1}
+            on_release:
+                root.current = 'main_screen'
+                app.root.transition = SlideTransition(direction='left')
 
 
 

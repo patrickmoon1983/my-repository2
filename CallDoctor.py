@@ -1,6 +1,6 @@
 from kivy.config import Config
 Config.set("graphics", "width", "550")
-Config.set("graphics", "height", "700")
+Config.set("graphics", "height", "800")
 Config.set("graphics", "resizable", "0")
 from kivy.core.window import Window
 from kivymd.app import MDApp
@@ -37,9 +37,6 @@ class Screens(MDScreenManager):
     def home(self, *args):
         self.current = 'main_screen'
 
-    def dating(self, *args):
-        self.current = 'screen_1'
-
     def cash(self, *args):
         self.current = 'screen_5'
 
@@ -51,6 +48,7 @@ class Screens(MDScreenManager):
 
     def make_appoint(self, *args):
         self.current = 'screen_1'
+
 
     def on_save(self, value, instance, date_range):
         self.ids.show_date.text = f'Date : {instance}'
@@ -74,43 +72,77 @@ class MyDoctorApp(MDApp):
         super().__init__()
 
         self.dialog = None
+        self.dialog_1 = None
+        self.dialog_2 = None
         self.login = False
         # self.dict = {}
         ref = db.reference("/doctors")
         self.dict = ref.get()
+        self.dict_2 = {}
         self.data = {
-                    'My profile': ['account', self.login_page_1],
+                    'My profile': ['account','on_release', self.login_page_1],
                     'Home': ['home', 'on_press', self.home_1],
 
                 }
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
-        self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.primary_palette = 'Gray'
         self.theme_cls.material_style = "M2"
         return Builder.load_file('CallDoctor.kv')
 
     def show_current_appoint(self):
+        if self.login == False:
+            self.root.current = 'screen_7'
 
-        a = self.root.ids.show_doc.text
-        b = self.root.ids.show_hosp.text
-        c = self.root.ids.show_date.text
+        else:
+            a = self.root.ids.show_doc.text
+            b = self.root.ids.show_hosp.text
+            c = self.root.ids.show_date.text
 
-        # ref = db.reference("/doctors")
-        #
-        # self.dict = ref.get()
-        #
-        # ref.update({f'{c}': f'{a}/{b}'})
-        self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+            # ref = db.reference("/doctors")
+            #
+            # self.dict = ref.get()
+            #
+            # ref.update({f'{c}': f'{a}/{b}'})
+            self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+            self.root.current = 'screen_2'
 
     def home_1(self, *args):
         self.root.current = 'main_screen'
 
+    def dating(self, *args):
+        if self.login == False:
+            self.root.current = 'screen_7'
+        else:
+            self.root.current = 'screen_1'
+
     def login_page_1(self, *args):
+        if self.login == False:
+            self.root.current = 'screen_7'
+        else:
+            self.root.current = 'profile'
+
+
+    def logger(self):
+        ref = db.reference("/User")
+        self.dict_2 = ref.get()
+        for item in self.dict_2:
+            if item == self.root.ids.user.text:
+                if self.dict_2[item] == self.root.ids.password.text:
+                    self.root.current = 'profile'
+                    self.root.ids.profile_label.text = self.root.ids.user.text
+                    self.login = True
+                    print(self.dict_2)
+                    print(self.login)
+
+    def log_out(self):
         self.root.current = 'screen_7'
+        self.root.ids.user.text = ''
+        self.root.ids.password.text= ''
+        self.login = False
 
     def confirm(self):
-
         if not self.dialog:
             self.dialog = MDDialog(title='Cofirmation', text='Press Ok to confirm',
                                    buttons=[MDRectangleFlatButton(text='Ok',
@@ -120,32 +152,57 @@ class MyDoctorApp(MDApp):
                                                                   text_color=self.theme_cls.primary_color,
                                                                   on_release=self.close_dialog)
                                             ])
-
         self.dialog.open()
+    def close_dialog(self, instance):
+        self.dialog.dismiss()
+
+    def inform(self):
+        if not self.dialog_1:
+            self.dialog_1 = MDDialog(title='About Doctor',
+                                    text='''- Doctor : Specialist / Dentist\n\n- Work stage: About 10 years\n\n- Work place: Moscow, Druzhba place 21,\n\n- Study place: University of Novorosisk,Russia tel: 012345''',
+                                   buttons=[ MDRectangleFlatButton(text='Close',
+                                                      text_color=self.theme_cls.primary_color,
+                                                      on_release=self.close_dialog_1)
+                                            ])
+        self.dialog_1.open()
+
+    def close_dialog_1(self, instance):
+        self.dialog_1.dismiss()
+
+    def close_dialog(self, instance):
+        self.dialog.dismiss()
+
+    def inform_2(self):
+        if not self.dialog_2:
+            self.dialog_2 = MDDialog(title='About Clinic',
+                                    text='''- Clinic : Adress  / Moscow city\n\n- Work stage: About 25 years\n\n- Work place: Moscow, Druzhba place 21,\n\n- Contact / tel: 012345''',
+                                   buttons=[ MDRectangleFlatButton(text='Close',
+                                                      text_color=self.theme_cls.primary_color,
+                                                      on_release=self.close_dialog_2)
+                                            ])
+        self.dialog_2.open()
+
+    def close_dialog_2(self, instance):
+        self.dialog_2.dismiss()
+
 
 
     def show_all_appoint(self):
 
-        ref = db.reference("/doctors")
-        self.dict = ref.get()
+        if self.login:
 
-        word = ''
-        for key, value in self.dict.items():
-            word = f'{word} \n\n  {key} \n {value} '
-            self.root.ids.show_all_app.text =f'{word}'
+            ref = db.reference("/doctors")
+            self.dict = ref.get()
 
-    #     if not self.dialog_2:
-    #         self.dialog_2 = MDDialog(title='All appointments', text='',
-    #                                buttons=[MDRectangleFlatButton(text='Ok',
-    #                                                              text_color=self.theme_cls.primary_color
-    #                                                               , on_release= self.close_dialog_2)])
-    #     self.dialog_2.open()
-    #
-    def close_dialog(self, instance):
-        self.dialog.dismiss()
-    #
-    # def close_dialog_2(self, instance):
-    #     self.dialog_2.dismiss()
+            word = ''
+            for key, value in self.dict.items():
+                word = f'{word} \n\n  {key} \n {value} '
+                self.root.ids.show_all_app.text =f'{word}'
+                self.root.current = 'screen_2'
+
+
+        else:
+            self.root.current = 'screen_7'
 
 
     def add_appoint(self):
@@ -184,18 +241,37 @@ class MyDoctorApp(MDApp):
         ref.update({ f'{c}': f'{a}/{b}'})
         self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
 
-    def clear_current(self):
+    def sign_up(self, **kargs):
+        self.root.current = 'screen_8'
 
-        self.root.ids.show_doc.text = 'Doctor: '
-        self.root.ids.show_hosp.text = 'Clinic: '
-        self.root.ids.show_date.text = 'Date of appointment: '
+    def register(self):
+        a = self.root.ids.user_1.text
+        b = self.root.ids.password_1.text
 
+        ref = db.reference("/User")
+        self.root.current = 'screen_7'
+        self.dict = ref.get()
 
-        # self.dct.update({(a+'/'+b) : (c)})
+        ref.update({f'{a}': f'{b}'})
+
+        self.login = False
+
+        print(self.dict_2)
+
+    def clear(self):
+
+        self.root.ids.user_1.text = ''
+        self.root.ids.password_1.text = ''
+        self.root.ids.age_1.text = ''
+        self.root.ids.sex_1.text = ''
+        self.root.ids.city_1.text = ''
 
         print(self.dict)
+    def clear_current(self):
+        self.root.ids.show_doc.text = 'Doctor: '
+        self.root.ids.show_hosp.text = 'Clinic: '
+        self.root.ids.show_date.text = 'Date: '
 
-    # def
 
 
 
