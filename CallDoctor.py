@@ -277,13 +277,14 @@ class MyDoctorApp(MDApp):
         c = self.root.ids.age_1.text
         d = self.root.ids.sex_1.text
         e = self.root.ids.city_1.text
+        f = self.root.ids.address_1.text
 
         try:
 
             ref = db.reference('/User')
             self.dict = ref.get()
             # ref.update({f'{a}': f'{b}'})
-            ref.update({f'{a}': [a, b, c, d, e]})
+            ref.update({f'{a}': [a, b, c, d, e, f]})
 
             self.root.current = 'screen_7'
 
@@ -319,6 +320,7 @@ class MyDoctorApp(MDApp):
             self.root.ids.age0.text = f'Age:  {x[2]}'
             self.root.ids.sexy.text = f'Gender:  {x[3]}'
             self.root.ids.town.text = f'City:  {x[4]}'
+            self.root.ids.address.text = f'Home address:  {x[5]}'
 
         except:
             self.dialog_Error()

@@ -688,21 +688,89 @@ Screens:
                 size_hint:1, 0.1
                 pos_hint:{'top':1}
 
-            MDCard:
-                radius:0
-                padding:50
-                md_bg_color:  0, 0.2, 0.1, 0.4
-                shadow_color:0, 0, 0
-                size_hint:1, 0.9
-                MDFloatLayout:
-                    MDRoundFlatIconButton:
-                        id: choose_doc
-                        text: 'Show price lists'
-                        icon: 'cash-multiple'
-                        text_color: 0.2, 0.2, 0.2, 1
-                        icon_color: 0.2, 0.2, 0.2, 1
-                        font_size: 20
-                        pos_hint: {'center_x':0.5, 'center_y':0.7}
+            MDRoundFlatIconButton:
+                id: download
+                text: 'Download price lists'
+                icon: 'download'
+                text_color: 0.2, 0.2, 0.2, 1
+                icon_color: 0.2, 0.2, 0.2, 1
+                font_size: 20
+                pos_hint: {'center_x':0.5, 'top':0.85}
+
+            ScrollView:
+                bar_width: 10
+                padding: 10
+                pos_hint: {'center_x':0.5, 'top':0.75}
+                size_hint_y: 0.7
+                MDList:
+                    padding: 20
+                    size_hint_y: None
+                    adaptive_height: True
+                    ThreeLineRightIconListItem:
+                        id: item1
+                        text: 'Consulting information'
+                        secondary_text: 'Price of service: 25$'
+                        tertiary_text: 'Dentist: Malicheva Aleksandra '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor2.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item2
+                        text: 'Consulting service'
+                        secondary_text: 'Price of service: 40$'
+                        tertiary_text: 'Dentist: Malicheva Aleksandra '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor2.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item3
+                        text: 'Fixing service'
+                        secondary_text: 'Price of service: 125$ '
+                        tertiary_text: 'Dentist: Sergeev Mikhail '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor3.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item4
+                        text: 'Dropping service'
+                        secondary_text: 'Price of service: 500$'
+                        tertiary_text: 'Dentist: Mironov Sergei '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item5
+                        text: 'Consulting information'
+                        secondary_text: 'Price of service: 17$'
+                        tertiary_text: 'Dentist: Kuzmina Olga '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor5.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item6
+                        text: 'Consulting service'
+                        secondary_text: 'Price of service: 25$'
+                        tertiary_text: 'Dentist: Ivanov Sergei '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor1.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item7
+                        text: 'Fixing service'
+                        secondary_text: 'Price of service: 750$'
+                        tertiary_text: 'Dentist: Ivanov Sergei'
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor1.PNG'
+                    ThreeLineRightIconListItem:
+                        id: item8
+                        text: 'Dropping service'
+                        secondary_text: 'Price of service: 765$'
+                        tertiary_text: 'Dentist: Antonova Uliyana '
+                        size_hint_y: None
+                        ImageRightWidget:
+                            source: 'image/doctor4.PNG'
+
             MDBottomAppBar:
                 #panel_color: 0.2, 0.3, 0.2
                 MDTopAppBar:
@@ -953,7 +1021,7 @@ Screens:
         name:'screen_8'
         MDCard:
             size_hint: None, None
-            size: 400, 600
+            size: 400, 650
             pos_hint: {'center_x':0.5, 'center_y':0.55}
             elevation: 10
             padding: 25
@@ -964,7 +1032,7 @@ Screens:
             MDLabel:
                 id: sign_up
                 text: 'REGISTER'
-                font_size: 30
+                font_size: 25
                 halign: 'center'
                 size_hint_y: None
                 height: self.texture_size[1]
@@ -1016,7 +1084,17 @@ Screens:
                 id:city_1
                 mode: 'round'
                 hint_text: 'city'
-                icon_right: 'gender-male-female'
+                icon_right: 'city'
+                size_hint_x: None
+                width: 200
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDTextField:
+                id:address_1
+                mode: 'round'
+                hint_text: 'home address'
+                icon_right: 'home'
                 size_hint_x: None
                 width: 200
                 font_size: 20
@@ -1093,6 +1171,13 @@ Screens:
                 text:'City: '
                 font_size: 20
                 pos_hint:{'center_x':0.5}
+
+            MDLabel:
+                id:address
+                text:'Home address: '
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
 
             MDIconButton:
                 icon: 'keyboard'
