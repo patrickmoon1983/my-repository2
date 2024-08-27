@@ -74,10 +74,11 @@ class MyDoctorApp(MDApp):
         self.dialog = None
         self.dialog_1 = None
         self.dialog_2 = None
+        self.dialog_error = None
         self.login = False
         # self.dict = {}
-        ref = db.reference("/doctors")
-        self.dict = ref.get()
+
+
         self.dict_2 = {}
         self.data = {
                     'My profile': ['account','on_release', self.login_page_1],
@@ -89,7 +90,9 @@ class MyDoctorApp(MDApp):
         self.theme_cls.theme_style = 'Light'
         self.theme_cls.primary_palette = 'Gray'
         self.theme_cls.material_style = "M2"
+
         return Builder.load_file('CallDoctor.kv')
+
 
     def show_current_appoint(self):
         if self.login == False:
@@ -109,7 +112,13 @@ class MyDoctorApp(MDApp):
             self.root.current = 'screen_2'
 
     def home_1(self, *args):
+        try:
+            ref = db.reference("/doctors")
+            self.dict = ref.get()
+        except:
+            self.dialog_Error()
         self.root.current = 'main_screen'
+
 
     def dating(self, *args):
         if self.login == False:
@@ -125,16 +134,19 @@ class MyDoctorApp(MDApp):
 
 
     def logger(self):
-        ref = db.reference("/User")
-        self.dict_2 = ref.get()
-        for item in self.dict_2:
-            if item == self.root.ids.user.text:
-                if self.dict_2[item] == self.root.ids.password.text:
-                    self.root.current = 'profile'
-                    self.root.ids.profile_label.text = self.root.ids.user.text
-                    self.login = True
-                    print(self.dict_2)
-                    print(self.login)
+        try:
+            ref = db.reference("/User")
+            self.dict_2 = ref.get()
+            for item in self.dict_2:
+                if item == self.root.ids.user.text:
+                    if self.dict_2[item][1] == self.root.ids.password.text:
+                        self.root.current = 'profile'
+                        self.root.ids.profile_label.text = self.root.ids.user.text
+                        self.login = True
+                        print(self.dict_2)
+                        print(self.login)
+        except:
+            self.dialog_Error()
 
     def log_out(self):
         self.root.current = 'screen_7'
@@ -185,21 +197,31 @@ class MyDoctorApp(MDApp):
     def close_dialog_2(self, instance):
         self.dialog_2.dismiss()
 
+    def dialog_Error(self):
+
+        if not self.dialog_error:
+            self.dialog_error = MDDialog(title='Message',
+                                         text='!!Not internet connection!!\napplication will not correctly work')
+
+            self.dialog_error.open()
+
 
 
     def show_all_appoint(self):
 
         if self.login:
 
-            ref = db.reference("/doctors")
-            self.dict = ref.get()
+            try:
+                ref = db.reference("/doctors")
+                self.dict = ref.get()
 
-            word = ''
-            for key, value in self.dict.items():
-                word = f'{word} \n\n  {key} \n {value} '
-                self.root.ids.show_all_app.text =f'{word}'
-                self.root.current = 'screen_2'
-
+                word = ''
+                for key, value in self.dict.items():
+                    word = f'{word} \n\n  {key} \n {value} '
+                    self.root.ids.show_all_app.text =f'{word}'
+                    self.root.current = 'screen_2'
+            except:
+                self.dialog_Error()
 
         else:
             self.root.current = 'screen_7'
@@ -234,25 +256,40 @@ class MyDoctorApp(MDApp):
         b = self.root.ids.show_hosp.text
         c = self.root.ids.show_date.text
 
-        ref = db.reference("/doctors")
+        try:
 
-        self.dict = ref.get()
+            ref = db.reference("/doctors")
 
-        ref.update({ f'{c}': f'{a}/{b}'})
-        self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+            self.dict = ref.get()
+
+            ref.update({ f'{c}': f'{a}/{b}'})
+            self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+        except:
+            self.dialog_Error()
 
     def sign_up(self, **kargs):
         self.root.current = 'screen_8'
 
     def register(self):
+
         a = self.root.ids.user_1.text
         b = self.root.ids.password_1.text
+        c = self.root.ids.age_1.text
+        d = self.root.ids.sex_1.text
+        e = self.root.ids.city_1.text
 
-        ref = db.reference("/User")
-        self.root.current = 'screen_7'
-        self.dict = ref.get()
+        try:
 
-        ref.update({f'{a}': f'{b}'})
+            ref = db.reference('/User')
+            self.dict = ref.get()
+            # ref.update({f'{a}': f'{b}'})
+            ref.update({f'{a}': [a, b, c, d, e]})
+
+            self.root.current = 'screen_7'
+
+        except:
+            self.dialog_Error()
+
 
         self.login = False
 
@@ -272,9 +309,19 @@ class MyDoctorApp(MDApp):
         self.root.ids.show_hosp.text = 'Clinic: '
         self.root.ids.show_date.text = 'Date: '
 
+    def user_profile(self):
+        self.root.current = 'screen_9'
+        try:
+            ref = db.reference('/User')
+            self.dict = ref.get()
+            x = self.dict[f'{self.root.ids.user.text}']
+            self.root.ids.username.text = f'Name:  {x[0]}'
+            self.root.ids.age0.text = f'Age:  {x[2]}'
+            self.root.ids.sexy.text = f'Gender:  {x[3]}'
+            self.root.ids.town.text = f'City:  {x[4]}'
 
-
-
+        except:
+            self.dialog_Error()
 
         # #self.dct.update({self.root.ids.doctor1.text: 1})
         #

@@ -23,8 +23,16 @@ Screens:
                 pos_hint:{'center_x':0.5,'top':0.8}
                 MDFloatLayout:
                     MDLabel:
-                        size_hint: 0.8, 1
-                        pos_hint:{'center_x':0.5, 'top':1}
+                        id: connection
+                        text:''
+                        halign : 'center'
+                        color: 1, 0, 0, 1
+                        size_hint:1, 0.1
+                        font_size: 20
+                        pos_hint:{'center_x':0.5, 'top':0.95}
+                    MDLabel:
+                        size_hint: 0.8, 0.9
+                        pos_hint:{'center_x':0.5, 'top':0.9}
                         text: 'MEDICAL GROUP ASU \n \n Tel: +7(981)-799-31-00 \n\n Lesnaya street 21 \nThank for choosing our  services \n We offer a lager option of dentist services'
                         halign: 'center'
                         font_size: 22
@@ -1037,6 +1045,78 @@ Screens:
                 root.current = 'main_screen'
                 app.root.transition = SlideTransition(direction='left')
 
+    MDScreen:
+        name:'screen_9'
+        MDCard:
+            size_hint: None, None
+            size: 400, 650
+            pos_hint: {'center_x':0.5, 'center_y':0.55}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            radius: 30
+            orientation: 'vertical'
+
+            MDLabel:
+                id: sign_up
+                text: 'ABOUT ME'
+                font_size: 30
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 1
+
+            Image:
+                source:'image/user.PNG'
+                pos_hint:{'center_x':0.5}
+
+            MDLabel:
+                id:username
+                text:'Name: '
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDLabel:
+                id:age0
+                text:'Age: '
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDLabel:
+                id:sexy
+                text:'Gender: '
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDLabel:
+                id:town
+                text:'City: '
+                font_size: 20
+                pos_hint:{'center_x':0.5}
+
+            MDIconButton:
+                icon: 'keyboard'
+                pos_hint:{'center_x':0.5}
+
+            MDRoundFlatButton:
+                text: 'EDIT PROFILE'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_release:
+
+            MDRoundFlatButton:
+                text: 'BACK TO PROFILE'
+                font_size: 12
+                pos_hint:{'center_x':0.5}
+                on_release: app.login_page_1()
+
+        MDIconButton:
+            icon: 'home'
+            pos_hint: {'center_x':0.5, 'center_y':0.07}
+            on_release:
+                root.current = 'main_screen'
+                app.root.transition = SlideTransition(direction='left')
+
 
 
     MDScreen:
@@ -1064,13 +1144,12 @@ Screens:
                 pos_hint:{'center_x':0.5}
 
             MDRoundFlatIconButton:
-                text: 'my profile'
+                text: 'About me'
                 icon: 'account'
                 font_size: 18
                 pos_hint:{'center_x':0.5}
                 on_press:
-                    app.show_current_appoint()
-
+                    app.user_profile()
 
             MDRoundFlatIconButton:
                 text: 'my appointments'
