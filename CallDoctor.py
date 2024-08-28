@@ -1,6 +1,6 @@
 from kivy.config import Config
 Config.set("graphics", "width", "550")
-Config.set("graphics", "height", "800")
+Config.set("graphics", "height", "850")
 Config.set("graphics", "resizable", "0")
 from kivy.core.window import Window
 from kivymd.app import MDApp
@@ -75,6 +75,7 @@ class MyDoctorApp(MDApp):
         self.dialog_1 = None
         self.dialog_2 = None
         self.dialog_error = None
+        self.dialog_incorrect_1 = None
         self.login = False
         # self.dict = {}
 
@@ -94,7 +95,7 @@ class MyDoctorApp(MDApp):
         return Builder.load_file('CallDoctor.kv')
 
 
-    def show_current_appoint(self):
+    def show_current_appoint(self, *args):
         if self.login == False:
             self.root.current = 'screen_7'
 
@@ -132,34 +133,59 @@ class MyDoctorApp(MDApp):
         else:
             self.root.current = 'profile'
 
+    def wrong_password(self):
+        if not self.dialog_incorrect_1:
+            self.dialog_incorrect_1 = MDDialog(title='Error', text='Incorrect Username or Password',
+                                   buttons=[MDRectangleFlatButton(text='Try again',
+                                                                 text_color=self.theme_cls.primary_color,
+                                                                 on_release=self.close_dialog_error),
+
+                                            ])
+        self.dialog_incorrect_1.open()
+
+    def close_dialog_error(self, instance):
+        self.dialog_incorrect_1.dismiss()
+
 
     def logger(self):
         try:
             ref = db.reference("/User")
             self.dict_2 = ref.get()
+            c = False
+            d = False
             for item in self.dict_2:
                 if item == self.root.ids.user.text:
+                    c = True
                     if self.dict_2[item][1] == self.root.ids.password.text:
+                        d = True
                         self.root.current = 'profile'
                         self.root.ids.profile_label.text = self.root.ids.user.text
                         self.login = True
                         print(self.dict_2)
                         print(self.login)
+
+            if c * d == 0:
+                self.wrong_password()
+
         except:
             self.dialog_Error()
 
     def log_out(self):
-        self.root.current = 'screen_7'
+        self.root.ids.show_doc.text = 'Doctor: '
+        self.root.ids.show_hosp.text = 'Clinic: '
+        self.root.ids.show_date.text = 'Date: '
         self.root.ids.user.text = ''
         self.root.ids.password.text= ''
         self.login = False
+        self.root.current = 'screen_7'
 
     def confirm(self):
         if not self.dialog:
             self.dialog = MDDialog(title='Cofirmation', text='Press Ok to confirm',
                                    buttons=[MDRectangleFlatButton(text='Ok',
                                                                  text_color=self.theme_cls.primary_color,
-                                                                  on_release= self.save_data),
+                                                                  on_press= self.save_data,
+                                                                  on_release= self.show_current_appoint),
                                             MDRectangleFlatButton(text='Cancel',
                                                                   text_color=self.theme_cls.primary_color,
                                                                   on_release=self.close_dialog)
@@ -212,13 +238,14 @@ class MyDoctorApp(MDApp):
         if self.login:
 
             try:
-                ref = db.reference("/doctors")
+                x = f'{self.root.ids.user.text}'
+                ref = db.reference(x)
                 self.dict = ref.get()
 
                 word = ''
                 for key, value in self.dict.items():
-                    word = f'{word} \n\n  {key} \n {value} '
-                    self.root.ids.show_all_app.text =f'{word}'
+                    word = f'{word} \n\n  {key}\n {self.dict[key][0]} \n {self.dict[key][1]} '
+                    self.root.ids.show_all_app.text = f'{word}'
                     self.root.current = 'screen_2'
             except:
                 self.dialog_Error()
@@ -258,12 +285,13 @@ class MyDoctorApp(MDApp):
 
         try:
 
-            ref = db.reference("/doctors")
+            x = f'{ self.root.ids.user.text}'
+            ref = db.reference(x)
 
             self.dict = ref.get()
 
-            ref.update({ f'{c}': f'{a}/{b}'})
-            self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
+            ref.update({f'{c}': [f'{a}', f'{b}']})
+            #self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
         except:
             self.dialog_Error()
 
