@@ -13,6 +13,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.label import MDLabel
 from kivymd.uix.pickers import MDDatePicker
+from kivymd.uix.menu import MDDropdownMenu
 import firebase_admin
 from firebase_admin import db, credentials
 cred = credentials.Certificate('my-third-project-a46f2-firebase-adminsdk-s869n-f7b3366d45.json')
@@ -77,22 +78,35 @@ class MyDoctorApp(MDApp):
         self.dialog_error = None
         self.dialog_incorrect_1 = None
         self.login = False
-        # self.dict = {}
-
-
+        self.dict = {}
         self.dict_2 = {}
         self.data = {
                     'My profile': ['account','on_release', self.login_page_1],
                     'Home': ['home', 'on_press', self.home_1],
-
                 }
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
         self.theme_cls.primary_palette = 'Gray'
         self.theme_cls.material_style = "M2"
-
         return Builder.load_file('CallDoctor.kv')
+
+
+        menu = [
+            {"viewclass": "MDRectangleFlatIconButton", "text": "Saint_Petersburg", "icon": "city", 'on_release':self.set_item},
+            {"viewclass": "MDRectangleFlatIconButton", "text": "Moscou", "icon": "city", 'on_release':self.set_item},
+            {"viewclass": "MDRectangleFlatIconButton", "text": "Ekaterinburg", "icon": "city", 'on_release':self.set_item},
+            {"viewclass": "MDRectangleFlatIconButton", "text": "Rostov on Don", "icon": "city", 'on_release':self.set_item}
+        ]
+
+        self.drop = MDDropdownMenu(caller=self.root.ids.city_1, items=menu, position='bottom', width_mult=3.5)
+
+
+
+
+    def set_item(self, instance):
+        self.root.ids.city_1.text = 'Saint-Petersburg'
+        self.drop.dismiss()
 
 
     def show_current_appoint(self, *args):
@@ -100,17 +114,24 @@ class MyDoctorApp(MDApp):
             self.root.current = 'screen_7'
 
         else:
-            a = self.root.ids.show_doc.text
-            b = self.root.ids.show_hosp.text
-            c = self.root.ids.show_date.text
+            try:
 
-            # ref = db.reference("/doctors")
-            #
-            # self.dict = ref.get()
-            #
-            # ref.update({f'{c}': f'{a}/{b}'})
-            self.root.ids.show_all_app.text = f'{a} \n {b} \n {c}'
-            self.root.current = 'screen_2'
+                ref = db.reference("/current")
+                self.dict = ref.get()
+                a = self.root.ids.show_doc.text
+                b = self.root.ids.show_hosp.text
+                c = self.root.ids.show_date.text
+                d = self.root.ids.user.text
+
+                ref.update({f'{d}': [f'{a}', f'{b}', f'{c}']})
+
+                self.root.ids.show_all_app.text = f'{self.dict[d][0]} \n {self.dict[d][1]} \n {self.dict[d][2]}'
+
+
+
+                self.root.current = 'screen_2'
+            except:
+                self.dialog_Error()
 
     def home_1(self, *args):
         try:
@@ -185,7 +206,8 @@ class MyDoctorApp(MDApp):
                                    buttons=[MDRectangleFlatButton(text='Ok',
                                                                  text_color=self.theme_cls.primary_color,
                                                                   on_press= self.save_data,
-                                                                  on_release= self.show_current_appoint),
+                                                                  on_release= self.show_current_appoint,
+                                                                  ),
                                             MDRectangleFlatButton(text='Cancel',
                                                                   text_color=self.theme_cls.primary_color,
                                                                   on_release=self.close_dialog)
@@ -255,28 +277,44 @@ class MyDoctorApp(MDApp):
 
 
     def add_appoint(self):
-        self.root.ids.show_doc.text = f'Doctor: {self.root.ids.doctor1.text}'
-        self.root.ids.show_hosp.text = 'Clinic: SPB, Kuzia str.21\n tel: 0325412'
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor: {self.root.ids.doctor1.text}'
+            self.root.ids.show_hosp.text = 'Clinic: SPB, Kuzia str.21\n tel: 0325412'
+        else:
+            pass
 
     def add_appoint_2(self):
-        self.root.ids.show_doc.text = f'Doctor: {self.root.ids.doctor2.text}'
-        self.root.ids.show_hosp.text = 'Clinic: SPB, Slava str. 17\n tel: 0626412'
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor: {self.root.ids.doctor2.text}'
+            self.root.ids.show_hosp.text = 'Clinic: SPB, Slava str. 17\n tel: 0626412'
+        else:
+            pass
 
     def add_appoint_3(self):
-        self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor3.text}'
-        self.root.ids.show_hosp.text = 'Clinic: Moscow,Arbat street 2\n tel: 0126472'
-
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor3.text}'
+            self.root.ids.show_hosp.text = 'Clinic: Moscow,Arbat street 2\n tel: 0126472'
+        else:
+            pass
     def add_appoint_4(self):
-        self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor4.text}'
-        self.root.ids.show_hosp.text = 'Clinic: Moscow,Pionerskaya 12\n tel: 0826512'
-
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor4.text}'
+            self.root.ids.show_hosp.text = 'Clinic: Moscow,Pionerskaya 12\n tel: 0826512'
+        else:
+            pass
     def add_appoint_5(self):
-        self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor5.text}'
-        self.root.ids.show_hosp.text = 'Clinic: Ekaterineburg,Plaza place\n tel: 0526412'
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor5.text}'
+            self.root.ids.show_hosp.text = 'Clinic: Ekaterineburg,Plaza place\n tel: 0526412'
+        else:
+            pass
 
     def add_appoint_6(self):
-        self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor6.text}'
-        self.root.ids.show_hosp.text = 'Clinic: Rostov on Don,Korolev st. 9\n tel: 0926912'
+        if self.login == True:
+            self.root.ids.show_doc.text = f'Doctor :{self.root.ids.doctor6.text}'
+            self.root.ids.show_hosp.text = 'Clinic: Rostov on Don,Korolev st. 9\n tel: 0926912'
+        else:
+            pass
 
     def save_data(self,*args):
         a = self.root.ids.show_doc.text
@@ -332,14 +370,30 @@ class MyDoctorApp(MDApp):
         self.root.ids.sex_1.text = ''
         self.root.ids.city_1.text = ''
 
-        print(self.dict)
+        print(self.dict_2)
     def clear_current(self):
+
         self.root.ids.show_doc.text = 'Doctor: '
         self.root.ids.show_hosp.text = 'Clinic: '
         self.root.ids.show_date.text = 'Date: '
 
+    def clear_appointment(self):
+
+        try:
+            ref = db.reference("/current")
+            self.dict = ref.get()
+            d = self.root.ids.user.text
+
+            ref.update({f'{d}': ['Doctor: ', 'Clinic: ',  'Date: ']})
+            self.root.ids.show_all_app.text = f'{self.dict[d][0]} \n {self.dict[d][1]} \n {self.dict[d][2]}'
+            self.clear_current()
+            self.show_current_appoint()
+
+        except:
+            self.dialog_Error()
+
     def user_profile(self):
-        self.root.current = 'screen_9'
+
         try:
             ref = db.reference('/User')
             self.dict = ref.get()
@@ -349,6 +403,8 @@ class MyDoctorApp(MDApp):
             self.root.ids.sexy.text = f'Gender:  {x[3]}'
             self.root.ids.town.text = f'City:  {x[4]}'
             self.root.ids.address.text = f'Home address:  {x[5]}'
+
+            self.root.current = 'screen_9'
 
         except:
             self.dialog_Error()
